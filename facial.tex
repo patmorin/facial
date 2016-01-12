@@ -133,8 +133,18 @@ A \emph{nonrepetitive vertex $k$-colouring} of a graph $G$ is a vertex $k$-colou
 \end{conjecture}
 No solution for this problem has been given yet. The current best bound for planar graphs depends on the number of vertices and states that $\pi(G) \leq 8(1+\log_{3/2}n)$ \cite{dujmovic2012planarlogn}. We do not know how tight that bound is, but current evidence suggests that it is not tight, as no planar graph with Thue chromatic number greater than 11 is known \cite{dujmovic2012planarlogn}. Furthermore, when restricted to some families of planar graphs, the conjecture is true.  K{\"u}ndgen and Pelsmajer \cite{kundgen2008nonrepetitive} showed that $K=12$ for outerplanar graphs and $K=4^t$ for graphs of bounded treewidth $t$. The latter bound is tight if $t=1$ (trees), but it is not known if it is tight for other values of $t$. Even the upper bound of 12 for outerplanar graphs is unknown to be tight, as no outerplanar graph with Thue number greater than 7 is known \cite{barat2007square}.
 
-A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such that its edges intersect only at their endpoints. An \emph{outerplane} graph $G$ is a plane graph such that all the vertices of $G$ are adjacent to the outside face of $G$. A \emph{facial walk} is a walk of consecutive vertices on the boundary of a face. 
-A \emph{facial path} is a facial walk in which every vertex is unique.
+A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such that its edges intersect only at their endpoints. An \emph{outerplane} graph $G$ is a plane graph such that all the vertices of $G$ are adjacent to the outside face of $G$. 
+
+A \emph{closed walk} in a graph $G$ is a sequence of vertices $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$ the edge $v_iv_{(i+1)\bmod \ell}$ is in $E(G)$.
+
+A \emph{facial walk} in a plane graph $G$ is a closed walk
+$v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$,
+the edges $v_{(i-1)\bmod \ell} v_i$ and $v_iv_{(i+1)\bmod\ell}$ occur
+consecutively in the counterclockwise cyclic ordering of the edges
+incident to $v_i$ in the embedding of $G$.
+
+A \emph{facial path} is a contiguous subsequence of a facial walk that
+is a path in $G$. 
 In this paper, we consider a variation of Thue colourings for plane graphs in which we only require facial paths to be nonrepetitive. An edge-colouring variant was first introduced by Havet et al. \cite{havet2011facial}, then Harant and Jendrol \cite{harant2012nonrepetitive} followed up with results for the vertex-colouring setting. A nonrepetitive facial $k$-colouring is a vertex $k$-colouring in which for every facial path $(v_1,\cdots,v_n)$ in $G$, the sequence $c(v_1),\cdots, c(v_n)$ is nonrepetitive. The \emph{facial Thue chromatic number} of a graph $G$, denoted $\pi_f(G)$, is the least $k$ for which a nonrepetitive facial $k$-colouring of $G$ exists. As with Conjecture \ref{conj:planarConstant} for the Thue chromatic number, it was also conjectured by Harant and Jendrol \cite{harant2012nonrepetitive} that there exists a constant $K$ such that $\pi_f(G) \leq K$ for any plane graph $G$. This conjecture was confirmed with $K=24$ by Barat and Czap \cite{barat2013facial}, and with smaller values of $K$ when restricted to some families of 2-connected\footnote{A graph is $k$-connected if it contains more than $k$ vertices and has no vertex cut of size less than $k$.} plane graphs such as Halin graphs and Hamiltonian plane graphs \cite{harant2012nonrepetitive}. Any nonrepetitive colouring is also a facial nonrepetitive colouring so we have that $\pi_f(G) \leq \pi(G)$. The best lower bound for the facial Thue chromatic number is 5 for plane graphs and 4 for outerplane graphs \cite{barat2013facial}.
 
 In the next sections, we prove tighter bounds for the facial Thue chromatic number of outerplane and plane graphs. Our technique consists in finding a \emph{blocking set}, from which we construct a \emph{blocking graph}. The blocking set is such that its removal from the outerplane graph results in a forest, for which a nonrepetitive 4-colouring exists. We show that a facial nonrepetitive colouring of any outerplane graph can be obtained by combining this colouring of a forest and a facial nonrepetitive colouring of the blocking graph.
@@ -231,8 +241,13 @@ is an edge that is not incident to the outer face.
    vertices of $V(F)\cap B$ occur consecutively on the boundary of $F$ 
 \end{obs}
 
-% Otherwise, removing $B$ would disconnect $F$ 
+\begin{obs}
+  For every inner face $F$ of $G$, $F \setminus B$ is a non-empty path.
+  \label{claim:facesMinusBarePaths}
+\end{obs}
+ 
 
+% Otherwise, removing $B$ would disconnect $F$ 
 
 Let us now show that such a blocking set exists for all outerplane graphs. In fact, we will show something stronger:  we can pick any single vertex of $G$ and require it to be in the blocking set. This constraint will be crucial later.
 
@@ -273,16 +288,26 @@ Let us now show that such a blocking set exists for all outerplane graphs. In fa
  \end{claim}
  
  \begin{proof}
- Let $F_1^H,\ldots,F_{f_H}^H$ be the inner faces of $H$ in the order considered by the procedure. and let $G_i^H$ be the graph induced by  
+ Let $F_1^H,\ldots,F_{f_H}^H$ be the inner faces of $H$ in the order
+ considered by the procedure. and let $G_i^H$ be the graph induced by  
  \begin{equation}
   \bigcup_{1 \leq j \leq i}V(F_j^H).
  \end{equation}
  We prove this by induction on $i$. Base case: $G_1^H=F_1^H$ is a cycle and by Claim \ref{claim:blocking_out_1} $|F_1^H \cap B|=1$, so $G_1^H\setminus B$ is a path, which is a connected graph. Induction step: suppose this holds for $G_{i-1}^H$. Let $B_{k-1}$ be the subset of $B$ that corresponds to all the faces visited prior to $F_i^H$. There are two cases:
  
  \begin{enumerate}
-  \item $|B_{k-1} \cap V(F_i^H)|=1$. In this case, one of the anchors of $F_i^H$ is in $B_{k-1}$. Thus, since $F_i^H$ is a cycle, $F_i^H \setminus B$ is a path. This path is connected by the other anchor of $F_i^H$ to $G_{i-1}^H$, which is connected. Thus, $G_i^H$ is also connected.
-  
-  \item $B_{k-1} \cap V(F_i^H) = \emptyset$. In this case, none of the anchors $a_1,a_2$ of $F_i^H$ are in $B_{k-1}$ and since $a_1,a_2 \in G_{i-1}^H$, $a_1,a_2 \notin B_k$. $F_i^H$ is a cycle, so by Claim \ref{claim:blocking_out_1}, $F_i^H \setminus B$ is a path which contains both $a_1$ and $a_2$. This path is connected to $G_{i-1}^H$, which is connected by the induction hypothesis, therefore $G_i^H$ is also connected.
+  \item $|B_{k-1} \cap V(F_i^H)|=1$. In this case, one of the anchors
+  of $F_i^H$ is in $B_{k-1}$. Thus, since $F_i^H$ is a cycle, $F_i^H
+  \setminus B$ is a path. This path is connected by the other anchor
+  of $F_i^H$ to $G_{i-1}^H$, which is connected. Thus, $G_i^H$ is also
+  connected. 
+  \item $B_{k-1} \cap V(F_i^H) = \emptyset$. In this case, none of the
+  anchors $a_1,a_2$ of $F_i^H$ are in $B_{k-1}$ and since $a_1,a_2 \in
+  G_{i-1}^H$, $a_1,a_2 \notin B_k$. $F_i^H$ is a cycle, so by Claim
+  \ref{claim:blocking_out_1}, $F_i^H \setminus B$ is a path which
+  contains both $a_1$ and $a_2$. This path is connected to $G_{i-1}^H$,
+  which is connected by the induction hypothesis, therefore $G_i^H$
+  is also connected.
  \end{enumerate}
  This completes the proof.
  \end{proof}
@@ -304,19 +329,20 @@ At this point we pause to sketch how Lemma~\ref{lem:blocking_out}
 can already be used to give an upper-bound of 8 on the facial
 non-repetitive chromatic number of biconnected outerplane graphs.
 For a biconnected outerplane graph, $G$, we take a blocking set $B$
-of $G$.  By Theorem~blah, we can non-repetitively 4-colour the forest
+of $G$.  By Theorem~X, we can non-repetitively 4-colour the tree
 $T=G\setminus B$ using colours $\{1,2,3,4\}$, so what remains is to assign
 colours to the vertices in $B$.  To do this, we non-repetitively 4-color
 the cycle, $C$, that contains the vertices of $B$ in the order they appear on
 the outer face of $G$ using the colours $\{5,6,7,8\}$.  We claim that
 the resulting 8-colouring of $G$ is facially non-repeitive.  No facial
 path on an interior face is coloured repetitively since each such facial path
-is also present in the forest $T$ or it contains exactly one
+is also either present in the tree $T$ or it contains exactly one
 vertex of $B$.  No facial path on the outer face is coloured repetitively
-since it is obtained by interleaving a non-repetitive sequence of colours in $C$ with non-repetive sequences taken from $T$. Thus, by Lemma~X, this path is non-repetitive.
+since it is obtained by interleaving a non-repetitive sequence of colours in $C$ with non-repetive sequences taken from $T$; by Lemma~X, a sequence obtained in this way is non-repetitive.
 
-TODO: Explain how to improve to 7 and that, in general (not biconnected)
-the cycle C is a more complicated graph actually a cactus graph. 
+TODO: Explain that this can be improved to 7 and that, in general (not
+biconnected) the cycle C is a more complicated graph actually a cactus
+graph.  
 
 \begin{corollary}
  Let $G$ be a 2-connected outerplane graph that contains at least two inner faces. There exists a blocking set $B$ of $G$ such that for each inner face $F$ of $G$, $|V(F) \cap B|=1$, and there exists an inner face $F_1$ of $G$ with $\deg_{\wdual{G}}(F_1)=1$ such that the vertex $v \in V(F_1) \cap B$ has $\deg_G(v) \geq 3$.
@@ -328,67 +354,95 @@ the cycle C is a more complicated graph actually a cactus graph.
 \end{proof}
 
 \subsection{Colouring Outerplane Graphs}
-We will now show how to use a blocking set to get a facial nonrepetitive colouring of an outerplane graph. Let $G$ be an outerplane graph and $B$ be a blocking set of $G$. A \emph{blocking graph} of $G$ is a (simple) graph denoted by $\block_{B}(G)$ with vertex set $B$ and with an edge set defined as follows: Let $W=w_1,w_2,\ldots,w_k$ be a closed facial walk around the outer face of $G$ such that $w_1=w_k\in B$. For each subsequence $w_i,w_{i+1},\ldots,w_{i+r}$ such that 
-\begin{enumerate}[a)]
- \item $w_i,w_{i+1},\ldots,w_{i+r}$ is a facial path,
- \item $r>0$,
- \item $w_i,w_{i+r}\in B$ and
- \item $w_{i+j}\notin B$ for all $j \in \{1, \ldots, r-1\}$,
-\end{enumerate}
-add an edge $\{w_i, w_{i+r}\}$ to $E(\block_{B}(G))$. 
-Thus, every pair of vertices of $B$ connected by a facial path on the outside face of $G$ are connected by an edge in $\block_{B}(G)$ (see Figure \ref{fig:blockingsetex}). If we remove condition (a) (thus also adding edges between vertices connected together via a facial walk that contains repeated vertices), the resulting graph is called the \emph{augmented blocking graph}, and denoted $\block_{B}^+(G)$.
 
-$\block_{B}(G)$ is a minor of $G$, thus it is also an outerplane graph. Furthermore, since edges only link successive vertices on $W$, $\block_{B}(G)$ is chordless. A graph where every cycle is chordless is called a \emph{cactus graph}.\footnote{The most common definition says that a cactus graph is a graph in which any two simple cycles have at most one vertex is common. This is equivalent to a chordless graph.}
+We will now show how to use a blocking set to get a facial nonrepetitive
+colouring of an outerplane graph. Let $G$ be an outerplane graph and $B$
+be a blocking set of $G$. 
 
-\begin{figure}[!ht]
-  \centering
-  
-  \begin{tikzpicture}[scale=1.5,auto=left]
-        
-    \begin{scope}[every node/.style={circle,draw=black,fill=white,minimum size=0.2cm, inner sep=0}]
-      \node[fill=black,label=90:$a$] (a) at (0,1) {};
-      \node[] (b) at (1,1) {};
-      \node[fill=black,label=90:$b$] (c) at (2,1) {};
-      \node[] (d) at (0,0) {};
-      \node[] (e) at (1,0) {};
-      \node[] (f) at (2,0) {};
-      \node[] (g) at (-1,1) {};
-      \node[fill=black,label=-90:$c$] (h) at (3,0) {};
-      \node[] (i) at (3.5,0) {};
-      \node[] (j) at (3,0.5) {};
-      \node[label=-180:$d$] (k) at (-1,0) {};
-      
-      \foreach \from/\to in {a/b,b/c,c/f,a/g,a/d,f/h,h/i,h/j}
-	\draw (\from) -- (\to);
-	
-      \foreach \from/\to in {d/g,d/e,e/f,e/b,i/j,d/k}
-	\draw[] (\from) -- (\to);
-	
-    \end{scope}
-  
-       \draw[dashed,red] (a) .. controls (0.2,1.2) and (1.8,1.2) .. (c); 
-       \draw[dashed,red] (c) -- (h);
-  \end{tikzpicture}
-  
-    \caption{The blocking graph has the blocking set as vertex set, and an edge between each pair of vertices that are connected through a facial path (dashed). There is no $\{a,c\}$ edge since there is no facial path between them that does not include another blocking set vertex. However, were $d$ not in the graph, the $\{a,c\}$ edge would exist.}
+A \emph{blocking graph} of $G$ for a blocking set $B$ is a graph whose
+vertex set is $B$ and whose edges are defined as follows:  Begin with the
+facial walk $W$ on the outer face of $G$. Remove every vertex not in $B$
+from $W$ to obtain a cyclic sequence $W'$ of vertices in $B$. For each
+consecutive pair of vertices $uw$ in $W'$ we add the edge $uw$ to the
+blocking graph unless $u=w$.  This naturally defines the embedding of the
+blocking graph $\block_B(G)$. See Figure~\ref{fig:blocking-graph} for an example.
 
-  \label{fig:blockingsetex}  
+TODO: Relate $\block_B(G)$ to the cycle $C$ in the previous section.
+
+\begin{figure}
+  \includegraphics[width=.9\textwidth]{images/blocking}
+  \caption{An example of a blocking graph}
+  \label{fig:blocking-graph}
 \end{figure}
+
+%A \emph{blocking graph} of $G$ is a (simple)
+%graph denoted by $\block_{B}(G)$ with vertex set $B$ and with an edge
+%set defined as follows: Let $W=w_1,w_2,\ldots,w_k$ be a closed facial
+%walk around the outer face of $G$ such that $w_1=w_k\in B$. For each
+%subsequence $w_i,w_{i+1},\ldots,w_{i+r}$ such that 
+
+%\begin{enumerate}[a)]
+% \item $w_i,w_{i+1},\ldots,w_{i+r}$ is a facial path,
+% \item $r>0$,
+% \item $w_i,w_{i+r}\in B$ and
+% \item $w_{i+j}\notin B$ for all $j \in \{1, \ldots, r-1\}$,
+%\end{enumerate}
+%add an edge $\{w_i, w_{i+r}\}$ to $E(\block_{B}(G))$. 
+%Thus, every pair of vertices of $B$ connected by a facial path on the outside face of $G$ are connected by an edge in $\block_{B}(G)$ (see Figure \ref{fig:blockingsetex}). If we remove condition (a) (thus also adding edges between vertices connected together via a facial walk that contains repeated vertices), the resulting graph is called the \emph{augmented blocking graph}, and denoted $\block_{B}^+(G)$.
+%
+%$\block_{B}(G)$ is a minor of $G$, thus it is also an outerplane graph. Furthermore, since edges only link successive vertices on $W$, $\block_{B}(G)$ is chordless. A graph where every cycle is chordless is called a \emph{cactus graph}.\footnote{The most common definition says that a cactus graph is a graph in which any two simple cycles have at most one vertex is common. This is equivalent to a chordless graph.}
+%
+
+%\begin{figure}[!ht]
+%  \centering
+%  
+%  \begin{tikzpicture}[scale=1.5,auto=left]
+%        
+%    \begin{scope}[every node/.style={circle,draw=black,fill=white,minimum size=0.2cm, inner sep=0}]
+%      \node[fill=black,label=90:$a$] (a) at (0,1) {};
+%      \node[] (b) at (1,1) {};
+%      \node[fill=black,label=90:$b$] (c) at (2,1) {};
+%      \node[] (d) at (0,0) {};
+%      \node[] (e) at (1,0) {};
+%      \node[] (f) at (2,0) {};
+%      \node[] (g) at (-1,1) {};
+%      \node[fill=black,label=-90:$c$] (h) at (3,0) {};
+%      \node[] (i) at (3.5,0) {};
+%      \node[] (j) at (3,0.5) {};
+%      \node[label=-180:$d$] (k) at (-1,0) {};
+%      
+%      \foreach \from/\to in {a/b,b/c,c/f,a/g,a/d,f/h,h/i,h/j}
+%	\draw (\from) -- (\to);
+%	
+%      \foreach \from/\to in {d/g,d/e,e/f,e/b,i/j,d/k}
+%	\draw[] (\from) -- (\to);
+%	
+%    \end{scope}
+%  
+%       \draw[dashed,red] (a) .. controls (0.2,1.2) and (1.8,1.2) .. (c); 
+%       \draw[dashed,red] (c) -- (h);
+%  \end{tikzpicture}
+%  
+%    \caption{The blocking graph has the blocking set as vertex set, and an edge between each pair of vertices that are connected through a facial path (dashed). There is no $\{a,c\}$ edge since there is no facial path between them that does not include another blocking set vertex. However, were $d$ not in the graph, the $\{a,c\}$ edge would exist.}
+%
+%  \label{fig:blockingsetex}  
+%\end{figure}
 
 \begin{lemma}
  Let $G$ be an outerplane graph and $B$ be a blocking set of $G$. Suppose that there exists a facial nonrepetitive $k$-colouring of $\block_{B}(G)$. Then, there exists a facial nonrepetitive $(4+k)$-colouring of $G$.
  \label{lem:hitting_plus_four}
 \end{lemma}
-We will need the following claim in our proof. Note that this claim is different from Claim \ref{claim:blocking_out_1} since a blocking set may contain multiple vertices of a same inner face (which will happen in a later proof), while Lemma \ref{lem:blocking_out} shows the existence of a blocking set with exactly \emph{one} vertex per inner face.
+
+%Note that this claim is different from Claim \ref{claim:blocking_out_1} since a blocking set may contain multiple vertices of a same inner face (which will happen in a later proof), while Lemma \ref{lem:blocking_out} shows the existence of a blocking set with exactly \emph{one} vertex per inner face.
  
- \begin{claim}
-  For every inner face $F$ of $G$, $F \setminus B$ is a non-empty path.
-  \label{claim:facesMinusBarePaths}
- \end{claim}
- 
- \begin{proof}
- Suppose that this is not the case, thus since $F \setminus B \not= \emptyset$, there exists an inner face $F$ where $F \setminus B$ consists at least two connected components. Let $H$ be the 2-connected component of $G$ that contains $F$. Let $u,v \in V(F) \cap B$ such that $u \not= v$ and $\{u,v\} \notin E(F)$. Two such vertices certainly exist since $F \setminus B$ consists at least two connected components. Let $H'=H \setminus \{u\}$. $v$ is a cut vertex of $H'$ since $F$ is a cycle, $H'$ is an outerplane graph and $u$ and $v$ are not adjacent. Thus, since $\{u,v\} \subseteq B$, $H \setminus B$ is not connected. But, by definition of a blocking set, $H \setminus B$ must be connected. Contradiction. 
- \end{proof} 
+% \begin{claim}
+%  For every inner face $F$ of $G$, $F \setminus B$ is a non-empty path.
+%  \label{claim:facesMinusBarePaths}
+% \end{claim}
+% 
+% \begin{proof}
+% Suppose that this is not the case, thus since $F \setminus B \not= \emptyset$, there exists an inner face $F$ where $F \setminus B$ consists at least two connected components. Let $H$ be the 2-connected component of $G$ that contains $F$. Let $u,v \in V(F) \cap B$ such that $u \not= v$ and $\{u,v\} \notin E(F)$. Two such vertices certainly exist since $F \setminus B$ consists at least two connected components. Let $H'=H \setminus \{u\}$. $v$ is a cut vertex of $H'$ since $F$ is a cycle, $H'$ is an outerplane graph and $u$ and $v$ are not adjacent. Thus, since $\{u,v\} \subseteq B$, $H \setminus B$ is not connected. But, by definition of a blocking set, $H \setminus B$ must be connected. Contradiction. 
+% \end{proof} 
 \begin{proof}
  Since $B$ is a blocking set of $G$, $G'=G \setminus B$ is a forest and by Theorem \ref{thm:four_colouring_trees}, there exists a nonrepetitive 4-colouring of each connected component of $G'$, which translates to a nonrepetitive 4-colouring of $G'$. Let $c_{G'} : V(G') \rightarrow \{1,2,3,4\}$ be such a colouring, and let $c_B : B \rightarrow \{5,\ldots,4+k\}$ be a facial nonrepetitive $k$-colouring of $\block_{B}(G)$. Such a colouring exists by our hypothesis. Let $c : V(G) \rightarrow \{1,\ldots,4+k\}$ be a $(4+k)$-colouring of $G$ defined as
  \begin{equation}
