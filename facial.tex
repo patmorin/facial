@@ -1,5 +1,6 @@
-
 \documentclass{patmorin}
+
+\setlength{\parskip}{1ex}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -10,7 +11,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{subfig} 
-\usepackage[margin=1.2in]{geometry}
+%\usepackage[margin=1.2in]{geometry}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{shapes,snakes}
@@ -70,13 +71,17 @@
 
 \newcommand*\samethanks[1][\value{footnote}]{\footnotemark[#1]}
 
+% first the title is needed
+\title{\MakeUppercase{New Bounds for Facial Nonrepetitive Colourings}}
+\date{}
+
+\author{Prosenjit Bose,\thanks{School of Computer Science, Carleton University, Ottawa, Canada. \texttt{jit@scs.carleton.ca}, \texttt{morin@scs.carleton.ca}, \texttt{lucasriouxmaldague@scs.carleton.ca}}\, %
+\and Vida Dujmovi{\'c},\thanks{School of Computer Science and Electrical Engineering, University of Ottawa, Ottawa, Canada. \texttt{vida.dujmovic@uottawa.ca}}\,
+\and Pat Morin,\samethanks[1]\, \and Lucas Rioux-Maldague\samethanks[1] }
+
 \begin{document}
 
 % \mainmatter  % start of an individual contribution
-
-% first the title is needed
-\title{New Bounds for Facial Nonrepetitive Colourings}
-\date{}
 
 % a short form should be given in case it is too long for the running head
 % \titlerunning{New Bounds for Facial Nonrepetitive Colourings}
@@ -87,9 +92,6 @@
 % their surnames. This ensures that the names appear correctly in
 % the running heads and the author index.
 %
-\author{Prosenjit Bose \thanks{School of Computer Science, Carleton University, Ottawa, Canada. \texttt{jit@scs.carleton.ca}, \texttt{morin@scs.carleton.ca}, \texttt{lucasriouxmaldague@scs.carleton.ca}} %
-\and Vida Dujmovi{\'c} \thanks{School of Computer Science and Electrical Engineering, University of Ottawa, Ottawa, Canada. \texttt{vida.dujmovic@uottawa.ca}}
-\and Pat Morin\samethanks[1] \and Lucas Rioux-Maldague\samethanks[1] }
 %
 %\authorrunning{Bose, Dujmovi{\'c}, Morin \and Rioux-Maldague}
 % (feature abused for this document to repeat the title also on left hand pages)
@@ -113,12 +115,43 @@
 \maketitle
 
 \begin{abstract}
-A sequence $S=s_1,s_2,\cdots,s_{2r}$ is a \emph{repetition} if $s_i=s_{r+i}$ for $1 \leq i \leq r$. Let $G$ be a plane graph. A \emph{facial path} is a path of consecutive vertices on the boundary walk of a face. A $k$-nonrepetitive facial colouring is a $k$-vertex colouring such that the sequence of colours of any facial path is nonrepetitive. The minimum number of colours such that $G$ has a nonrepetitive facial colouring is denoted $\pi_f(G)$. We show that $\pi_f(G)\leq 7$ if $G$ is 2-connected outerplane, $\pi_f(G) \leq 11$ if $G$ is outerplane and $\pi_f(G)\leq 22$ if $G$ is plane. The latter improves the previous best known bound on nonrepetitive facial colourings of plane graphs by Barat and Czap (Journal of Graph Theory, 2013).
+A sequence $S=s_1,s_2,\cdots,s_{2r}$ is a \emph{repetition} if
+$s_i=s_{r+i}$ for $1 \leq i \leq r$. Let $G$ be a plane graph. A
+\emph{facial path} is a path of consecutive vertices on the boundary walk
+of a face. A $k$-nonrepetitive facial colouring is a $k$-vertex colouring
+such that the sequence of colours of any facial path is nonrepetitive. The
+minimum number of colours such that $G$ has a nonrepetitive facial
+colouring is denoted by $\pi_f(G)$. We show that $\pi_f(G)\leq 7$ if $G$
+is 2-connected outerplane, $\pi_f(G) \leq 11$ if $G$ is outerplane and
+$\pi_f(G)\leq 22$ if $G$ is plane. The latter improves the previous best
+known bound on nonrepetitive facial colourings of plane graphs by Barat
+and Czap (Journal of Graph Theory, 2013).
 \end{abstract}
 
 
 \section{Introduction}
-A sequence $S=s_1,s_2,\cdots,s_{2r}$ is a \emph{repetition} if $s_i=s_{r+i}$ for $1 \leq i \leq r$. For example, 1212 is a repetition, while 1213 is not. Repetitions are also referred to as ``squares'', since they can be written as $aa=a^2$. A \emph{block} of a sequence $S$ is any subsequence of consecutive terms in $S$. A sequence is \emph{nonrepetitive} (square free) if for every block $B$ of $S$, $B$ is not a repetition. Otherwise $S$ is \emph{repetitive}. For example, 1312124 is repetitive, as it contains the block 1212 which is a repetition, while 123213 is nonrepetitive as it contains no such block.  It is easy to see that no sequence of length greater than 3 on two symbols can be nonrepetitive. A groundbreaking result by Axel Thue in 1906 states that nonrepetitive sequences of infinite length can be created using three symbols \cite{thue1906uber}. A variant of this problem concerning graphs was proposed by Alon, Grytczuk, Ha{\l}uszczak and Riordan in 2002 \cite{alon2002nonrepetitive}. This problem has received much attention since \cite{barat2013facial, barat2007square, barat2008note, brevsar2007nonrepetitive, currie2002cycle18, dujmovic2012planarlogn, dujmovic2011nonrepetitive, fiorenzi2011thue, gonccalves2014entropy, grytczuk2007nonrepetitivesurvey, grytczuk2007nonrepetitive, grytczuk2013new, harant2012nonrepetitive, kozik2013nonrepetitive, kundgen2008nonrepetitive, pezarski2009non, schreyer2012facial, schreyer2013total}. 
+A sequence $S=s_1,s_2,\cdots,s_{2r}$, $r\ge 1$, is a \emph{repetition}
+if $s_i=s_{r+i}$ for $1 \leq i \leq r$. For example, 1212 is a
+repetition, while 1213 is not. Repetitions are also referred to as
+``squares'', since they can be written as $aa=a^2$. A \emph{block}
+of a sequence $S$ is any subsequence of consecutive terms in $S$. A
+sequence is \emph{nonrepetitive} (square free) if for every block $B$
+of $S$, $B$ is not a repetition. Otherwise $S$ is \emph{repetitive}. For
+example, 1312124 is repetitive, as it contains the block 1212 which is a
+repetition, while 123213 is nonrepetitive as it contains no such block.
+It is easy to see that no sequence of length greater than 3 on two symbols
+can be nonrepetitive. A result by Axel Thue in 1906 states
+that nonrepetitive sequences of arbitrary length can be created using
+three symbols \cite{thue1906uber}. A variant of this problem concerning
+graphs was proposed by Alon, Grytczuk, Ha{\l}uszczak and Riordan in
+2002 \cite{alon2002nonrepetitive}. This problem has received much
+attention since \cite{barat2013facial, barat2007square, barat2008note,
+brevsar2007nonrepetitive, currie2002cycle18, dujmovic2012planarlogn,
+dujmovic2011nonrepetitive, fiorenzi2011thue, gonccalves2014entropy,
+grytczuk2007nonrepetitivesurvey, grytczuk2007nonrepetitive,
+grytczuk2013new, harant2012nonrepetitive, kozik2013nonrepetitive,
+kundgen2008nonrepetitive, pezarski2009non, schreyer2012facial,
+schreyer2013total}. 
 
 A \emph{vertex colouring} or a \emph{proper vertex colouring} of a graph $G$ is a function $c: V(G) \rightarrow \naturals$ that satisfies:
 \begin{equation}
@@ -126,26 +159,51 @@ c(u) = c(v) \Rightarrow \{u,v\} \notin E(G).
 \label{eqn:propervcolouring}
 \end{equation}
 for all $u,v \in V(G)$. For $k \in \naturals$, a \emph{vertex $k$-colouring} is a proper vertex colouring $c : V(G) \rightarrow \{1,\cdots,k\}$.
-A \emph{nonrepetitive vertex $k$-colouring} of a graph $G$ is a vertex $k$-colouring $c$ in which for every vertex path $(v_1,\cdots,v_n)$ in $G$, the sequence $c(v_1),\cdots, c(v_n)$ is nonrepetitive. The \emph{Thue chromatic number} of a graph $G$, denoted $\pi(G)$, is the least $k$ for which a nonrepetitive vertex $k$-colouring of $G$ exists. Some upper bounds on $\pi$ are known: a result by Alon et al.\cite{alon2002nonrepetitive} states that $\pi(G) \in O(\Delta(G)^2)$ where $\Delta(G)$ is the maximum degree of $G$, and this result is tight up to a logarithmic factor.  A famous conjecture relates to the Thue chromatic number of planar graphs:
+A \emph{nonrepetitive vertex $k$-colouring} of a graph $G$ is a vertex $k$-colouring $c$ in which for every vertex path $(v_1,\cdots,v_n)$ in $G$, the sequence $c(v_1),\cdots, c(v_n)$ is nonrepetitive. The \emph{Thue chromatic number} of a graph $G$, denoted $\pi(G)$, is the least $k$ for which a nonrepetitive vertex $k$-colouring of $G$ exists. Some upper bounds on $\pi$ are known: a result by Alon et al.~\cite{alon2002nonrepetitive} (later tightened by Dujmovi\'c et al. \cite{dujmovic2011nonrepetitive}), states that $\pi(G) \in O(\Delta(G)^2)$ where $\Delta(G)$ is the maximum degree of $G$, and this result is tight up to a logarithmic factor.  A famous conjecture relates to the Thue chromatic number of planar graphs:
 \begin{conjecture}[Alon et al. \cite{alon2002nonrepetitive}]
  There is a constant $K$ such that $\pi(G) \leq K$ for any planar graph $G$.
  \label{conj:planarConstant}
 \end{conjecture}
-No solution for this problem has been given yet. The current best bound for planar graphs depends on the number of vertices and states that $\pi(G) \leq 8(1+\log_{3/2}n)$ \cite{dujmovic2012planarlogn}. We do not know how tight that bound is, but current evidence suggests that it is not tight, as no planar graph with Thue chromatic number greater than 11 is known \cite{dujmovic2012planarlogn}. Furthermore, when restricted to some families of planar graphs, the conjecture is true.  K{\"u}ndgen and Pelsmajer \cite{kundgen2008nonrepetitive} showed that $K=12$ for outerplanar graphs and $K=4^t$ for graphs of bounded treewidth $t$. The latter bound is tight if $t=1$ (trees), but it is not known if it is tight for other values of $t$. Even the upper bound of 12 for outerplanar graphs is unknown to be tight, as no outerplanar graph with Thue number greater than 7 is known \cite{barat2007square}.
+This conjecture remains open. The current best bound for planar graphs depends on the number, $n$, of vertices and states that $\pi(G) \leq 8(1+\log_{3/2}n)$ \cite{dujmovic2012planarlogn}. We do not know how tight that bound is, but current evidence suggests that it is not tight, as no planar graph with Thue chromatic number greater than 11 is known \cite{dujmovic2012planarlogn}. 
 
+When restricted to some families of planar graphs, Conjecture~\ref{conj:planarConstant} is known to be true.  K{\"u}ndgen and Pelsmajer \cite{kundgen2008nonrepetitive} showed that $K=12$ for outerplanar graphs and $K=4^t$ for graphs of bounded treewidth $t$. The latter bound is tight if $t=1$ (trees), but it is not known if it is tight for other values of $t$. Even the upper bound of 12 for outerplanar graphs is not known to be tight, as no outerplanar graph with Thue number greater than 7 is known \cite{barat2007square}.
+
+In this paper, we consider a variation of Thue colourings
+for plane graphs in which we only require facial paths to be
+nonrepetitive.
 A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such that its edges intersect only at their endpoints. An \emph{outerplane} graph $G$ is a plane graph such that all the vertices of $G$ are adjacent to the outside face of $G$. 
-
 A \emph{closed walk} in a graph $G$ is a sequence of vertices $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$ the edge $v_iv_{(i+1)\bmod \ell}$ is in $E(G)$.
-
 A \emph{facial walk} in a plane graph $G$ is a closed walk
 $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$,
 the edges $v_{(i-1)\bmod \ell} v_i$ and $v_iv_{(i+1)\bmod\ell}$ occur
 consecutively in the counterclockwise cyclic ordering of the edges
 incident to $v_i$ in the embedding of $G$.
-
 A \emph{facial path} is a contiguous subsequence of a facial walk that
 is a path in $G$. 
-In this paper, we consider a variation of Thue colourings for plane graphs in which we only require facial paths to be nonrepetitive. An edge-colouring variant was first introduced by Havet et al. \cite{havet2011facial}, then Harant and Jendrol \cite{harant2012nonrepetitive} followed up with results for the vertex-colouring setting. A nonrepetitive facial $k$-colouring is a vertex $k$-colouring in which for every facial path $(v_1,\cdots,v_n)$ in $G$, the sequence $c(v_1),\cdots, c(v_n)$ is nonrepetitive. The \emph{facial Thue chromatic number} of a graph $G$, denoted $\pi_f(G)$, is the least $k$ for which a nonrepetitive facial $k$-colouring of $G$ exists. As with Conjecture \ref{conj:planarConstant} for the Thue chromatic number, it was also conjectured by Harant and Jendrol \cite{harant2012nonrepetitive} that there exists a constant $K$ such that $\pi_f(G) \leq K$ for any plane graph $G$. This conjecture was confirmed with $K=24$ by Barat and Czap \cite{barat2013facial}, and with smaller values of $K$ when restricted to some families of 2-connected\footnote{A graph is $k$-connected if it contains more than $k$ vertices and has no vertex cut of size less than $k$.} plane graphs such as Halin graphs and Hamiltonian plane graphs \cite{harant2012nonrepetitive}. Any nonrepetitive colouring is also a facial nonrepetitive colouring so we have that $\pi_f(G) \leq \pi(G)$. The best lower bound for the facial Thue chromatic number is 5 for plane graphs and 4 for outerplane graphs \cite{barat2013facial}.
+
+An edge-colouring variant of facial non-repetitive colouring was first introduced
+by Havet et al. \cite{havet2011facial}, then Harant and Jendrol
+\cite{harant2012nonrepetitive} followed up with results for the
+vertex-colouring setting we study here. A 
+\emph{nonrepetitive facial $k$-colouring} is a vertex
+$k$-colouring in which for every facial path $(v_1,\cdots,v_n)$ in $G$,
+the sequence $c(v_1),\cdots, c(v_n)$ is nonrepetitive. The \emph{facial
+Thue chromatic number} of a graph $G$, denoted $\pi_f(G)$, is the least
+$k$ for which a nonrepetitive facial $k$-colouring of $G$ exists. As with
+Conjecture \ref{conj:planarConstant} for the Thue chromatic number, it
+was also conjectured by Harant and Jendrol \cite{harant2012nonrepetitive}
+that there exists a constant $K$ such that $\pi_f(G) \leq K$ for any plane
+graph $G$. This conjecture was confirmed with $K=24$ by Barat and Czap
+\cite{barat2013facial}, and with smaller values of $K$ when restricted
+to some families of 2-connected\footnote{A graph is $k$-connected if
+it contains more than $k$ vertices and has no vertex cut of size less
+than $k$.} plane graphs such as Halin graphs ($K=??$) and Hamiltonian plane
+graphs ($K=16$) \cite{harant2012nonrepetitive}. Any nonrepetitive colouring is
+also a facial nonrepetitive colouring so we have that $\pi_f(G) \leq
+\pi(G)$. The best lower bound for the facial Thue chromatic number is
+5 for plane graphs and 4 for outerplane graphs \cite{barat2013facial}.
+
+TODO: Ask Lucas where Halin graphs come from?
 
 In the next sections, we prove tighter bounds for the facial Thue chromatic number of outerplane and plane graphs. Our technique consists in finding a \emph{blocking set}, from which we construct a \emph{blocking graph}. The blocking set is such that its removal from the outerplane graph results in a forest, for which a nonrepetitive 4-colouring exists. We show that a facial nonrepetitive colouring of any outerplane graph can be obtained by combining this colouring of a forest and a facial nonrepetitive colouring of the blocking graph.
 We then proceed to show how to find a nonrepetitive colouring on at most 7 colours of the blocking graph. Although it seems hard --- if not impossible --- to find a such a colouring if the blocking graph contains odd cycles, we show that this is feasible if all cycles are even, and that it is possible to select the blocking set as such.
