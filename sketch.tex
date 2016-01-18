@@ -62,7 +62,7 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{claim}{Claim}[theorem]
-\newtheorem{obs}{Observation}[theorem]
+\newtheorem{obs}[theorem]{Observation}
 
 
 \newcommand{\thmfacialoutplanar}{Let $G$ be an outerplane graph. Then, $\pi_f(G) \leq 11$.}
@@ -125,7 +125,7 @@ colouring is denoted by $\pi_f(G)$. We show that $\pi_f(G)\leq 7$ if $G$
 is 2-connected outerplane, $\pi_f(G) \leq 11$ if $G$ is outerplane and
 $\pi_f(G)\leq 22$ if $G$ is plane. The latter improves the previous best
 known bound on nonrepetitive facial colourings of plane graphs by Barat
-and Czap (Journal of Graph Theory, 2013).
+and Czap (Journal of Graph Theory, 2013).
 \end{abstract}
 
 
@@ -151,7 +151,7 @@ dujmovic2011nonrepetitive, fiorenzi2011thue, gonccalves2014entropy,
 grytczuk2007nonrepetitivesurvey, grytczuk2007nonrepetitive,
 grytczuk2013new, harant2012nonrepetitive, kozik2013nonrepetitive,
 kundgen2008nonrepetitive, pezarski2009non, schreyer2012facial,
-schreyer2013total}. 
+schreyer2013total}. 
 
 A \emph{vertex colouring} or a \emph{proper vertex colouring} of a graph $G$ is a function $c: V(G) \rightarrow \naturals$ that satisfies:
 \begin{equation}
@@ -179,7 +179,7 @@ the edges $v_{(i-1)\bmod \ell} v_i$ and $v_iv_{(i+1)\bmod\ell}$ occur
 consecutively in the counterclockwise cyclic ordering of the edges
 incident to $v_i$ in the embedding of $G$.
 A \emph{facial path} is a contiguous subsequence of a facial walk that
-is a path in $G$. 
+is a path in $G$. 
 
 An edge-colouring variant of facial non-repetitive colouring was first introduced
 by Havet et al. \cite{havet2011facial}, then Harant and Jendrol
@@ -201,7 +201,7 @@ than $k$.} plane graphs such as Halin graphs ($K=??$) and Hamiltonian plane
 graphs ($K=16$) \cite{harant2012nonrepetitive}. Any nonrepetitive colouring is
 also a facial nonrepetitive colouring so we have that $\pi_f(G) \leq
 \pi(G)$. The best lower bound for the facial Thue chromatic number is
-5 for plane graphs and 4 for outerplane graphs \cite{barat2013facial}.
+5 for plane graphs and 4 for outerplane graphs \cite{barat2013facial}.
 
 TODO: Ask Lucas where Halin graphs come from?
 
@@ -251,7 +251,7 @@ $H$ of $G$, $H \setminus B$ is a tree and for each inner face $F$,
 $F \setminus B \not= \emptyset$. 
 Observe that $G\setminus B$ is a forest that contains a non-empty tree
 for each 2-connected component of $G$.
-See Figure \ref{fig:blocking_set} for an example of a blocking set. 
+See Figure \ref{fig:blocking_set} for an example of a blocking set. 
 
 \begin{figure}[!ht]
   \centering
@@ -315,9 +315,9 @@ See Figure \ref{fig:blocking_set} for an example of a blocking set.
   \label{fig:blocking_set}  
 \end{figure}
 
-The definition of a blocking set is subtle and implies two properties
-that we will use throughout. A \emph{chord} in an outerplanar graph
-is an edge that is not incident to the outer face.
+The definition of a blocking set is subtle and implies three properties
+that we will use throughout. A \emph{chord} in an outerplanar graph
+is an edge that is not incident to the outer face.
 
 \begin{obs}
    For any blocking set $B$ of $G$, $B$ does not include both endpoints
@@ -340,9 +340,10 @@ is an edge that is not incident to the outer face.
 Let us now show that such a blocking set exists for all outerplane graphs. In fact, we will show something stronger:  we can pick any single vertex of $G$ and require it to be in the blocking set. This constraint will be crucial later.
 
 \begin{lemma}
- Every outplane graph $G$ has a blocking set. Moreover, if $G$ has
- $f\ge 1$ inner faces, 
- then given any vertex $v$ incident to some inner face $F_1$, there exists a blocking set $B$ of $G$ such that $v \in B$ and for each inner face $F$ of $G$, $|V(F) \cap B|=1$.
+ Every outerplane graph $G$ has a blocking set. Moreover, if $G$ has
+ $f\ge 1$ inner faces,  then given any vertex $v$ incident to some inner
+ face $F_1$, there exists a blocking set $B$ of $G$ such that $v \in B$
+ and for each inner face $F$ of $G$, $|V(F) \cap B|=1$.
  \label{lem:blocking_out}
 \end{lemma}
 \begin{proof}
@@ -377,7 +378,7 @@ Let us now show that such a blocking set exists for all outerplane graphs. In fa
  
  \begin{proof}
  Let $F_1^H,\ldots,F_{f_H}^H$ be the inner faces of $H$ in the order
- considered by the procedure. and let $G_i^H$ be the graph induced by  
+ considered by the procedure. and let $G_i^H$ be the graph induced by  
  \begin{equation}
   \bigcup_{1 \leq j \leq i}V(F_j^H).
  \end{equation}
@@ -388,14 +389,14 @@ Let us now show that such a blocking set exists for all outerplane graphs. In fa
   of $F_i^H$ is in $B_{k-1}$. Thus, since $F_i^H$ is a cycle, $F_i^H
   \setminus B$ is a path. This path is connected by the other anchor
   of $F_i^H$ to $G_{i-1}^H$, which is connected. Thus, $G_i^H$ is also
-  connected. 
+  connected. 
   \item $B_{k-1} \cap V(F_i^H) = \emptyset$. In this case, none of the
   anchors $a_1,a_2$ of $F_i^H$ are in $B_{k-1}$ and since $a_1,a_2 \in
   G_{i-1}^H$, $a_1,a_2 \notin B_k$. $F_i^H$ is a cycle, so by Claim
   \ref{claim:blocking_out_1}, $F_i^H \setminus B$ is a path which
   contains both $a_1$ and $a_2$. This path is connected to $G_{i-1}^H$,
   which is connected by the induction hypothesis, therefore $G_i^H$
-  is also connected.
+  is also connected.
  \end{enumerate}
  This completes the proof.
  \end{proof}
@@ -429,8 +430,8 @@ vertex of $B$.  No facial path on the outer face is coloured repetitively
 since it is obtained by interleaving a non-repetitive sequence of colours in $C$ with non-repetive sequences taken from $T$; by Lemma~X, a sequence obtained in this way is non-repetitive.
 
 TODO: Explain that this can be improved to 7 and that, in general (not
-biconnected) the cycle C is a more complicated graph actually a cactus
-graph.  
+biconnected) the cycle C is a more complicated graph actually a cactus
+graph.  
 
 \begin{corollary}
  Let $G$ be a 2-connected outerplane graph that contains at least two inner faces. There exists a blocking set $B$ of $G$ such that for each inner face $F$ of $G$, $|V(F) \cap B|=1$, and there exists an inner face $F_1$ of $G$ with $\deg_{\wdual{G}}(F_1)=1$ such that the vertex $v \in V(F_1) \cap B$ has $\deg_G(v) \geq 3$.
@@ -447,14 +448,16 @@ We will now show how to use a blocking set to get a facial nonrepetitive
 colouring of an outerplane graph. Let $G$ be an outerplane graph and $B$
 be a blocking set of $G$. 
 
-A \emph{blocking graph} of $G$ for a blocking set $B$ is a graph whose
-vertex set is $B$ and whose edges are defined as follows:  Begin with the
-facial walk $W$ on the outer face of $G$. Remove every vertex not in $B$
-from $W$ to obtain a cyclic sequence $W'$ of vertices in $B$. For each
-consecutive pair of vertices $uw$ in $W'$ we add the edge $uw$ to the
-blocking graph unless $u=w$.  This naturally defines the embedding of the
-blocking graph $\block_B(G)$. See Figure~\ref{fig:blocking-graph} for an example.
-
+The \emph{blocking graph} of $G$ for a blocking set $B$ is the graph
+whose vertex set is $B$ and whose edges are defined as follows:  Begin
+with the facial walk $W$ on the outer face of $G$. Remove every vertex
+ not in $B$ from $W$ to obtain a cyclic sequence $W'$ of vertices in
+$B$. For each consecutive pair of vertices $uw$ in $W'$ we add the edge
+ $uw$ to the blocking graph.  This naturally defines the embedding of
+ the blocking graph $\block_B(G)$. See Figure~\ref{fig:blocking_graph}
+ for an example.   Note that $\block_B(G)$ is not necessarily a simple
+graph; it may contain parallel edges (cycles of length two) and self-loops
+(cycles of length one). 
 \begin{figure}[!ht]
   \centering
   
@@ -503,6 +506,8 @@ blocking graph $\block_B(G)$. See Figure~\ref{fig:blocking-graph} for an example
        \draw[dashed,red] (a) .. controls (-1,-1.2) .. (m);
        \draw[dashed,red] (m) .. controls (-2.5,-0.2) and (-2.5,1) .. (o);
        \draw[dashed,red] (p) .. controls (0,2) and (1.5,2.75) .. (u);
+
+       \draw[dashed,red] (u) .. controls (4.5,1.05) and (2.5,4.4) .. (u);
 	
 %       \draw[dotted] (u) .. controls (-0.5,2.5) and (1.7,2.2) .. (w);
 %       
@@ -531,7 +536,7 @@ TODO: Relate $\block_B(G)$ to the cycle $C$ in the previous section.
 %graph denoted by $\block_{B}(G)$ with vertex set $B$ and with an edge
 %set defined as follows: Let $W=w_1,w_2,\ldots,w_k$ be a closed facial
 %walk around the outer face of $G$ such that $w_1=w_k\in B$. For each
-%subsequence $w_i,w_{i+1},\ldots,w_{i+r}$ such that 
+%subsequence $w_i,w_{i+1},\ldots,w_{i+r}$ such that 
 
 %\begin{enumerate}[a)]
 % \item $w_i,w_{i+1},\ldots,w_{i+r}$ is a facial path,
@@ -842,16 +847,72 @@ Let us now show how to ensure that every cycle of the blocking graph is even. A 
 
 We will need to use the extended version of the blocking graph --- the augmented blocking graph --- for this proof. Recall that this is the same as the blocking graph, with the addition of edges between blocking set vertices connected together via a facial walk on the outer face of the graph that contain repeated vertices. This is necessary since we will be looking at each 2-connected component separately and that some cycles that might be in the blocking graph of the entire graph might only be paths in a spider subgraph. Once we show that all cycles of the augmented blocking graph are even, all what remains to do is to remove the extra edges to get back the (regular) blocking graph, which preserves the even cycle property.
 
-For clarity purposes, in the next proofs, a graph that consists of a single vertex is an odd cycle.
-
 
 \begin{lemma}
- Let $G$ be a spider graph that contains an edge $\{b,w\}$ which is incident to the outer face and to some inner face of $G$. There exists a blocking set $B$ of $G$ such that $b \in B$, $w \notin B$ and $\block_{B}^+(G)$ is an even cycle or a single edge.
+ Let $G$ be a biconnected outerplane graph that contains an edge $\{b,w\}$ which is incident to the outer face and to some inner face of $G$. There exists a blocking set $B$ of $G$ such that $b \in B$, $w \notin B$ and $\block_{B}^+(G)$ is an even cycle.
+ \label{lem:biconnected_even}
+\end{lemma}
+
+\begin{proof}
+This is Lucas' long proof, but streamlined by the lack of spider legs.
+\end{proof}
+
+\begin{lemma}
+ Let $G$ be a spider graph that contains an edge $\{b,w\}$ that is incident to the outer face and to some inner face of $G$. There exists a blocking set $B$ of $G$ such that $b \in B$, $w \notin B$ and every cycle of $\block_{B}^+(G)$ is even.
  \label{lem:cycle_spider_even}
 \end{lemma}
 
 \begin{proof}
- 
+Let $H$ be the biconnected component of $G$.  By
+Lemma~\ref{lem:biconnected_even}, $H$ has a blocking set $B'$ such
+that, $b\in B'$, $w\not\in B'$, and $\block_{B'}(H)$ is an even cycle.
+Note that, although $B'$ is a blocking set of $G$, it does not necessarily
+satisify the conditions of the lemma, since the presence of ``legs''
+in $G$ creates self-loops (cycles of length one) in $\block_{B'}(G)$.
+
+To obtain a satisfactory blocking set $B$, we add to $B'$ every vertex
+in $v\in V(G)\setminus H$, such that the first vertex of $H$ on the path
+from $v$ to $H$ is in $B'$.  Now, the only cycles in $\block_B(G)$
+are the original even cycle from $\block_{B'}(H)$ as well as cycles of length
+two on some of the legs of $G$.
+\end{proof}
+
+\begin{lemma}
+ Let $G$ be an outerplane graph.  Then $G$ has a blocking set $B$ such that
+ every cycle in $\block_B(G)$ has even length.
+ \label{lem:outerplanar_even}
+\end{lemma}
+
+\begin{proof}
+   We may assume, without loss of generality, that $G$ is connected.
+   The proof is by induction on the number of biconnected components in
+   $G$.  If $G$ has no biconnected components, it is a tree, and taking
+   $B$ to be the empty set works. If $G$ has one biconnected component,
+   it is a spider graph, and applying Lemma~\ref{lem:spider_even} works.
+
+   Otherwise, $G$ has at least two biconnected components. We select
+   one such component, $C$, that has a unique vertex $v$ such that all
+   other biconnected components of $G$ consisting of more than a single
+   edge are in the same component of $G\setminus(C\setminus \{v\})$. Such a component $C$ always exists; it corresponds to a leaf in the block-cut tree
+of the graph obtained by contracting the single-edge biconnected components of $G$.
+
+  Now, the graph $G\setminus(C\setminus \{v\})$ may contain several
+  connected components, one of which, $D$, contains all the biconnected
+  components of $G$ except $C$.  We apply induction on $D$ to obtain
+  a blocking set $B'$ of $D$ such that all cycles of $\block_{B'}(D)$
+  are of even length.  There are still two problems with $B'$: (1)~it
+  may not contain at least one vertex from each face in $C$, in which
+  case it is not a blocking set of $G$; and (2)~$\block_{B'}(G)$ may
+  contain a self-loop.  We take care of both these problems using an
+  appropriate application of Lemma~\ref{lem:spider_even}.
+
+\end{proof}
+
+
+
+
+\begin{proof}
+(This is the proof for Lemma~\ref{lem:biconnected_even}.) 
 Let $H$ be the 2-connected component of $G$. Let $F$ be the inner face of $G$ adjacent to $\{b,w\}$. Let $B$ be a blocking set of $G$ such that $b \in B$. Such a set exists by Lemma \ref{lem:blocking_out}. Note that $\block_B(G)$ is a cycle or a single edge since $B \subseteq V(H)$. If $\block_B(G)$ is an even cycle or a single edge, we are done. Thus, suppose $\block_B^+(G)$ is an odd cycle. Let us say a vertex $v \in V(G)$ is \emph{black} if $v \in B$ and \emph{white} otherwise. In the subsequent figures, we denote black vertices in black,  white vertices in white and, if unknown, in gray. We will first show two claims which will be used throughout the proof.
  
 \begin{claim}
