@@ -258,7 +258,6 @@ See Figure \ref{fig:blocking_set} for an example of a blocking set.
   
   \begin{tikzpicture}[scale=1.2,auto=left]
     
-%     \node[style={text=black}] at (-1.5,0) {$H$};
     
     \begin{scope}[every node/.style={circle,draw=black,fill=white,minimum size=0.2cm, inner sep=0}]
       \node[fill=black,label=91:$f$] (a) at (0,0) {};
@@ -418,21 +417,22 @@ At this point we pause to sketch how Lemma~\ref{lem:blocking_out}
 can already be used to give an upper-bound of 8 on the facial
 non-repetitive chromatic number of biconnected outerplane graphs.
 For a biconnected outerplane graph, $G$, we take a blocking set $B$
-of $G$.  By Theorem~X, we can non-repetitively 4-colour the tree
-$T=G\setminus B$ using colours $\{1,2,3,4\}$, so what remains is to assign
-colours to the vertices in $B$.  To do this, we non-repetitively 4-color
+of $G$ using Lemma~X.  By Theorem~X, we can non-repetitively 4-colour the tree
+$T=G\setminus B$ using the colours $\{1,2,3,4\}$, so what remains is to assign
+colours to the vertices in $B$.  To do this, we use Theorem~X to non-repetitively 4-color
 the cycle, $C$, that contains the vertices of $B$ in the order they appear on
 the outer face of $G$ using the colours $\{5,6,7,8\}$.  We claim that
-the resulting 8-colouring of $G$ is facially non-repeitive.  No facial
+the resulting 8-colouring of $G$ is facially non-repetitive.  No facial
 path on an interior face is coloured repetitively since each such facial path
 is also either present in the tree $T$ or it contains exactly one
 vertex of $B$.  No facial path on the outer face is coloured repetitively
 since it is obtained by interleaving a non-repetitive sequence of colours in $C$ with non-repetive sequences taken from $T$; by Lemma~X, a sequence obtained in this way is non-repetitive.
 
-TODO: Explain that this can be improved to 7 and that, in general (not
-biconnected) the cycle C is a more complicated graph actually a cactus
-graph.  
-
+In Section~\ref{sec:X}, we show that the preceding argument can be
+improved to give a bound of 7 on the facial non-repetitive chromatic
+number of biconnected outerplane graphs. This is just a matter of adding
+vertices to the blocking set so that the cycle $C$ does not have length
+in $\{\}$, so that it can non-repetitively 3-coloured. 
 \begin{corollary}
  Let $G$ be a 2-connected outerplane graph that contains at least two inner faces. There exists a blocking set $B$ of $G$ such that for each inner face $F$ of $G$, $|V(F) \cap B|=1$, and there exists an inner face $F_1$ of $G$ with $\deg_{\wdual{G}}(F_1)=1$ such that the vertex $v \in V(F_1) \cap B$ has $\deg_G(v) \geq 3$.
   \label{cor:blocking_out_select}
@@ -520,11 +520,8 @@ graph; it may contain parallel edges (cycles of length two) and self-loops
   
   \end{figure}
 
+In the previous section, we sketched a proof of an upper bound of 8 on the facial chromatic number of biconnected outerplane graphs.  This proof works by non-repetitively 4-colouring the tree, $G\setminus B$, obtained after removing the blocking set and then non-repetiviely 4-colouring a cycle, $C$, of vertices in the blocking set.  This cycle, $C$, is actually the blocking graph, $\block_B(G)$.  The following lemma shows that this strategy generalizes to the situation where we can find a facial non-repetitive colouring of $\block_B(G)$ with few colours.
 
-
-
-
-TODO: Relate $\block_B(G)$ to the cycle $C$ in the previous section.
 
 %\begin{figure}
 %  \includegraphics[width=.9\textwidth]{images/blocking}
@@ -586,7 +583,10 @@ TODO: Relate $\block_B(G)$ to the cycle $C$ in the previous section.
 %\end{figure}
 
 \begin{lemma}
- Let $G$ be an outerplane graph and $B$ be a blocking set of $G$. Suppose that there exists a facial nonrepetitive $k$-colouring of $\block_{B}(G)$. Then, there exists a facial nonrepetitive $(4+k)$-colouring of $G$.
+  Let $G$ be an outerplane graph and $B$ be a blocking set of
+  $G$. Suppose that there exists a facial nonrepetitive $k$-colouring
+  of $\block_{B}(G)$. Then, there exists a facial nonrepetitive
+  $(4+k)$-colouring of $G$.
  \label{lem:hitting_plus_four}
 \end{lemma}
 
@@ -615,14 +615,19 @@ TODO: Relate $\block_B(G)$ to the cycle $C$ in the previous section.
  Therefore, $P$ is on the outer face of $G$. Let $P'$ be the sequence of vertices of $P\cap B$ in the same order as in $P$. Observe that $P'$ will be a path in $\block_{B}(G)$. Thus, the colour sequence of $P'$ is nonrepetitive. Furthermore, each subsequence of consecutive vertices on $G'$ of $P\cap G'$ will also be nonrepetitive by the colouring of $G'$. Hence, by Lemma \ref{lem:nonrep_alternate}, $P$ is nonrepetitive. But this contradicts our assumption that $P$ is repetitive. This completes the proof.
 \end{proof}
 
-Notice that the blocking graph of an outerplane graph with exactly one 2-conn\-ected component is a cycle if $|B|\geq 3$ (otherwise it is a path on 1 or 2 vertices). Since every cycle or path has a nonrepetitive colouring with at most four colours, this implies the existence of a facial nonrepetitive 8-colouring of any such outerplane graph. We will later show how to tighten this bound to 7.
+%Notice that the blocking graph of an outerplane graph with exactly one
+%2-conn\-ected component is a cycle if $|B|\geq 3$ (otherwise it is a
+%path on 1 or 2 vertices). Since every cycle or path has a nonrepetitive
+%colouring with at most four colours, this implies the existence of a
+%facial nonrepetitive 8-colouring of any such outerplane graph. We will
+%later show how to tighten this bound to 7.
 
 \subsection{Colouring Blocking Graphs}
 
-We now show how to colour the blocking graph --- a cactus graph --- of an outerplane graph with at least two 2-connected components.
+We now show how to colour the blocking graph---a cactus graph---of an outerplane graph with at least two 2-connected components.
 By Lemma \ref{lem:hitting_plus_four}, if we can find a facial nonrepetitive $k$-colouring of any cactus graph, we can get a facial nonrepetitive $k+4$-colouring of any outerplane graph. 
 
-The tightest upper bound for the facial Thue chromatic number of outerplane graphs is 12, which is the bound for the Thue chromatic number \cite{barat2007square, kundgen2008nonrepetitive}. Thus, to improve this bound, we need to find a facial nonrepetitive 7-colouring of the blocking graph. It seems difficult to do this unless all cycles of the cactus graph are even. 
+The tightest upper bound for the facial Thue chromatic number of outerplane graphs is 12, which is the bound for the Thue chromatic number \cite{barat2007square, kundgen2008nonrepetitive}. Thus, to improve this bound, we need to find a facial nonrepetitive 7-colouring of the blocking graph.  We have been unable to do this for general cactus graphs and we only have a solution for the case where all cycles of the cactus graph are even. 
 
 We will address these difficulties by choosing a blocking set such that the blocking graph has no odd cycle. We will show how to achieve this in Lemma \ref{lem:cycle_spider_even}. 
 A \emph{levelling} of a graph $G$ is a function $\lambda : V(G) \rightarrow \integers$ such that for each $\{u,v\}\in E(G)$, $|\lambda(u)-\lambda(v)|\leq 1$. The level pattern of a path $v_1,\ldots,v_k$ is the sequence $\lambda(v_1),\lambda(v_2),\ldots,\lambda(v_k)$.
@@ -843,10 +848,30 @@ A \emph{levelling} of a graph $G$ is a function $\lambda : V(G) \rightarrow \int
 
 
 \subsection{Even Cycles}
-Let us now show how to ensure that every cycle of the blocking graph is even. A \emph{spider graph} is a connected outerplane graph which contains exactly one 2-connected component. The following lemma shows how to ensure the blocking graph of a spider graph is an even cycle. In a later proof, we will show how to carefully split an outerplane graph into spider graphs so that this even cycle property is preserved throughout the graph. Each spider graph will be connected to a previously considered spider graph by exactly one vertex that is already coloured, which is why we need to specify the $\{b,w\}$ edge in the definition of the lemma. 
+Let us now show how to construct a blocking set, $B$, for an outerplane graphs, $G$,
+so that every cycle of $\block_B(G)$ is even. 
 
-We will need to use the extended version of the blocking graph --- the augmented blocking graph --- for this proof. Recall that this is the same as the blocking graph, with the addition of edges between blocking set vertices connected together via a facial walk on the outer face of the graph that contain repeated vertices. This is necessary since we will be looking at each 2-connected component separately and that some cycles that might be in the blocking graph of the entire graph might only be paths in a spider subgraph. Once we show that all cycles of the augmented blocking graph are even, all what remains to do is to remove the extra edges to get back the (regular) blocking graph, which preserves the even cycle property.
-
+% A \emph{spider graph} is a connected outerplane graph which contains
+% exactly one 2-connected component. The following lemma shows how to ensure
+% the blocking graph of a spider graph is an even cycle. In a later proof,
+% we will show how to carefully split an outerplane graph into spider
+% graphs so that this even cycle property is preserved throughout the
+% graph. Each spider graph will be connected to a previously considered
+% spider graph by exactly one vertex that is already coloured, which is
+% why we need to specify the $\{b,w\}$ edge in the definition of the lemma.
+% 
+% We will need to use the extended version of the blocking graph --- the
+% augmented blocking graph --- for this proof. Recall that this is the
+% same as the blocking graph, with the addition of edges between blocking
+% set vertices connected together via a facial walk on the outer face
+% of the graph that contain repeated vertices. This is necessary since
+% we will be looking at each 2-connected component separately and that
+% some cycles that might be in the blocking graph of the entire graph
+% might only be paths in a spider subgraph. Once we show that all cycles
+% of the augmented blocking graph are even, all what remains to do is to
+% remove the extra edges to get back the (regular) blocking graph, which
+% preserves the even cycle property.
+% 
 
 \begin{lemma}
  Let $G$ be a biconnected outerplane graph that contains an edge $\{b,w\}$ which is incident to the outer face and to some inner face of $G$. There exists a blocking set $B$ of $G$ such that $b \in B$, $w \notin B$ and $\block_{B}^+(G)$ is an even cycle.
@@ -857,58 +882,71 @@ We will need to use the extended version of the blocking graph --- the augmented
 This is Lucas' long proof, but streamlined by the lack of spider legs.
 \end{proof}
 
+%\begin{lemma}
+% Let $G$ be a spider graph that contains an edge $\{b,w\}$ that is incident to the outer face and to some inner face of $G$. There exists a blocking set $B$ of $G$ such that $b \in B$, $w \notin B$ and every cycle of $\block_{B}^+(G)$ is even.
+% \label{lem:cycle_spider_even}
+%\end{lemma}
+%
+%\begin{proof}
+%Let $H$ be the biconnected component of $G$.  By
+%Lemma~\ref{lem:biconnected_even}, $H$ has a blocking set $B'$ such
+%that, $b\in B'$, $w\not\in B'$, and $\block_{B'}(H)$ is an even cycle.
+%Note that, although $B'$ is a blocking set of $G$, it does not necessarily
+%satisify the conditions of the lemma, since the presence of ``legs''
+%in $G$ creates self-loops (cycles of length one) in $\block_{B'}(G)$.
+%
+%To obtain a satisfactory blocking set $B$, we add to $B'$ every vertex
+%in $v\in V(G)\setminus H$, such that the first vertex of $H$ on the path
+%from $v$ to $H$ is in $B'$.  Now, the only cycles in $\block_B(G)$
+%are the original even cycle from $\block_{B'}(H)$ as well as cycles of length
+%two on some of the legs of $G$.
+%\end{proof}
+
 \begin{lemma}
- Let $G$ be a spider graph that contains an edge $\{b,w\}$ that is incident to the outer face and to some inner face of $G$. There exists a blocking set $B$ of $G$ such that $b \in B$, $w \notin B$ and every cycle of $\block_{B}^+(G)$ is even.
- \label{lem:cycle_spider_even}
-\end{lemma}
-
-\begin{proof}
-Let $H$ be the biconnected component of $G$.  By
-Lemma~\ref{lem:biconnected_even}, $H$ has a blocking set $B'$ such
-that, $b\in B'$, $w\not\in B'$, and $\block_{B'}(H)$ is an even cycle.
-Note that, although $B'$ is a blocking set of $G$, it does not necessarily
-satisify the conditions of the lemma, since the presence of ``legs''
-in $G$ creates self-loops (cycles of length one) in $\block_{B'}(G)$.
-
-To obtain a satisfactory blocking set $B$, we add to $B'$ every vertex
-in $v\in V(G)\setminus H$, such that the first vertex of $H$ on the path
-from $v$ to $H$ is in $B'$.  Now, the only cycles in $\block_B(G)$
-are the original even cycle from $\block_{B'}(H)$ as well as cycles of length
-two on some of the legs of $G$.
-\end{proof}
-
-\begin{lemma}
- Let $G$ be an outerplane graph.  Then $G$ has a blocking set $B$ such that
+ Let $G$ be a connected outerplane graph with no bridges.  
+ Then $G$ has a blocking set $B$ such that
  every cycle in $\block_B(G)$ has even length.
  \label{lem:outerplanar_even}
 \end{lemma}
 
 \begin{proof}
-   We may assume, without loss of generality, that $G$ is connected.
    The proof is by induction on the number of biconnected components in
    $G$.  If $G$ has no biconnected components, it is a tree, and taking
-   $B$ to be the empty set works. If $G$ has one biconnected component,
-   it is a spider graph, and applying Lemma~\ref{lem:spider_even} works.
+   $B$ to be the empty set works. If $G$ has one biconnected component then,
+   since it is bridgeless, it is 2-connected and we can apply Lemma~\ref{lem:biconnected_even}.
 
    Otherwise, $G$ has at least two biconnected components. We select
-   one such component, $C$, that has a unique vertex $v$ such that all
-   other biconnected components of $G$ consisting of more than a single
-   edge are in the same component of $G\setminus(C\setminus \{v\})$. Such a component $C$ always exists; it corresponds to a leaf in the block-cut tree
-of the graph obtained by contracting the single-edge biconnected components of $G$.
+   one such component, $C$, that has a unique vertex $v$ that is shared
+   with one or more other 
+   other biconnected components of $G$. Such a component $C$ always exists; it corresponds to a leaf in the block-cut tree of $G$ \cite{X}.
 
-  Now, the graph $G\setminus(C\setminus \{v\})$ may contain several
-  connected components, one of which, $D$, contains all the biconnected
-  components of $G$ except $C$.  We apply induction on $D$ to obtain
-  a blocking set $B'$ of $D$ such that all cycles of $\block_{B'}(D)$
-  are of even length.  There are still two problems with $B'$: (1)~it
-  may not contain at least one vertex from each face in $C$, in which
-  case it is not a blocking set of $G$; and (2)~$\block_{B'}(G)$ may
-  contain a self-loop.  We take care of both these problems using an
-  appropriate application of Lemma~\ref{lem:spider_even}.
+  Now, the graph $G'=G\setminus(C\setminus \{v\})$ is connected, bridgeless,
+  and has one fewer biconnected component than $G$.  We apply induction on $G'$ to obtain
+  a blocking set $B'$ of $G'$ such that all cycles of $\block_{B'}(G')$
+  are of even length.  
+%  There are still two problems with $B'$: (1)~it
+%  may not contain at least one vertex from each face in $C$, in which
+%  case it is not a blocking set of $G$; and (2)~$\block_{B'}(G)$ may
+%  contain a self-loop.  We take care of both these problems using an
+%  appropriate 
+  Next, we make an appropriate application of Lemma~\ref{lem:biconnected_even} to find a
+  blocking set of $C$ that is compatible with $B'$.
+  There are two cases to consider:
+  \begin{enumerate}
+    \item If $v\in B'$, then we apply Lemma~\ref{lem:biconnected_even} to $C$ with $b=v$ and $w$ equal to either vertex adjacent to $v$ on the outer face of $C$.  This produces a blocking set $B''$ of $C$ such that $\block_{B''}(C)$ is an even cycle that includes $v$.  Taking $B=B'\cup B''$, we obtain a blocking set for $G$ such that $\block_B(G)$ is the union of $\block_B'(G')$ with the even cycle $\block_{B''}(C)$.
 
+    \item If $v\not\in B'$, then we apply Lemma~\ref{lem:biconnected_even} to $C$ with $w=v$ and $b$ equal to either vertex adjacent to $v$ on the outer face of $C$. This produces a blocking set $B''$ of $C$ such that $\block_{B''}(C)$ is an even cycle that does not include $v$.  When we take 
+    $B=B'\cup B''$, then even cycle in $\block_{B''}(C)$ merges with an even cycle in $\block_{B'}(G')$, to create an even cycle in $\block_B(G)$.  
+  \end{enumerate}
+  In either case, we obtain a blocking set, $B$, such that all cycles in $\block_B(G)$ are even.
 \end{proof}
 
+Finally, we remove the condition that $G$ be bridgeless.
 
+\begin{lem}
+  Let $G$ be an outerplanar graph.  Then $G$ has a blocking set $B$ such 
+that all cycles in $\block_B(G)$ are even.
+\end{lem}
 
 
 \begin{proof}
