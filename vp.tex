@@ -44,7 +44,9 @@ no vertex cut of size less than $k$.  A \emph{$k$-connected component} of a grap
 A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such
 that its edges intersect only at their endpoints. An \emph{outerplane}
 graph $G$ is a plane graph such that all the vertices of $G$ are adjacent
-to the outside face of $G$.
+to the outside face of $G$. A \emph{chord} in an outerplane graph is
+an edge that is not incident to the outer face. A \emph{cactus graph}
+is an outerplane graph with no chords.
 
 A \emph{closed walk} in a graph $G$ is a sequence of vertices
 $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$
@@ -61,6 +63,7 @@ is a path in $G$.
 
 A \emph{bridge} in a graph $G$ is an edge whose removal increases the number of connected components in $G$.  A graph is \emph{bridgeless} if it has no bridges.
 
+NOTE: Add induced subgraph notations.
 
 \section{Outerplane Graphs}
 
@@ -118,23 +121,22 @@ for an example of a blocking set.
 \end{figure}
 
 The definition of a blocking set is subtle and implies three properties
-that we will use throughout. A \emph{chord} in an outerplanar graph is
-an edge that is not incident to the outer face.  An \emph{ear} in an
-outerplanar graph is an inner face that is incident to exactly one chord.
+that we will use throughout.   An \emph{ear} in
+an outerplanar graph is an inner face that is incident to exactly one
+chord. An ear is \emph{triangular} if it has three vertices.
 
-\begin{obs}
+\begin{obs}\obslabel{no-chords}
    For any blocking set $B$ of $G$, $B$ does not include both endpoints
    of any chord of $G$.
 \end{obs}
 
-\begin{obs}
+\begin{obs}\obslabel{consecutive}
    For any blocking set $B$ of $G$ and any inner face $F$ of $G$, the
    vertices of $V(F)\cap B$ occur consecutively on the boundary of $F$ 
 \end{obs}
 
-\begin{obs}
+\begin{obs}\obslabel{non-empty-path}
   For every inner face $F$ of $G$, $F \setminus B$ is a non-empty path.
-  \label{claim:facesMinusBarePaths}
 \end{obs}
 
 
@@ -145,7 +147,20 @@ outerplanar graph is an inner face that is incident to exactly one chord.
 \end{lem}
 
 \begin{proof}
-  By induction on the number of internal faces.
+  The proof is by induction on the number of internal faces.  If $G$ has
+  only face, we take $B=\{v\}$.  Otherwise, select some ear, $F$ of $G$
+  whose chord is $uw$ and such that $v\not\in V(F)\setminus\{u,w\}$.
+  Let $G'=G-(V(F)\setminus\{u,w\})$.  The graph $G'$ has one less internal
+  face than $G$ so, by induction, it has a blocking set $B'$ that satisfies
+  the conditions of the lemma.  There are two cases to consider:
+  \begin{enumerate}
+    \item If one of $u$ or $w$ is in $B'$ then we take $B=B'$ to obtain
+      a blocking set that satisifes the conditions of the lemma.
+
+    \item Otherwise, let $x$ be any vertex in $V(F)\setminus\{u,w\}$ and
+      take $B=B'\cup\{x\}$ to obtain a blocking set that satisifes the
+      conditions of the lemma. \qedhere
+  \end{enumerate}
 \end{proof}
 
 \Lemref{biconnected} allows us to prescribe that a particular vertex
@@ -154,7 +169,7 @@ exclude a particular vertex $v$ by using \lemref{biconnected} to force
 the inclusion of $v$'s neighbour on the outer face (which is also on
 some inner face with $v$).
 
-\begin{cor}\lemlabel{biconnected-out}
+\begin{cor}\corlabel{biconnected-out}
   For every biconnected outerplane graph, $G$, and any vertex $v\in
   V(G)$, there exists a blocking set $B$ of $G$ such that $v\not\in B$ and,
   for each inner face $F$ of $G$, $|B\cap V(F)|=1$.
@@ -258,17 +273,16 @@ graph; it may contain parallel edges (cycles of length two) and self-loops
   \end{figure}
 
 The fact that a blocking set does not contain both endpoints of any
-chord of $G$ (\obsref{nochord}) implies the following observation:
+chord of $G$ (\obsref{no-chords}) implies the following observation:
 
-\begin{obs}
+\begin{obs}\obslabel{cactus}
    For every outerplane graph $G$ and any blocking set $B$ of $G$,
-   the blocking graph $\block_B(G)$ is a cactus graph.
+   the blocking graph $\block_B(G)$ is a bridgeless cactus graph.
 \end{obs}
 
 In the previous section, we sketched a proof of an upper bound of
 8 on the facial chromatic number of biconnected outerplane graphs.
-This proof works by non-repetitively 4-colouring the tree, $G\setminus
-B$, obtained after removing the blocking set and then non-repetiviely
+This proof works by non-repetitively 4-colouring the tree, $G\setminus B$, obtained after removing the blocking set and then non-repetiviely
 4-colouring a cycle, $C$, of vertices in the blocking set.  This cycle,
 $C$, is actually the blocking graph, $\block_B(G)$.  The following lemma
 shows that this strategy generalizes to the situation where we can find
@@ -300,14 +314,14 @@ Discuss the difficulty of colouring blocking graphs with odd-cycles.
 
 \subsection{Making an Even Blocking Graph}
 
-\begin{lem}\lemlabel{biconnected-even}
+\begin{lem}\lemlabel{even-biconnected}
   For every biconnected outerplane graph, $G$, and any vertex $v\in V(G)$:
-  \begin{enumerate}
+  \begin{itemize}
     \item $G$ has a blocking set $B$ such that $\block_B(G)$ is an even cycle 
        and $v\in B$; and
     \item $G$ has a blocking set $B$ such that $\block_B(G)$ is an even cycle 
        and $v\not\in B$.
-  \end{enumerate}
+  \end{itemize}
 \end{lem}
 
 \begin{proof}
@@ -324,49 +338,144 @@ Discuss the difficulty of colouring blocking graphs with odd-cycles.
   a blocking set, and either includes or excludes $v$, as appropriate,
   and that $\block_B(G)$ is a 2-cycle.
 
-  Thus, we may assume that $G$ has at least two internal faces.
+  Thus, we may assume that $G$ has at least two internal faces and we
+  consider several cases:
+ 
+  \begin{enumerate}
+  \item If $G$ contains an ear, $F$, with four or more vertices such
+  that either $v\not\in V(F)$ or $v$ is one of the endpoints of the
+  chord of $F$. There is exactly one vertex $x\in B'$ on the face $F$.
+  Let $y$ be a neighbour of $x$ such $y$ is not on the chord of $F$
+  (so $y$ has degree 2). Such a $y$ exists since $F$ has at least four
+  vertices.  Set $B=B'\cup \{y\}$.  Now $|B|$ is even, so $\block_B(G)$
+  is an even cycle.  Furthermore, $G\setminus B'$ is a tree and $y$
+  is a leaf in this tree, so $G\setminus B$ is also a tree.  Finally,
+  by choice, $B$ contains $v$ if and only if $B'$ contains $v$, so $B$
+  satisifies the conditions of the lemma.
 
-  Consider first the case that $G$ contains an ear, $F$ with four or
-  more vertices and such that either $v\not\in V(F)$ or $v$ is one of
-  the endpoints of the chord of $F$. There is exactly one vertex $x\in
-  V(F)\cap B'$. Let $y$ be a neighbour of $x$ such $y$ is not on the
-  chord of $F$. Such a $y$ exists since $F$ has at least four vertices.
-  Set $B=B'\cup \{y\}$.  Now $|B|$ is even, so $\block_B(G)$ is an
-  even cycle.  Furthermore, $G\setminus B'$ is a tree and $y$ is a leaf
-  in this tree, so $G\setminus B$ is also a tree.  Finally, by choice,
-  $B$ contains $v$ if and only if $B'$ contains $v$, so $B$ satisifies
-  the conditions of the lemma.
+  \item Next, consider the case where $G$ contains triangular ear, $F$,
+  such that one of the endpoints of the chord of $F$ is in $B'$ and $v$
+  is not the degree 2 vertex, $y$, of $F$.  By the same argument as above,
+  $B=B'\cup\{y\}$ satisfies the conditions of the lemma, so we are done.
 
-  Next, consider the case where $G$ contains an ear, $F$ with three
-  vertices and such that either $v\not\in V(F)$ or $v$ is one of the
-  endpoints of the chord of $F$ and one of the endpoints of the chord
-  of $F$ is in $B'$.  Let $y$ be the degree 2 vertex of $F$ and set
-  $B=B'\cup \{y\}$.  By the same argument as above, $B$ satisfies the
-  conditions of the lemma, so we are done.
+  \item 
+  For an edge $uw\in E(G)$, let $V_{uw}'$ and $V_{uw}''$ be the two
+  (possibly empty) sets of vertices in the two connected components
+  of $G\setminus\{u,w\}$.  Let $G_{uw}'=G[V_{uw}'\cup\{u,w\}]$ and
+  $G_{uw}''=G[V_{uw}''\cup\{u,w\}]$.
 
-  If we are not already done, then there exists a face, $F$, that has
-  a edge $uw$ such that $v$ is on the boundary of $G$
+  If neither of the two previous cases applies, then there exists an edge
+  $uw$ of $G$ such that $v\not\in V_{uw}'$ and the weak dual of $G_{uw}'$
+  is a star whose central vertex is the face, $F_{uw}$ incident on $uw$.
+  (Note that $v$ may be one of $u$ or $w$.)
 
-  We are in a situation where every ear of $G$....
+  We will now show that we can select another vertex, $y$, from
+  $V_{uw}'\setminus B'$ so that $B=B'\cup\{y\}$ is a blocking set.
+  This is sufficient since $|B|$ is even so $\block_B(G)$ is an even
+  cycle.  
+
+  \begin{itemize}
+  \item[$(\star)$]
+  By choice, $G_{uw}'$ has at least 2 faces and each of them, other
+  than $F_{uw}$, is a triangular ear incident to $F_{uw}$ and whose
+  degree-2 vertex is in $B'$ (otherwise, one of those faces would have
+  been handled by Case~1 or 2).
+  \end{itemize}
+
+  Let $x$ be the unique vertex of $B'$ on $F_{uw}$. The vertex $x$ has two
+  neighbours on $F_{uw}$.  We claim that one of these is not in $\{u,w\}$
+  and we take this vertex to be $y$.  This claim is valid because
+  otherwise, $F_{uw}$ is a triangle, $xuw$, with $x\not\in\{u,w\}$.
+  This case is not possible because by $(\star)$ at least one of $xu$ or
+  $xw$ is incident on both $F_{uw}$ and a triangular ear $E$ of $G_{uw}'$.
+  Both $x$ and the degree 2 vertex of $E$ are in $B'$.  This contradicts
+  the fact that $B'$ includes at most one vertex from each face of $G$,
+  including $E$.
+
+  Let $B=B'\cup\{y\}$.  We claim that $B$ is a blocking set of $G$.
+  First, note that $B$ contains at most two vertices from each face, $F$,
+  of $G$, so $F\setminus B'\neq \emptyset$.  We now show that $y$ is a
+  leaf in the tree $G\setminus B'$, so that $G\setminus B$ is also a tree.
+
+  First, observe that $xy$ is not a chord of $G$ since, by $(\star)$,
+  the face incident to $xy$ other than $F_{uw}$ would have two of its
+  vertices in $B'$.  Thus, in addition to $x$, $y$ has at most two
+  neighbours in $G$.  One of these, $z$, is on $F_{uw}$ and $z\neq x$
+  so $z\notin B'$.  Finally, $y$ may have one additional neighbour,
+  which is a degree-2 vertex of a triangular ear incident on $yz$.
+  In this case, by $(\star)$, this degree-2 vertex is in $B'$.  Thus,
+  $yz$ is the only edge incident to $y$ in the tree $G\setminus B'$
+  so $y$ is a leaf in this tree. \qedhere
+\end{enumerate}
 \end{proof}
 
-
-\begin{lem}
-  Every bridgeless outerplane graph $G$ has a blocking set $B$ such
-  that all cycles in $\block_B(G)$ are even.
+\begin{lem}\lemlabel{even-bridgeless}
+  Every simple bridgeless outerplane graph $G$ has a blocking set $B$ such that
+  all cycles in $\block_B(G)$ are even. 
 \end{lem}
 
 \begin{proof}
-  The proof is by induction on the number of 2-connected components.
+  The proof is by induction on the number of 2-connected components
+  of $G$.  If $G$ has no 2-connected components, then we take $B$ to be
+  the empty blocking set.  If $G$ has only one 2-connected component,
+  then we apply \lemref{even-biconnected}.
+  Otherwise, select a 2-connected component, $C$, that
+  shares exactly one vertex, $v$, with the rest of $G$.  Let
+  $G'=G\setminus(V(C)\setminus\{v\})$ and apply induction on $G'$
+  to obtain a blocking set, $B'$, of $G'$ such that $\block_{B'}(G')$
+  has only even cycles.  There are two cases to consider:
+  \begin{enumerate}
+    \item If $B'$ contains $v$, then we apply the first part of
+    \lemref{even-biconnected} to obtain a blocking set $B''$ of $C$
+    such that $\block_{B''}(C)$ is an even cycle and $v\in B''$.  We take
+    $B=B'\cup B''$, which clearly forms a blocking set of $G$.  
+    The blocking graph $\block_B(G)$ is simply the union of the
+    two blocking graphs $\block_{B'}(G)$ and $\block_{B''}(C)$, which have
+    only the vertex $v$ in common.  Thus, every cycle in $\block_B(G)$
+    is also a cycle in one of these two graphs, so it has even length.
+
+    \item If $B'$ does not contain $v$, then we apply the second part
+    of \lemref{even-biconnected} to obtain a blocking set $B''$ of $C$
+    such that $\block_{B''}(C)$ is an even cycle and $v\not\in B''$.
+    We take $B=B'\cup B''$.
+
+    Starting at some vertex appropriate vertex in $V(G)\setminus V(C)$ 
+    in the facial walk
+    on the outer face of $G$, there is a last vertex, $x\in V(G')\cap B'$,
+    encountered before the walk encounters the first vertex $v\in V(C)\cap
+    B''$ and there is a last vertex $w\in V(C)\cap B''$ encountered
+    before the walk returns to the next vertex $y\in V(G')\cap B'$.
+    The edge $xy$ is in $\block_{B'}(G')$ and the edge $vw$ is in
+    $\block_{B''}(C)$.  
+
+    Since every blocking graph is a bridgeless cactus graph
+    (\obsref{cactus}), each of these edges is part of one even cycle
+    in its respective graph. In $\block_{B}(G)$ these two cycles are
+    merged by removing the edges $xy$ and $vw$ and adding the edges
+    $xv$ and $yw$.  The resulting cycle is even.  Every other cycle
+    in $\block_B(G)$ is also a cycle in one of $\block_{B'}(G')$ or
+    $\block_{B''}(C)$ so it has even length. \qedhere
+  \end{enumerate}
 \end{proof}
 
-\begin{lem}
-  Every outerplane graph $G$ has a blocking set $B$ such that all cycles
-  in $\block_B(G)$ are even.
+\begin{lem}\lemlabel{even}
+  Every simple outerplane graph $G$ has a blocking set $B$ such that all cycles
+  in $\block_B(G)$. 
 \end{lem}
 
 \begin{proof}
-  The proof is by induction on the number of bridges of $G$.  If $G$ has no bridges, 
+  The proof is by induction on the number of bridges of $G$.  If $G$
+  has no bridges, then we apply \lemref{even-bridgeless}.  Otherwise,
+  select some bridge $uw$ of $G$ and contract it to obtain a graph $G'$
+  in which $uw$ corresponds to a single vertex $v$.  By induction,
+  we obtain a blocking set $B'$ of $G'$ such that $\block_{B'}(G')$
+  has only even cycles (or is empty).  There are two cases to consider:
+  \begin{enumerate}
+    \item If $v\in B'$, then we take $B=B'\cup\{u,w\}\setminus\{v\}$. This introduces exactly one new cycle in $\block_B(G)$ that is not present in $\block_{B'}(G')$ and this cycle has length 2.
+
+    \item If $v\not\in B'$, then we take $B=B'$, so
+    $\block_B(G)=\block_{B'}(G')$. \qedhere
+  \end{enumerate}
 \end{proof}
 
 
