@@ -48,6 +48,9 @@ to the outside face of $G$. A \emph{chord} in an outerplane graph is
 an edge that is not incident to the outer face. A \emph{cactus graph}
 is an outerplane graph with no chords.
 
+An \emph{ear} in an outerplanar graph is an inner face that is incident to
+exactly one chord. An ear is \emph{triangular} if it has three vertices.
+
 A \emph{closed walk} in a graph $G$ is a sequence of vertices
 $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$
 the edge $v_iv_{(i+1)\bmod \ell}$ is in $E(G)$.
@@ -65,6 +68,33 @@ A \emph{bridge} in a graph $G$ is an edge whose removal increases the number of 
 
 NOTE: Add induced subgraph notations.
 
+
+Before proceeding with our results, we will introduce a helper lemma
+due to Havet et al.~\cite{havet2011facial} and two major results which
+will be used throughout the paper. The helper lemma provides a way to
+interlace nonrepetitive sequences.
+
+\begin{lem}[Havet et al. \cite{havet2011facial}]\lemlabel{interleave}
+ Let $A=A_1,A_2,\ldots,A_k$ be a nonrepetitive sequence over an alphabet $\mathcal{A}$ in which each $A_i$ has size at least 1. For each $i \in \{0,\ldots,k\}$, let $B_i$ be a (possibly empty) nonrepetitive sequence over an alphabet $\mathcal{B}$ with $\mathcal{A} \cap \mathcal{B} = \emptyset$. Then
+ $S = B_0, A_1, B_1, \ldots, A_k, B_k$ is a nonrepetitive sequence.
+\end{lem}
+
+We will require two results about the Thue chromatic number of trees and cycles:
+
+\begin{thm}[Alon et al. \cite{alon2002nonrepetitive}]\thmlabel{tree}
+ For every tree, $T$, $\pi(T) \leq 4$.
+\end{thm}
+
+\begin{thm}[Currie \cite{currie2002cycle18}]\thmlabel{cycle}
+ For every $n>2$, the cycle $C_n$ on $n$ vertices has
+ \[
+ \pi(C_n) = \begin{cases}
+             4 & \text{ if } n \in \{5,7,9,10,14,17\} \\
+             3 & \text{ otherwise. }
+            \end{cases}
+ \]
+\end{thm}
+
 \section{Outerplane Graphs}
 
 Let $G$ be an outerplane graph. A \emph{blocking set} of $G$ is a set
@@ -73,57 +103,8 @@ $H$ of $G$, $H \setminus B$ is a tree and for each inner face $F$,
 $F \setminus B \not= \emptyset$.  See Figure \ref{fig:blocking_set}
 for an example of a blocking set.
 
-\begin{figure}[!ht]
-  \centering
-  
-  \begin{tikzpicture}[scale=1.2,auto=left]
-    
-    \begin{scope}[every node/.style={circle,draw=black,fill=white,minimum size=0.2cm, inner sep=0}]
-      \node[fill=black,label=91:$f$] (a) at (0,0) {};
-      \node[] (b) at (1,0.5) {};
-      \node[] (c) at (2,0.5) {};
-      \node[] (d) at (3,0) {};
-      \node[fill=black] (e) at (2,-0.5) {};
-      \node[] (f) at (1,-0.5) {};
-      \node[] (g) at (4,0) {};
-      \node[fill=black] (h) at (5,1) {};
-      \node[] (i) at (6,0) {};
-      \node[fill=black] (j) at (5,-1) {};
-      \node[label=45:$e$] (k) at (-1,0) {};
-      \node[label=45:$d$] (l) at (-1,-0.7) {};
-      \node[fill=black,label=-135:$c$] (m) at (-2,-0.7) {};
-      \node[label=135:$b$] (n) at (-2,0) {};
-      \node[fill=black,label=90:$a$] (o) at (-1.5,0.7) {};
-      \node[fill=black] (p) at (0.5,1) {};
-      \node[] (q) at (-0.2,1.5) {};
-      \node[] (r) at (1,1.8) {};
-      \node[] (s) at (1.5,-1) {};
-      \node[] (t) at (2.5,-1) {};
-      
-      \node[fill=black] (u) at (2,2) {};
-      \node[] (v) at (3,2) {};
-      \node[] (w) at (2.5,2.7) {};
-      
-      \foreach \from/\to in {b/c,c/d,f/b,
-                             d/g,g/i,
-                             k/l,k/n,
-                             v/w}
-	\draw (\from) -- (\to);
-
-      \foreach \from/\to in {a/b,f/a,d/e,e/f,g/h,h/i,i/j,j/g,l/m,m/n,n/o,o/k,
-                             b/p,p/q,p/r,c/e,e/t,e/s,a/k,r/u,u/v,w/u}
-	\draw[dashed,black] (\from) -- (\to);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{Blocking set $B$ of an outerplane graph $G$, with blocking set vertices denoted in black. In dashed, edges of $G\setminus B$. Notice that, for each 2-connected component of $G$, the vertices of that component in $G\setminus B$ are contained in a single tree.}
-
-  \label{fig:blocking_set}  
-\end{figure}
-
 The definition of a blocking set is subtle and implies three properties
-that we will use throughout.   An \emph{ear} in
-an outerplanar graph is an inner face that is incident to exactly one
-chord. An ear is \emph{triangular} if it has three vertices.
+that we will use throughout.   
 
 \begin{obs}\obslabel{no-chords}
    For any blocking set $B$ of $G$, $B$ does not include both endpoints
@@ -177,18 +158,21 @@ some inner face with $v$).
 
 At this point we pause to sketch how Lemma~\ref{lem:blocking_out}
 can already be used to give an upper-bound of 8 on the facial
-non-repetitive chromatic number of biconnected outerplane graphs.
-For a biconnected outerplane graph, $G$, we take a blocking set $B$
-of $G$ using Lemma~X.  By Theorem~X, we can non-repetitively 4-colour the tree
-$T=G\setminus B$ using the colours $\{1,2,3,4\}$, so what remains is to assign
-colours to the vertices in $B$.  To do this, we use Theorem~X to non-repetitively 4-color
-the cycle, $C$, that contains the vertices of $B$ in the order they appear on
-the outer face of $G$ using the colours $\{5,6,7,8\}$.  We claim that
-the resulting 8-colouring of $G$ is facially non-repetitive.  No facial
-path on an interior face is coloured repetitively since each such facial path
-is also either present in the tree $T$ or it contains exactly one
-vertex of $B$.  No facial path on the outer face is coloured repetitively
-since it is obtained by interleaving a non-repetitive sequence of colours in $C$ with non-repetive sequences taken from $T$; by Lemma~X, a sequence obtained in this way is non-repetitive.
+non-repetitive chromatic number of biconnected outerplane graphs.  For a
+biconnected outerplane graph, $G$, we take a blocking set $B$ of $G$
+using \lemref{biconnected}.  By \thmref{tree}, we can non-repetitively
+4-colour the tree $T=G\setminus B$ using the colours $\{1,2,3,4\}$, so
+what remains is to assign colours to the vertices in $B$.  To do this,
+we use \thmref{cycle} to non-repetitively 4-color the cycle, $C$, that
+contains the vertices of $B$ in the order they appear on the outer face
+of $G$ using the colours $\{5,6,7,8\}$.  We claim that the resulting
+8-colouring of $G$ is facially non-repetitive.  No facial path on an
+interior face is coloured repetitively since each such facial path is also
+either present in the tree $T$ or it contains exactly one vertex of $B$.
+No facial path on the outer face is coloured repetitively since it is
+obtained by interleaving a non-repetitive sequence of colours in $C$
+with non-repetive sequences taken from $T$; by \lemref{interleave},
+a sequence obtained in this way is non-repetitive.
 
 In Section~\ref{sec:X}, we show that the preceding argument can be
 improved to give a bound of 7 on the facial non-repetitive chromatic
@@ -209,68 +193,6 @@ $B$. For each consecutive pair of vertices $uw$ in $W'$ we add the edge
  for an example.   Note that $\block_B(G)$ is not necessarily a simple
 graph; it may contain parallel edges (cycles of length two) and self-loops
 (cycles of length one). 
-
-\begin{figure}[!ht]
-  \centering
-  
-  \begin{tikzpicture}[scale=1.2,auto=left]
-    
-%     \node[style={text=black}] at (-1.5,0) {$H$};
-    
-    \begin{scope}[every node/.style={circle,draw=black,fill=white,minimum size=0.2cm, inner sep=0}]
-      \node[fill=black,label=91:$f$] (a) at (0,0) {};
-      \node[] (b) at (1,0.5) {};
-      \node[] (c) at (2,0.5) {};
-      \node[] (d) at (3,0) {};
-      \node[fill=black] (e) at (2,-0.5) {};
-      \node[] (f) at (1,-0.5) {};
-      \node[] (g) at (4,0) {};
-      \node[fill=black] (h) at (5,1) {};
-      \node[] (i) at (6,0) {};
-      \node[fill=black] (j) at (5,-1) {};
-      \node[label=45:$e$] (k) at (-1,0) {};
-      \node[label=45:$d$] (l) at (-1,-0.7) {};
-      \node[fill=black,label=-135:$c$] (m) at (-2,-0.7) {};
-      \node[label=135:$b$] (n) at (-2,0) {};
-      \node[fill=black,label=90:$a$] (o) at (-1.5,0.7) {};
-      \node[fill=black] (p) at (0.5,1) {};
-      \node[] (q) at (-0.2,1.5) {};
-      \node[] (r) at (1,1.8) {};
-      \node[] (s) at (1.5,-1) {};
-      \node[] (t) at (2.5,-1) {};
-      
-      \node[fill=black] (u) at (2,2) {};
-      \node[] (v) at (3,2) {};
-      \node[] (w) at (2.5,2.7) {};
-      
-      \foreach \from/\to in {a/b,b/c,c/d,d/e,e/f,f/a,f/b,c/e,
-                             d/g,g/h,h/i,i/j,j/g,g/i,
-                             a/k,k/l,l/m,m/n,n/o,o/k,k/n,
-                             e/t,e/s,  b/p,p/q,p/r,
-                             r/u,u/v,v/w,w/u}
-	\draw (\from) -- (\to);
-	
-      \foreach \from/\to in {a/p,p/h,j/e,a/o,p/u}
-	\draw[dashed,red] (\from) -- (\to);
-	
-       \draw[dashed,red] (h) .. controls (7,1) and (7,-1) .. (j);
-       \draw[dashed,red] (e) .. controls (0.8,-1) .. (a);
-       \draw[dashed,red] (a) .. controls (-1,-1.2) .. (m);
-       \draw[dashed,red] (m) .. controls (-2.5,-0.2) and (-2.5,1) .. (o);
-       \draw[dashed,red] (p) .. controls (0,2) and (1.5,2.75) .. (u);
-
-       \draw[dashed,red] (u) .. controls (4.5,1.05) and (2.5,4.4) .. (u);
-	
-%       \draw[dotted] (u) .. controls (-0.5,2.5) and (1.7,2.2) .. (w);
-%       
-      
-    \end{scope}
-  \end{tikzpicture}
-  
-  \caption{An outerplane graph $G$ with blocking set $B$ (denoted in black). The edges of $\block_{B}(G)$ are denoted in dashed. (WARNING: Three self-loops are missing. Next time, make some legs black.}
-  \label{fig:blocking_graph}
-  
-  \end{figure}
 
 The fact that a blocking set does not contain both endpoints of any
 chord of $G$ (\obsref{no-chords}) implies the following observation:
@@ -479,8 +401,8 @@ Discuss the difficulty of colouring blocking graphs with odd-cycles.
 \end{proof}
 
 
-\bibliographystyle{plainurl}
-\bibliography{arraylayouts}
+\bibliographystyle{plain}
+\bibliography{facial}
 
 \end{document}
 
