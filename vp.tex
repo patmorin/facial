@@ -102,6 +102,27 @@ We will require two results about the Thue chromatic number of trees and cycles:
 
 \section{Outerplane Graphs}
 
+We begin with a simple lemma that allows us to focus, when convenient,
+on simple outerplane graphs.
+
+\begin{lem}\lemlabel{non-simple}
+  Let $G$ be a simple outerplane graph and let $G'$ be an outerplane graph obtained by adding parallel edge and/or loops to $G$.  Then $\pi_f(G')\le\pi_f(G)$.
+\end{lem}
+
+\begin{proof}
+   We argue that any facial path in $G'$ is also a facial path in $G$.
+   Therefore, by facially nonrepetitively colouring $G$, we obtain a facial
+   nonrepetitive colouring of $G'$.
+
+   First, note that no facial path uses a loop, so the addition of
+   loops does not introduce new facial paths in $G'$.  When an edge
+   $e'$ is added parallel to an existing edge $e$ of $G$, the union
+   of the embeddings of $e$ and $e'$ form a Jordan curve that does not
+   contain any vertices of $G$ (since we require $G'$ to be outerplane).
+   This implies that any facial path in $G'$ that uses the new edge $e'$
+   exists in $G$ as a path that uses the edge $e$.
+\end{proof}
+
 Let $G$ be an outerplane graph. A \emph{blocking set} of $G$ is a set
 of vertices $B \subseteq V(G)$ such that for each 2-connected component
 $H$ of $G$, $H \setminus B$ is a tree and for each inner face $F$,
@@ -222,9 +243,6 @@ inner face $F$ of $G$, $G[V(F)\cap B]$ is a path that is a facial path (on
 some inner face)  in $\block_B(G)$.
 \end{obs}
 
-TODO: the above may need proof
-
-
 
 In the previous section, we sketched a proof of an upper bound of
 8 on the facial chromatic number of biconnected outerplane graphs.
@@ -275,36 +293,11 @@ Again, \lemref{interleave} implies that the resulting colour sequence
 is nonrepetitive.
 \end{proof}
 
-Discuss the difficulty of colouring blocking graphs with odd-cycles.
+TODO: Discuss the difficulty of colouring blocking graphs with odd-cycles.
 
 \subsection{Colouring Even Cactus Graphs}
 
-
-
-
-
-
-
-\begin{lem}
-   For every cactus graph, $G$, with no odd cycles, $\pi_f(G)\le 7$.
-\end{lem}
-
-\begin{proof}
-   Copy from Lucas.
-\end{proof}
-
-
-TODO: corolloary: after simple cacus   nrf colouring imples fnr colring of blocking graph
-(loops and parallel edges to 'deal' with)/
-
-
-~\\~\\
-LUCAS stuff
-
-
-\subsection{Colouring Blocking Graphs}
-
-We now show how to colour the blocking graph --- a cactus graph --- of an outerplane graph with at least two 2-connected components.
+We now show how to colour the blocking graph---a cactus graph---of an outerplane graph with at least two 2-connected components.
 By Lemma \ref{lem:hitting_plus_four}, if we can find a facial nonrepetitive $k$-colouring of any cactus graph, we can get a facial nonrepetitive $k+4$-colouring of any outerplane graph. 
 
 The tightest upper bound for the facial Thue chromatic number of outerplane graphs is 12, which is the bound for the Thue chromatic number \cite{barat2007square, kundgen2008nonrepetitive}. Thus, to improve this bound, we need to find a facial nonrepetitive 7-colouring of the blocking graph. It seems difficult to do this unless all cycles of the cactus graph are even. 
@@ -317,11 +310,13 @@ A \emph{levelling} of a graph $G$ is a function $\lambda\colon V(G)\to \{0, 1, 2
  If a path $P=P_1, P_2$ with $|P_1|=|P_2|$ in $G$ is repetitively coloured under $c$, then $P_1$ and $P_2$ have the same level pattern.
 \end{lem}
 
-\begin{lem}\lemlabel{outer_face_cactus}
-  For every simple cactus graph, $G$, with no odd cycles, $\pi_f(G)\le 7$.
+\begin{lem}\lemlabel{cactus}
+  For every cactus graph, $G$, with no odd cycles (and therefore, for
+  every blocking graph with no odd cycles), $\pi_f(G)\le 7$.
 \end{lem}
 
 \begin{proof}
+By \lemref{non-simple}, we may assume that $G$ is simple.
  We may assume that $G$ is connected as this does not affect its facial Thue chromatic number. Also, assume that $G$ is neither a cycle nor a tree since $\pi_f(G) \leq 4 < 7$ for both these classes of graphs.  
  If there exists a vertex $v$ of $G$ such that $\deg_G(v)=1$, then let
  the \emph{root} $r$ of $G$ be $v$. Otherwise, let $r$ be any vertex
@@ -337,46 +332,75 @@ A \emph{levelling} of a graph $G$ is a function $\lambda\colon V(G)\to \{0, 1, 2
  \ref{fig:adding_vertices_H}). Notice that since every cycle of $G$ is
  even, there is at most one vertex of $H$ in each cycle of $G$.
 
+If $\deg_G(r)\not=1$, there must exist at least one face $F^*$ of $G$ such
+that exactly one vertex $v$ of $F^*$ has degree greater than two. From
+our choice of $r$, it follows that $\lambda(v)$ is the minimum over all
+vertices in $V(F^*)$.  Since $|V(F^*)|\ge 4$, $F^*$ has three consecutive
+degree-2 vertices $a$, $b$, and $c$, such that $b\in V(H)$. If $|V(H)|\in
+\{5,7,10,14,17\}$, we add $a$ to $V(H)$. If $|V(H)|=9$, we add both $a$
+and $c$ to $V(H)$. Notice that now, either $\deg_G(r)=1$ or $|V(H)|\notin
+\{5,7,9,10,14,17\}$.
 
-TO ADD SOMEWHERE: If $F$ is an inner face $F$ of $G$ such that there is exactlly
-one vertex $v\in V(F)$ where the degree of $v$ is at least $3$, then
-$\lambda(v)$ is the minimum over all vertices in $V(F)$. 
+We now define the edge set $E(H)$ of $H$.  For each $u,v\in V(H)$,
+we add the edge $uv$ to $E(H)$ if there is a facial path on the outer
+face of $G$ with endpoints $u$ and $v$ that does not contain any other
+vertices in $V(H)$.  Note that $H$ is either a cycle or a forest of
+paths. It can only be a cycle if $G$ has no vertices of degree 1,
+in which case, $\deg_G(r)\neq 1$.  In this case, our choice of $V(H)$
+ensures that the length of this cycle is not in  $\{5,7,9,10,14,17\}$.
+This implies that $H$ can be nonrepetitively coloured using the colour set
+$\mathcal{B}=\{1,2,3\}$, either by using the result of Thue \cite{thue}
+or Currie (\thmref{cycle}).
 
+To colour the remaining vertices of $G$, let $h=\max_{v \in V(G)}
+\lambda(v)$ and $S=s_0,s_1,\ldots,s_h$ be a palindrome-free nonrepetitive
+sequence on $\mathcal{A}=\{4,5,6,7\}$.  Then, each vertex $v\in
+V(G)\setminus V(H)$ is assigned the colour $s_{\lambda(v)}$.
 
- If $\deg_G(r)\not=1$, there must exist at least one face $F_T$ of $G$ such that exactly one vertex $v$ of $F_T$ has degree greater than two (otherwise, since $G$ is neither a cycle nor a tree and is connected, there would be infinitely many faces in $G$). Since all faces of $G$ are even and $G$ does not contain double edges, $F_T$ contains at least three vertices of degree 2, say $a,b,c$. Without loss of generality, assume that $a \in V(H)$. If $|V(H)|\in \{5,7,10,14,17\}$, add $b$ to $V(H)$. If $|V(H)|=9$, add both $b$ and $c$ to $V(H)$. Notice that now, either $\deg_G(r)=1$ or $|V(H)|\notin \{5,7,9,10,14,17\}$.
- 
- 
- We now define the edge set $E(H)$ of $H$. Let $W$ be a closed facial walk around the outer face of $G$. Note that since they have degree two and are on cycles, vertices in $H$ appear exactly once in $W$. Add an edge between any two vertices $u,v \in V(H)$ if and only if 
- \begin{enumerate}
-  \item $u,v_1,v_2,\ldots,v_k,v$ is a walk in $W$,
-  \item for each $v_i$, $\deg_G(v_i) > 1$ and $v_i \notin V(H)$
-  \item $u\not=v$.
- \end{enumerate}
- Note that $H$ is either a cycle or a forest of paths (the latter possibly empty or a single connected component), see Figure \ref{fig:colouring_cactus}. Let $\mathcal{A}$ and $\mathcal{B}$ be two disjoint colour sets. Let $h=\max_{v \in V(G)} \lambda(v)$ and $S=s_0,s_1,\ldots,s_h$ be a palindrome-free nonrepetitive sequence on $\mathcal{A}$. Let $c_H : V(H) \rightarrow \mathcal{B}$ be a nonrepetitive colouring of $H$. We define a colouring $c : V(G) \rightarrow \mathcal{A} \cup \mathcal{B}$ as follows:
- \begin{equation}
-  c(v) = \begin{cases}
-          c_H(v) & \text{ if } v \in V(H)\\
-          s_{\lambda(v)} & \text{ otherwise.}
-         \end{cases}
- \end{equation}
- We will now show that $c$ is a valid nonrepetitive colouring of $G$. Suppose that this is not the case. Thus, there exists a path $P=P_1,P_2$ such that the colour sequence $S$ corresponding to vertices of $P$ is a repetition. Let us first suppose that $P$ is on the outer face of $G$. We will need the following claim:
- 
- \begin{clm}  \clmlabel{strictly_inc_dec}
-  Let $P$ be a path on the outer face of $G$ such that $P \cap V(H) = \emptyset$. The level sequence $L$ corresponding to vertices of $P$ must be strictly decreasing, strictly increasing, or strictly decreasing then strictly increasing.
+We will now show that the resulting 7-colouring of $G$ is a facial
+nonrepetitive colouring. Suppose that this is not the case. Thus,
+there exists a path $P=P_1,P_2$ such that the colour sequence $S$
+corresponding to vertices of $P$ is a repetition. Let us first suppose
+that $P$ is on the outer face of $G$. We will need the following claim:
+
+ \begin{clm}\clmlabel{strictly_inc_dec}
+  Let $P$ be a path on the outer face of $G$ such that $V(P) \cap V(H) = \emptyset$. The level sequence $L$ corresponding to vertices of $P$ must be strictly decreasing, strictly increasing, or strictly decreasing then strictly increasing.
  \end{clm}
  \begin{proof}
- Suppose that this is not the case. $L$ cannot contain a block of the form $i,i$ as this can only correspond to an odd cycle of $G$, but all cycles of $G$ are even. Thus, $L$ must contain a block of the form $i,i+1,i$. Since $P$ is on the outer face, we must have that the vertex $v$ corresponding to $i+1$ is the lowest vertex on some cycle $C$ and that $\deg_G(v)=2$. But in this case, $v$ must be in $H$, which is a contradiction. 
+ Suppose that this is not the case. $L$ cannot contain two consecutive
+ elements of the form $i,i$ as this can only correspond to an odd cycle
+ of $G$, but all cycles of $G$ are even. Thus, $L$ must contain a block
+ of the form $i,i+1,i$. Since $P$ is on the outer face, we must have
+ that the vertex $v$ corresponding to $i+1$ is the lowest vertex on some
+ cycle $C$ and that $\deg_G(v)=2$. But in this case, $v$ must be in $H$,
+ which is a contradiction.
  \end{proof}
- By Lemma \ref{lem:level_pattern_palindrome_free}, $P_1$ and $P_2$ have the same level pattern. However, if $P \cap V(H) = \emptyset$ this is incompatible with Claim \ref{claim:strictly_inc_dec} which states that the level sequence of $P$ must be strictly decreasing, strictly increasing, or strictly decreasing then strictly increasing.  Thus, $P$ must contain vertices of $H$. Let $P_H=p_1,p_2,\ldots,p_k$ be the sequence of vertices of $P \cap V(H)$ in the same order as in $P$. Notice that we must have $\{p_i,p_{i+1}\}\in E(H)$ for each $1 \leq i < k$ as this corresponds to the definition of an edge in $H$. Therefore, the colour sequence corresponding to $P_H$ must be nonrepetitive. Since vertices on $G\setminus{H}$ and vertices on $H$ are coloured with $\mathcal{A}$ and $\mathcal{B}$ respectively, and $\mathcal{A} \cap \mathcal{B} = \emptyset$, then by Lemma \ref{lem:nonrep_alternate}, the colour sequence of vertices in $P$ is nonrepetitive as well. 
- 
- Thus, $P$ must be on some inner face $F$ of $G$. With the exception of $F_T$ (if it exists), all inner faces of $G$ contain at most one vertex in $H$. If $P\cap V(H) \not= \emptyset$, then since $\mathcal{A} \cap \mathcal{B} = \emptyset$, we must have that $F=F_T$. Let $P_H=p_1,\ldots,p_k$ be the sequence of vertices of $P \cap V(H)$ in the same order as in $P$. Since all the vertices of $P_H$ are on the same inner face and $F_T$ has exactly one vertex of degree greater than three, $\{p_i,p_{i+1}\}\in E(H)$ for each $1 \leq i < k$. Thus, using the same argument as in the previous case, the colour sequence of vertices in $P$ must be nonrepetitive. 
- 
- Therefore, $P \cap V(H) = \emptyset$. Again, by Lemma \ref{lem:level_pattern_palindrome_free}, $P_1$ and $P_2$ have the same level pattern. But, since $P$ is constrained to $F$, whose level sequence is circular, $P_1$ and $P_2$ cannot have the same level pattern unless $P$ contains duplicate vertices. Therefore, $c$ is a valid nonrepetitive facial colouring of $G$.
- 
- It now remains to show that $|\mathcal{A}|+|\mathcal{B}|=7$. A nonrepetitive palindrome-free sequence can be constructed from any ternary nonrepetitive sequence by adding a fourth symbol between blocks of size 2 \cite{brevsar2007nonrepetitive}. Thus, four symbols are sufficient for $\mathcal{A}$. Notice that $H$ is a cycle if and only if $\deg_G(r)\not=1$. In this case, we made sure that $|V(H)| \notin \{5,7,9,10,14,17\}$. Such a cycle has a nonrepetitive 3-colouring by Theorem \ref{thm:colouring_cycles}. Otherwise, it is a forest of paths, for which three symbols are also sufficient by Thue's original result. This completes the proof. 	
+ By Lemma \ref{lem:level_pattern_palindrome_free}, $P_1$ and $P_2$ have
+ the same level pattern. However, if $V(P) \cap V(H) = \emptyset$ this
+ is incompatible with \clmref{strictly_inc_dec}.  Thus, $P$ must contain
+ vertices of $H$. Let $P_H=p_1,p_2,\ldots,p_k$ be the sequence of vertices
+ of $V(P) \cap V(H)$ in the same order as in $P$. Notice that $P_H$ is
+ a path in $H$.  Therefore, the colour sequence corresponding to $P_H$
+ is nonrepetitive.  Now, observe that the colour sequence formed by $P$
+ is of the form $A_0,B_1,A_1,B_\ell,A_\ell$ where $B_1,\ldots,B_\ell$
+ is a non-repetitive sequence of colours from $\mathcal{B}=\{1,2,3\}$ and
+ each $A_i$ is a non-repetitive sequence of colours from $\mathcal{A}=\{4,5,6,7\}$.
+ Therefore, by \lemref{interleave}, $P$ is coloured nonrepetitively.
+
+Thus, $P$ must be a facial path on some inner face $F$ of $G$.  If $V(P) \cap V(H) =
+\emptyset$ then, by Lemma \ref{lem:level_pattern_palindrome_free},
+$P_1$ and $P_2$ have the same level pattern.  No path on an even cycle
+has such a pattern using the levelling $\lambda$.
+Therefore, $V(P)\cap V(H)\neq\emptyset$, so $P$ contains 1, 2, or
+3 vertices of $H$.  If $P$ is a repetition it must contain exactly
+2 vertices of $H$, thus $P$ is a facial path on $F^*$ (since every
+other inner face contributes at most one vertex to $V(H)$).  Reusing the
+notation above, $P$ cannot contain $b$ since $b$ has a unique colour in
+$V(F^*)$. Therefore, $P$ must contain $a$ and $c$ and, in fact, these are
+the endpoints of $P$.  The colour sequence of $P$ must therefore be of
+the form $xAx$ where $x\in\{1,2,3\}$ and $A$ is a non-empty sequence over
+the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
 \end{proof}
-
-
 
 
 \subsection{Making an Even Blocking Graph}
@@ -545,6 +569,79 @@ $\lambda(v)$ is the minimum over all vertices in $V(F)$.
   \end{enumerate}
 \end{proof}
 
+Finally, have all the tools to prove our main result on outerplane graphs:
+
+\begin{thm}\thmlabel{outerplane}
+  For every outerplane graph, $G$, $\pi_f(G)\le 11$.
+\end{thm}
+
+\begin{proof}
+By \lemref{non-simple}, we may assume that $G$ is simple.  From
+\lemref{blocking-set}, $G$ has a blocking set $B$ such that $\block_B(G)$
+has no odd cycles.  Therefore, by \lemref{cactus}, $\pi_f(\block_B(G))\le
+7$.  Using this with \lemref{k-plus-four} implies that $\pi_f(G)\le 11$.
+\end{proof}
+
+
+
+\section{Plane Graphs}
+
+In this section, we show how to reuse the ideas from Bar\'at and Czap
+\cite{bcXX} to facially nonrepetitively 22-colour every plane graph.
+Some modifications are needed because Bar\'at and Czap use a nonrepetitive
+12-colouring of outerplanar graphs whereas our \thm{main} provides an
+nonrepetitive 11-colouring but only for facial paths of outerplane graphs.
+
+\begin{thm}
+   Let $r=\max\{\pi_f(G):\text{$G$ is outerplane}\}$.  Then, for every
+   plane graph $G$, $\pi_f(G)\le 2r$.
+\end{thm}
+
+\begin{proof}
+   For any plane graph, $H$, the \emph{peeling layering} of $H$ is
+   a partition of $V(H)$ into sets as follows.  Let $V_0(H)$ be the
+   vertices on the outer face of $H$ and let $V_i(H)$, $i\ge 1$, be the
+   vertices on the outer face of $H-(V_0(H)\cup\cdots\cup V_{i-1}(H))$.
+
+   We augment $G$ to obtain a plane graph $G^+$ in the following way.
+   For each inner face $F$ of $G$, let $W$ be the facial walk of $F$.
+   Note that $W$ contains only vertices from $V_i(G)$ and $V_{i+1}(G)$
+   for some $i$.  Remove from $W$ all vertices in $V_{i+1}(G)$ to
+   obtain a cyclic sequence $W'$ of vertices from $V_i(G)$.  For any
+   two consecutive vertices $u\neq w$ in $W'$, we add the edge $uw$
+   to $G^+$ inside the face $F$.  Note that the resulting graph $G^+$
+   is still plane and that, for all $i$, $V_i(G)=V_i(G^+)$.
+   From this point onward, we use the notation $V_i=V_(G)=V_i(G^+)$.
+
+   For each $i$, $G^+[V_i]$ is outerplane.  To colour $G$ we use
+   \thmref{main} to facially nonreptitively colour $G^+[V_i]$ with
+   $\{1,\ldots,11\}$ if $i$ is even or $\{12,\ldots,22\}$ if $i$ is odd.
+   This defines a colouring of $G$ that we now prove is facially
+   nonrepetitive.
+
+   Let $P$ be a facial path, $F$, in $G$. The graphs $G^+[V_0]$ and $G$
+   have the same outside face so, in this case, $P$ is not a repetition
+   since our colouring is facially nonrepetitive for $G^+[V_0]$.
+
+   Therefore, $F$ is an inner face and 
+   all vertices on $F$ are in $V_i\cup V_{i+1}$ for some $i$.  There are three
+   cases to consider:
+   \begin{enumerate}
+      \item If $V(P)\subseteq V_i$, then we claim that $P$ is a facial path
+        in $G^+[V_i]$.
+      \item If $V(P)\subseteq V_{i+1}$, then we claim that $P$ is a facial
+        path on the outer face of $G^+[V_{i+1}]$. (Easier)
+      \item Otherwise, $V(P)$ contains vertices from both $V_i$ and
+        $V_{i+1}$.
+        In this case, we claim that the colour sequence determined by
+        $P$ is of the form $A_0,B_1,A_1,\ldots,B_\ell,A_\ell$, where
+        each $A_j$ is a nonrepetitive sequence obtained from vertices
+        in $V_{i+1}$ and $B_1,\ldots,B_\ell$ is a nonrepetitive sequence
+        obtained from vertices in $V_i$.  In particular, if we consider
+        the sequence $P'$ obtained by removing vertices in $V_{i+1}$
+        from $P$, then $P'$ is a facial path in $G^+[V_i]$.
+   \end{enumerate}
+\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{facial}
