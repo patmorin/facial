@@ -26,7 +26,7 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 \title{\MakeUppercase{New Bounds for Facial Nonrepetitive Colouring}\thanks{This research is partially funded by NSERC.}}
 
-\author{Prosenjit Bose,\, Vida Dujmovi\'c,\, Pat Morin,\, Lucas Rioux Maldague}
+\author{Prosenjit Bose,\, Vida Dujmovi\'c,\, Pat Morin,\, Lucas Rioux-Maldague}
 
 
 
@@ -200,7 +200,7 @@ obtained by interleaving a nonrepetitive sequence of colours in $C$
 with nonrepetive sequences taken from $T$; by \lemref{interleave},
 a sequence obtained in this way is nonrepetitive.
 
-In Section~\ref{sec:X}, we show that the preceding argument can be
+In \appref{biconnected}, we show that the preceding argument can be
 improved to give a bound of 7 on the facial nonrepetitive chromatic
 number of biconnected outerplane graphs. This is just a matter of adding
 vertices to the blocking set so that the cycle $C$ does not have length
@@ -252,7 +252,7 @@ $C$, is actually the blocking graph, $\block_B(G)$.  The following lemma
 shows that this strategy generalizes to the situation where we can find
 a facial nonrepetitive colouring of $\block_B(G)$ with few colours.
 
-\begin{lem}\label{lem:hitting_plus_four}
+\begin{lem}\lemlabel{hitting_plus_four}
   Let $G$ be an outerplane graph and $B$ be a blocking set of $G$. If
   there exists a facial nonrepetitive $k$-colouring of (the outer 
   face of) $\block_{B}(G)$, then there exists a facial nonrepetitive
@@ -589,7 +589,7 @@ has no odd cycles.  Therefore, by \lemref{cactus}, $\pi_f(\block_B(G))\le
 In this section, we show how to reuse the ideas from Bar\'at and Czap
 \cite{bcXX} to facially nonrepetitively 22-colour every plane graph.
 Some modifications are needed because Bar\'at and Czap use a nonrepetitive
-12-colouring of outerplanar graphs whereas our \thm{main} provides an
+12-colouring of outerplanar graphs whereas our \thmref{outerplane} provides an
 nonrepetitive 11-colouring but only for facial paths of outerplane graphs.
 
 \begin{thm}
@@ -605,46 +605,87 @@ nonrepetitive 11-colouring but only for facial paths of outerplane graphs.
 
    We augment $G$ to obtain a plane graph $G^+$ in the following way.
    For each inner face $F$ of $G$, let $W$ be the facial walk of $F$.
-   Note that $W$ contains only vertices from $V_i(G)$ and $V_{i+1}(G)$
+   The walk $W$ contains only vertices from $V_i(G)$ and $V_{i+1}(G)$
    for some $i$.  Remove from $W$ all vertices in $V_{i+1}(G)$ to
    obtain a cyclic sequence $W'$ of vertices from $V_i(G)$.  For any
-   two consecutive vertices $u\neq w$ in $W'$, we add the edge $uw$
-   to $G^+$ inside the face $F$.  Note that the resulting graph $G^+$
-   is still plane and that, for all $i$, $V_i(G)=V_i(G^+)$.
-   From this point onward, we use the notation $V_i=V_(G)=V_i(G^+)$.
+   two consecutive vertices $u,w$ in $W'$, we add the edge $uw$
+   to $G^+$ and embed it inside the face $F$. This construction has
+   the following implications: (a)~The resulting graph $G^+$
+   is still plane (though not necessarily simple) and, for all
+   $i$, $V_i(G)=V_i(G^+)$. From this point onward, we use the notation
+   $V_i=V_i(G)=V_i(G^+)$.
+   (b)~The cyclic sequence $W'$ defined above is a facial walk
+   in $G^+$ and, since it contains only vertices in $V_i$, it is also
+   a facial walk in $G^+[V_i]$.
 
    For each $i$, $G^+[V_i]$ is outerplane.  To colour $G$ we use
-   \thmref{main} to facially nonreptitively colour $G^+[V_i]$ with
+   \thmref{outerplane} to facially nonreptitively colour $G^+[V_i]$ with
    $\{1,\ldots,11\}$ if $i$ is even or $\{12,\ldots,22\}$ if $i$ is odd.
    This defines a colouring of $G$ that we now prove is facially
    nonrepetitive.
 
    Let $P$ be a facial path, $F$, in $G$. The graphs $G^+[V_0]$ and $G$
-   have the same outside face so, in this case, $P$ is not a repetition
+   have the same outside face so, if $P$ is on the outside face,
+   then the colour sequence of $P$ is not a repetition
    since our colouring is facially nonrepetitive for $G^+[V_0]$.
 
-   Therefore, $F$ is an inner face and 
-   all vertices on $F$ are in $V_i\cup V_{i+1}$ for some $i$.  There are three
-   cases to consider:
-   \begin{enumerate}
-      \item If $V(P)\subseteq V_i$, then we claim that $P$ is a facial path
-        in $G^+[V_i]$.
-      \item If $V(P)\subseteq V_{i+1}$, then we claim that $P$ is a facial
-        path on the outer face of $G^+[V_{i+1}]$. (Easier)
-      \item Otherwise, $V(P)$ contains vertices from both $V_i$ and
-        $V_{i+1}$.
-        In this case, we claim that the colour sequence determined by
-        $P$ is of the form $A_0,B_1,A_1,\ldots,B_\ell,A_\ell$, where
-        each $A_j$ is a nonrepetitive sequence obtained from vertices
-        in $V_{i+1}$ and $B_1,\ldots,B_\ell$ is a nonrepetitive sequence
-        obtained from vertices in $V_i$.  In particular, if we consider
-        the sequence $P'$ obtained by removing vertices in $V_{i+1}$
-        from $P$, then $P'$ is a facial path in $G^+[V_i]$.
-   \end{enumerate}
+   Therefore, $F$ is an inner face and all vertices on $F$ are in $V_i\cup
+   V_{i+1}$ for some $i$.  Write $P$ as $P_0,Q_1,P_1,\ldots,Q_k,P_k$,
+   where each $Q_j$ consists of vertices from $V_i$ and each $P_j$
+   consists of vertices from $V_{i+1}$.  Notice that, for each
+   $j\in\{1,\ldots,k-1\}$, $G^+[V_i]$ contains an edge joining the
+   last vertex in $Q_j$ to the first vertex in $Q_{j+1}$.  Indeed,
+   $Q_{1},\ldots,Q_k$ is a facial path in $G^+[V_i]$ (It is a contiguous
+   subsequence of the sequence $W'$ defined above.)  Next, observe that
+   each $P_j$ is a facial path on the outer face of $G^+[V_{i+1}]$.
+   Therefore, the colour sequence determined by $P$ is of the form
+   $A_0,B_1,A_1,\ldots,B_k,A_k$ (with $A_j$ corresponding to $P_j$
+   and $B_j$ corresponding to $Q_j$).  The sequence $B_1,\ldots,B_k$ is
+   nonrepetitive and each sequence $A_j$ is non-repetitive.  Therefore,
+   by \lemref{interleave}, the colour sequence determined by $P$
+   is nonrepetitive.
 \end{proof}
 
 \bibliographystyle{plain}
 \bibliography{facial}
+
+\appendix
+\section{Biconnected Outerplane Graphs}
+\applabel{biconnected}
+
+\begin{lem}\lemlabel{good-one}
+  If $G$ is a biconnected outerplane graph, then $G$ has a blocking set $B$
+  such that $|B|\not\in\{5,7,9,10,14,17\}$.
+\end{lem}
+
+\begin{proof}
+  If $G$ is a cycle, take $B$ to be two consecutive vertices on $G$.
+  Otherwise, select an ear, $E$ of $G$ and let $uv$ be $E$'s chord.  Then
+  apply \lemref{blocking-set} to the graph $G'=G-(V(E)\setminus\{u,v\})$
+  to obtain a blocking set $B'$ of even size that contains $v$. Note that,
+  since $v\in B'$ and $v$ is on $E$,  $B'$ is also a blocking set of $G$.
+  If $|B'|\not\in\{10, 14\}$, then we are done with $B=B'$. Otherwise,
+  let $y$ be $v$'s degree-2 neighbour on $E$ and take $B=B'\cup\{y\}$.
+\end{proof}
+
+\begin{cor}
+  If $G$ is an outerplane graph with at most one 2-connected component, 
+  then $\pi_f(G)\le 7$.
+\end{cor}
+
+\begin{proof}
+  If $G$ is a tree, then $\pi_f(G)\le 4$, so we may assume $G$ contains
+  exactly one 2-connected component, $G'$.  Apply \lemref{good-one} to
+  $G'$ to obtain a blocking set $B$ with $|B|\not\in\{5,7,9,10,14,17\}$
+  and observe that $B$ is also a blocking set of $G$.  The blocking graph
+  $\block_B(G')$ is a cycle, $C$, that has a nonrepetitive 3-coloring.
+  The blocking graph $\block_B(G)$ consists of $C$ and possibly some
+  self loops so, by \lemref{non-simple}, $\block_B(G)$ has a facial
+  nonrepetitive 3-colouring.  Therefore, by \lemref{hitting_plus_four},
+  $\pi_f(G)\le 7$.
+\end{proof}
+
+
 
 \end{document}
 
