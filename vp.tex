@@ -40,11 +40,147 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 
 \section{Introduction}
+A sequence $S=s_1,s_2,\cdots,s_{2r}$, $r\ge 1$, is a \emph{repetition}
+if $s_i=s_{r+i}$ for $1 \leq i \leq r$. For example, 1212 is a
+repetition, while 1213 is not. Repetitions are also referred to as
+\emph{squares}, since they can be written as $aa=a^2$. A \emph{block}
+of a sequence $S$ is any subsequence of consecutive terms in $S$. A
+sequence is \emph{nonrepetitive} (square free) if for every non-empty
+block $B$
+of $S$, $B$ is not a repetition. Otherwise $S$ is \emph{repetitive}. For
+example, 1312124 is repetitive, as it contains the block 1212 which is a
+repetition, while 123213 is nonrepetitive as it contains no such block.
+It is easy to see that no sequence of length greater than 3 on two symbols
+can be nonrepetitive. A result by Axel Thue in 1906 states
+that nonrepetitive sequences of arbitrary length can be created using
+three symbols \cite{thue1906uber}. 
+
+A variant of this problem concerning graphs was proposed by Alon,
+Grytczuk, Ha{\l}uszczak and Riordan in 2002 \cite{alon2002nonrepetitive}.
+A nonrepetitive (vertex) colouring of a graph $G$ is an assignment
+of colours to $G$'s vertices such that, for every path $P$ in $G$,
+the sequence of colours of vertices in $P$ is not a repetition.
+The \emph{nonrepetitive chromatic number} of $G$, denoted $\pi(G)$,
+is the minimum number of colours required in a nonrepetitive
+colouring of $G$.  Nonrepetitive graph colouring has received much
+attention \cite{barat2013facial, barat2007square, barat2008note,
+brevsar2007nonrepetitive, currie2002cycle18, dujmovic2012planarlogn,
+dujmovic2011nonrepetitive, fiorenzi2011thue, gagol2016pathwidth,
+gonccalves2014entropy,
+grytczuk2007nonrepetitivesurvey, grytczuk2007nonrepetitive,
+grytczuk2013new, harant2012nonrepetitive, kozik2013nonrepetitive,
+kundgen2008nonrepetitive, pezarski2009non, schreyer2012facial,
+schreyer2013total}.
+
+A well-known conjecture in this area, due to Alon et al
+\cite{alon2002nonrepetitive}, is that there exists a constant
+$K$ such that $\pi(G) \leq K$ for any planar graph $G$.
+The current best upper bound for $n$-vertex planar graphs is
+$O(\log n)$ \cite{dujmovic2012planarlogn}. No planar graph
+with nonrepetitive chromatic number greater than 11 is known
+\cite[Appendix~A]{dujmovic2012planarlogn}.
+
+More is known about the \emph{facial} version of the problem for embedded
+planar graphs.  Harant and Jendrol \cite{harant2012nonrepetitive} asked
+if every planar graph can be coloured with a constant number of colours
+such that every \emph{facial} path\footnote{A facial path is a path
+that is a subsequence of a facial walk; see \secref{preliminaries}.} is
+nonrepetitively coloured.  Barat and Czap \cite{barat2007square} answered
+this question in the affirmative with the constant $24$.  We reduce this
+bound to 22 by proving a bound of 11 for facial nonrepetitive colouring
+of outerplane graphs.
+
+\subsection{Related Work}
+
+\paragraph{Nonrepetitive Colouring.}
+It is known that some families of graphs have bounded repetitive chromatic
+number.  In their original work, Alon et al \cite{alon2002nonrepetitive}
+showed that $\pi(G) = O(\Delta^2)$ if $G$ has maximum degree
+$\Delta$ and that there are are graphs of maximum degree $\Delta$
+with nonrepetitive chromatic number $\Omega(\Delta^2/\log \Delta)$.
+The constants in the $O(\Delta^2)$ upper bound have been steadily
+improved \cite{dujmovic2011nonrepetitive,grytczuk2007nonrepetitive,
+grytczuk2007nonrepetitivesurvey,harant2012nonrepetitive}.
+
+K{\"u}ndgen and Pelsmajer \cite{kundgen2008nonrepetitive} showed that
+$\pi(G)\le 12$ if $G$ is outerplanar and, more generally, $\pi(G)\le 4^t$
+if $G$ has treewidth at most $t$. The latter bound is tight if $t=1$
+(trees), but it is not known if it is tight for other values of $t$. Even
+the upper bound of 12 for outerplanar graphs is not known to be tight,
+as no outerplanar graph with nonrepetititive chromatic number greater
+than 7 is known \cite{barat2007square}.
+
+\paragraph{Facial Nonrepetitive Colouring.}
+
+Facial nonrepetitive colouring was first considered by Havet et al
+\cite{havet2011facial}, who studied the edge-colouring variant of
+the problem.  In this setting, they were able to show that the edges
+of any plane graph can 8-coloured so that every facial trail\footnote{A
+\emph{facial trail} is a subsequence of the edges traversed during the
+boundary walk of a face.} is coloured nonrepetitively. 
+
+For the vertex-colouring version we study, Harant and Jendrol prove
+that $\pi_f(G)=O(\log\Delta)$ if $G$ is a plane graph of maximum
+degree $\Delta$ and that $\pi_f(G)\le 16$ if $G$ is a Hamiltonian
+plane graph.  They also conjectured that $\pi_f(G)=O(1)$ when $G$ is
+any plane graph.  This latter conjecture was confirmed by Barat and Czap
+\cite{barat2007square}, who showed that $\pi_f(G)\le 24$ for any plane
+graph $G$.
+
+
+%
+%In this paper, we consider a variation of Thue colourings
+%for plane graphs in which we only require facial paths to be
+%nonrepetitive.
+%A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such that its edges intersect only at their endpoints. An \emph{outerplane} graph $G$ is a plane graph such that all the vertices of $G$ are adjacent to the outside face of $G$. 
+%A \emph{closed walk} in a graph $G$ is a sequence of vertices $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$ the edge $v_iv_{(i+1)\bmod \ell}$ is in $E(G)$.
+%A \emph{facial walk} in a plane graph $G$ is a closed walk
+%$v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$,
+%the edges $v_{(i-1)\bmod \ell} v_i$ and $v_iv_{(i+1)\bmod\ell}$ occur
+%consecutively in the counterclockwise cyclic ordering of the edges
+%incident to $v_i$ in the embedding of $G$.
+%A \emph{facial path} is a contiguous subsequence of a facial walk that
+%is a path in $G$. 
+%
+%An edge-colouring variant of facial non-repetitive colouring was first introduced
+%by Havet et al. \cite{havet2011facial}, then Harant and Jendrol
+%\cite{harant2012nonrepetitive} followed up with results for the
+%vertex-colouring setting we study here. A 
+%\emph{nonrepetitive facial $k$-colouring} is a vertex
+%$k$-colouring in which for every facial path $(v_1,\cdots,v_n)$ in $G$,
+%the sequence $c(v_1),\cdots, c(v_n)$ is nonrepetitive. The \emph{facial
+%Thue chromatic number} of a graph $G$, denoted $\pi_f(G)$, is the least
+%$k$ for which a nonrepetitive facial $k$-colouring of $G$ exists. As with
+%Conjecture \ref{conj:planarConstant} for the Thue chromatic number, it
+%was also conjectured by Harant and Jendrol \cite{harant2012nonrepetitive}
+%that there exists a constant $K$ such that $\pi_f(G) \leq K$ for any plane
+%graph $G$. This conjecture was confirmed with $K=24$ by Barat and Czap
+%\cite{barat2013facial}, and with smaller values of $K$ when restricted
+%to some families of 2-connected\footnote{A graph is $k$-connected if
+%it contains more than $k$ vertices and has no vertex cut of size less
+%than $k$.} plane graphs such as Halin graphs ($K=??$) and Hamiltonian plane
+%graphs ($K=16$) \cite{harant2012nonrepetitive}. Any nonrepetitive colouring is
+%also a facial nonrepetitive colouring so we have that $\pi_f(G) \leq
+%\pi(G)$. The best lower bound for the facial Thue chromatic number is
+%5 for plane graphs and 4 for outerplane graphs \cite{barat2013facial}.
+%
+%TODO: Ask Lucas where Halin graphs come from?
+%
+%In the next sections, we prove tighter bounds for the facial Thue chromatic number of outerplane and plane graphs. Our technique consists in finding a \emph{blocking set}, from which we construct a \emph{blocking graph}. The blocking set is such that its removal from the outerplane graph results in a forest, for which a nonrepetitive 4-colouring exists. We show that a facial nonrepetitive colouring of any outerplane graph can be obtained by combining this colouring of a forest and a facial nonrepetitive colouring of the blocking graph.
+%We then proceed to show how to find a nonrepetitive colouring on at most 7 colours of the blocking graph. Although it seems hard --- if not impossible --- to find a such a colouring if the blocking graph contains odd cycles, we show that this is feasible if all cycles are even, and that it is possible to select the blocking set as such.
+%
+%From this technique, we show that the facial Thue chromatic number of a plane graph is bounded by 22, by 11 for outerplane graphs and by 7 for 2-connected outerplane graphs. Let $G$ be a graph and $H$ be a subgraph of $G$. $G[H]$ is the subgraph of $G$ induced by $V(H)$. Let $G$ be a plane graph. $\wdual{G}$ is the \emph{weak dual} of $G$, the subgraph of the dual of $G$ whose vertices correspond to the bounded faces of the $G$. A $k$-connected component of $G$ is a maximal induced subgraph $H$ of $G$ that is $k$-connected.
+%
 
 \section{Preliminary Results and Definitions}
+\seclabel{preliminaries}
+
+For a graph, $G$, we use the notations $V(G)$ and $E(G)$ to denote $G$'s vertex and edge sets, respectively. For $S\subset V(G)$, $G[S]$ denotes the subgraph of $G$ induced by the vertices in $S$ and $G-S=G[V\setminus S]$.
 
 A graph is \emph{$k$-connected} if it contains more than $k$ vertices and has
 no vertex cut of size less than $k$.  A \emph{$k$-connected component} of a graph $G$ is a maximal subset of vertices $G$ that induces a $k$-connected subgraph.
+
+A \emph{bridge} in a graph $G$ is an edge whose removal increases the number of connected components in $G$.  A graph is \emph{bridgeless} if it has no bridges.
 
 A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such
 that its edges intersect only at their endpoints. An \emph{outerplane}
@@ -53,8 +189,8 @@ to the outer face of $G$. A \emph{chord} in an outerplane graph is
 an edge that is not incident to the outer face. A \emph{cactus graph}
 is an outerplane graph with no chords.
 
-An \emph{ear} in an outerplanar graph is an inner face that is incident to
-exactly one chord. An ear is \emph{triangular} if it has three vertices.
+An \emph{ear} in an outerplane graph is an inner face that is incident to
+exactly one chord. An ear is \emph{triangular} if it has exactly three vertices.
 
 A \emph{closed walk} in a graph $G$ is a sequence of vertices
 $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$
@@ -64,15 +200,8 @@ A \emph{facial walk} in a plane graph $G$ is a closed walk
 $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$,
 the edges $v_{(i-1)\bmod \ell} v_i$ and $v_iv_{(i+1)\bmod\ell}$ occur
 consecutively in the counterclockwise cyclic ordering of the edges
-incident to $v_i$ in the embedding of $G$.
-
-A \emph{facial path} is a contiguous subsequence of a facial walk that
-is a path in $G$.
-
-A \emph{bridge} in a graph $G$ is an edge whose removal increases the number of connected components in $G$.  A graph is \emph{bridgeless} if it has no bridges.
-
-NOTE: Add induced subgraph notations.
-
+incident to $v_i$ in the embedding of $G$.  A \emph{facial path} is a
+contiguous subsequence of a facial walk that is a path in $G$.
 
 Before proceeding with our results, we will introduce a helper lemma
 due to Havet et al.~\cite{havet2011facial} and two major results which
@@ -80,24 +209,28 @@ will be used throughout the paper. The helper lemma provides a way to
 interlace nonrepetitive sequences.
 
 \begin{lem}[Havet et al. \cite{havet2011facial}]\lemlabel{interleave}
- Let $B=B_1,B_2,\ldots,B_k$ be a nonrepetitive sequence over an alphabet $\mathcal{B}$ in which each $B_i$ has size at least 1. For each $i \in \{0,\ldots,k\}$, let $A_i$ be a (possibly empty) nonrepetitive sequence over an alphabet $\mathcal{A}$ with $\mathcal{B} \cap \mathcal{A} = \emptyset$. Then
- $S = A_0, B_1, A_1, \ldots, B_k, A_k$ is a nonrepetitive sequence.
+  Let $B=B_1,B_2,\ldots,B_k$ be a nonrepetitive sequence over an alphabet
+  $\mathcal{B}$ in which each $B_i$ has size at least 1. For each $i
+  \in \{0,\ldots,k\}$, let $A_i$ be a (possibly empty) nonrepetitive
+  sequence over an alphabet $\mathcal{A}$ with $\mathcal{B} \cap
+  \mathcal{A} = \emptyset$. Then $S = A_0, B_1, A_1, \ldots, B_k, A_k$
+  is a nonrepetitive sequence.
 \end{lem}
 
 We will require two results about the Thue chromatic number of trees and cycles:
 
 \begin{thm}[Alon et al. \cite{alon2002nonrepetitive}]\thmlabel{tree}
- For every tree, $T$, $\pi(T) \leq 4$.
+  For every tree, $T$, $\pi(T) \leq 4$.
 \end{thm}
 
 \begin{thm}[Currie \cite{currie2002cycle18}]\thmlabel{cycle}
- For every $n>2$, the cycle $C_n$ on $n$ vertices has
- \[
- \pi(C_n) = \begin{cases}
-             4 & \text{ if } n \in \{5,7,9,10,14,17\} \\
-             3 & \text{ otherwise. }
-            \end{cases}
- \]
+  For every $n>2$, the cycle $C_n$ on $n$ vertices has
+  \[
+  \pi(C_n) = \begin{cases}
+              4 & \text{ if } n \in \{5,7,9,10,14,17\} \\
+              3 & \text{ otherwise. }
+             \end{cases}
+  \]
 \end{thm}
 
 \section{Outerplane Graphs}
@@ -120,14 +253,22 @@ on simple outerplane graphs.
    of the embeddings of $e$ and $e'$ form a Jordan curve that does not
    contain any vertices of $G$ (since we require $G'$ to be outerplane).
    This implies that any facial path in $G'$ that uses the new edge $e'$
-   exists in $G$ as a path that uses the edge $e$.
+   exists in $G$ as a facial path that uses the edge $e$.
 \end{proof}
 
 Let $G$ be an outerplane graph. A \emph{blocking set} of $G$ is a set
 of vertices $B \subseteq V(G)$ such that for each 2-connected component
 $H$ of $G$, $H \setminus B$ is a tree and for each inner face $F$,
-$F \setminus B \not= \emptyset$.  See Figure \ref{fig:blocking_set}
+$F \setminus B \not= \emptyset$.  See Figure \ref{fig:blocking-set}
 for an example of a blocking set.
+
+\begin{figure}
+  \begin{center}
+     \includegraphics{figs/blocking-set-1}
+  \end{center}
+  \caption{The blocking set of an outerplane graph (in black).}
+  \figlabel{blocking-set}
+\end{figure}
 
 The definition of a blocking set is subtle and implies three properties
 that we will use throughout.   
@@ -182,7 +323,7 @@ some inner face with $v$).
   for each inner face $F$ of $G$, $|B\cap V(F)|=1$.
 \end{cor}
 
-At this point we pause to sketch how Lemma~\ref{lem:blocking_out}
+At this point we pause to sketch how \lemref{biconnected}
 can already be used to give an upper-bound of 8 on the facial
 nonrepetitive chromatic number of biconnected outerplane graphs.  For a
 biconnected outerplane graph, $G$, we take a blocking set $B$ of $G$
@@ -204,7 +345,7 @@ In \appref{biconnected}, we show that the preceding argument can be
 improved to give a bound of 7 on the facial nonrepetitive chromatic
 number of biconnected outerplane graphs. This is just a matter of adding
 vertices to the blocking set so that the cycle $C$ does not have length
-in $\{blah\}$, so that it can nonrepetitively 3-coloured. 
+in $\{5,7,9,10,14,17\}$, so that it can nonrepetitively 3-coloured.
 
 \subsection{The Blocking Graph}
 
@@ -215,10 +356,18 @@ with the facial walk $W$ on the outer face of $G$. Remove every vertex
  not in $B$ from $W$ to obtain a cyclic sequence $W'$ of vertices in
 $B$. For each consecutive pair of vertices $uw$ in $W'$ we add the edge
  $uw$ to the blocking graph.  This naturally defines the embedding of
- the blocking graph $\block_B(G)$. See Figure~\ref{fig:blocking_graph}
+ the blocking graph $\block_B(G)$. See \figref{blocking-graph}
  for an example.   Note that $\block_B(G)$ is not necessarily a simple
 graph; it may contain parallel edges (cycles of length two) and self-loops
 (cycles of length one). 
+
+\begin{figure}
+  \begin{center}
+     \includegraphics{figs/blocking-set-2}
+  \end{center}
+  \caption{The blocking graph (in red) associated with a blocking set.}
+  \figlabel{blocking-graph}
+\end{figure}
 
 The fact that a blocking set does not contain both endpoints of any
 chord of $G$ (\obsref{no-chords}) implies the following observation:
@@ -252,7 +401,7 @@ $C$, is actually the blocking graph, $\block_B(G)$.  The following lemma
 shows that this strategy generalizes to the situation where we can find
 a facial nonrepetitive colouring of $\block_B(G)$ with few colours.
 
-\begin{lem}\lemlabel{hitting_plus_four}
+\begin{lem}\lemlabel{hitting_plus_four}\lemlabel{k-plus-four}
   Let $G$ be an outerplane graph and $B$ be a blocking set of $G$. If
   there exists a facial nonrepetitive $k$-colouring of (the outer 
   face of) $\block_{B}(G)$, then there exists a facial nonrepetitive
@@ -293,21 +442,38 @@ Again, \lemref{interleave} implies that the resulting colour sequence
 is nonrepetitive.
 \end{proof}
 
-TODO: Discuss the difficulty of colouring blocking graphs with odd-cycles.
-
 \subsection{Colouring Even Cactus Graphs}
 
-We now show how to colour the blocking graph---a cactus graph---of an outerplane graph with at least two 2-connected components.
-By Lemma \ref{lem:hitting_plus_four}, if we can find a facial nonrepetitive $k$-colouring of any cactus graph, we can get a facial nonrepetitive $k+4$-colouring of any outerplane graph. 
+We now show how to colour the blocking graph---a cactus graph---of an
+outerplane graph.  By Lemma \ref{lem:hitting_plus_four}, if we can find
+a facial nonrepetitive $k$-colouring of any cactus graph, we can get a
+facial nonrepetitive $k+4$-colouring of any outerplane graph.
 
-The tightest upper bound for the facial Thue chromatic number of outerplane graphs is 12, which is the bound for the Thue chromatic number \cite{barat2007square, kundgen2008nonrepetitive}. Thus, to improve this bound, we need to find a facial nonrepetitive 7-colouring of the blocking graph. It seems difficult to do this unless all cycles of the cactus graph are even. 
+Recall that the tightest upper bound for the facial Thue chromatic number
+of outerplane graphs is 12, which is the bound for the Thue chromatic
+number \cite{barat2007square, kundgen2008nonrepetitive}. Thus, to improve
+this bound, we need to find a facial nonrepetitive 7-colouring of the
+blocking graph. We have been unable to do this unless all cycles of the
+cactus graph are even.  We will eventually address this limitation in
+\secref{even-blocking-graph} by proving the existence of a blocking set
+$B$ such that $\block_B(G)$ has no odd cycles.
 
-We will address these difficulties by choosing a blocking set such that the blocking graph has no odd cycle. We will show how to achieve this in Lemma \ref{lem:cycle_spider_even}. 
-A \emph{levelling} of a graph $G$ is a function $\lambda\colon V(G)\to \{0, 1, 2,\dots\}$ such that for each $\{u,v\}\in E(G)$, $|\lambda(u)-\lambda(v)|\leq 1$. The level pattern of a path $v_1,\ldots,v_k$ is the sequence $\lambda(v_1),\lambda(v_2),\ldots,\lambda(v_k)$.
+A \emph{levelling} of a graph $G$ is a function $\lambda\colon
+V(G)\to \{0, 1, 2,\dots\}$ such that for each $\{u,v\}\in
+E(G)$, $|\lambda(u)-\lambda(v)|\leq 1$. The level
+pattern of a path $v_1,\ldots,v_k$ is the sequence
+$\lambda(v_1),\lambda(v_2),\ldots,\lambda(v_k)$.
 
 \begin{lem}[K{\"u}ndgen and Pelsmajer \cite{kundgen2008nonrepetitive}] \lemlabel{level_pattern_palindrome_free}
- Let $G$ be a graph and $\lambda\colon V(G)\to \{0, 1, 2,\dots\}$ be a levelling of $G$. Let $S=s_0,s_1,\ldots,s_m$ be a nonrepetitive palindrome-free sequence on an alphabet $\mathcal{A}$ with $m=\max\{\lambda(v) \;|\; v \in V(G)\}$ and $c : V(G) \rightarrow \mathcal{A}$ be a colouring of $G$ defined as $c(v)=s_{\lambda(v)}$. %Thus each $v \in V(G)$ gets the colour corresponding to its level, thus let . 
- If a path $P=P_1, P_2$ with $|P_1|=|P_2|$ in $G$ is repetitively coloured under $c$, then $P_1$ and $P_2$ have the same level pattern.
+ Let $G$ be a graph and $\lambda\colon V(G)\to \{0, 1,
+ 2,\dots\}$ be a levelling of $G$. Let $S=s_0,s_1,\ldots,s_m$
+ be a nonrepetitive palindrome-free sequence on an alphabet
+ $\mathcal{A}$ with $m=\max\{\lambda(v) \;|\; v \in V(G)\}$ and
+ $c : V(G) \rightarrow \mathcal{A}$ be a colouring of $G$ defined
+ as $c(v)=s_{\lambda(v)}$. %Thus each $v \in V(G)$ gets the colour
+ corresponding to its level, thus let .  If a path $P=P_1, P_2$ with
+ $|P_1|=|P_2|$ in $G$ is repetitively coloured under $c$, then $P_1$
+ and $P_2$ have the same level pattern.
 \end{lem}
 
 \begin{lem}\lemlabel{cactus}
@@ -316,21 +482,34 @@ A \emph{levelling} of a graph $G$ is a function $\lambda\colon V(G)\to \{0, 1, 2
 \end{lem}
 
 \begin{proof}
-By \lemref{non-simple}, we may assume that $G$ is simple.
- We may assume that $G$ is connected as this does not affect its facial Thue chromatic number. Also, assume that $G$ is neither a cycle nor a tree since $\pi_f(G) \leq 4 < 7$ for both these classes of graphs.  
+ By \lemref{non-simple}, we may assume that $G$ is simple.
+ We may assume that $G$ is connected as this does not affect its facial
+ Thue chromatic number. Also, assume that $G$ is neither a cycle nor
+ a tree since $\pi_f(G) \leq 4 < 7$ for both these classes of graphs.
  If there exists a vertex $v$ of $G$ such that $\deg_G(v)=1$, then let
  the \emph{root} $r$ of $G$ be $v$. Otherwise, let $r$ be any vertex
- of $G$ of degree at least $3$. Let $\lambda$ be a levelling of $G$ where
- $\lambda(v)$ is the distance in $G$ from $r$ to $v$. Let $H$ be a graph that contains all vertices $v\in V(G)$ such that
+ of $G$ of degree at least $3$. Let $\lambda$ be a levelling of $G$
+ where $\lambda(v)$ is the distance in $G$ from $r$ to $v$. Let $H$
+ be a graph that contains all vertices $v\in V(G)$ such that
  \begin{enumerate}
   \item $v$ is on a cycle $C$ of $G$,
   \item $\lambda(v)=\max_{u \in C} \lambda(u)$ and
   \item $\deg_G(v)=2$.
  \end{enumerate} 
  In other words, $H$ contains the vertices of degree 2 that are on the
- deepest level of a cycle (see Figure
- \ref{fig:adding_vertices_H}). Notice that since every cycle of $G$ is
- even, there is at most one vertex of $H$ in each cycle of $G$.
+ deepest level of a cycle (see \figref{cactus-example}). Notice that
+ since every cycle of $G$ is even, there is at most one vertex of $H$
+ in each cycle of $G$.
+
+ \begin{figure}
+    \begin{center}
+        \includegraphics{figs/cactus}
+    \end{center}
+    \caption{The graph $H$ obtained from a cactus graph with no odd cycles.
+        The vertex $a$ is added in the final step so that $H$ is not a cycle
+        of length 5.}
+    \figlabel{cactus-example}
+ \end{figure}
 
 If $\deg_G(r)\not=1$, there must exist at least one face $F^*$ of $G$ such
 that exactly one vertex $v$ of $F^*$ has degree greater than two. From
@@ -349,7 +528,7 @@ paths. It can only be a cycle if $G$ has no vertices of degree 1,
 in which case, $\deg_G(r)\neq 1$.  In this case, our choice of $V(H)$
 ensures that the length of this cycle is not in  $\{5,7,9,10,14,17\}$.
 This implies that $H$ can be nonrepetitively coloured using the colour set
-$\mathcal{B}=\{1,2,3\}$, either by using the result of Thue \cite{thue}
+$\mathcal{B}=\{1,2,3\}$, either by using the result of Thue \cite{thue1906uber}
 or Currie (\thmref{cycle}).
 
 To colour the remaining vertices of $G$, let $h=\max_{v \in V(G)}
@@ -404,6 +583,7 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
 
 
 \subsection{Making an Even Blocking Graph}
+\seclabel{even-blocking-graph}
 
 \begin{lem}\lemlabel{even-biconnected}
   For every biconnected outerplane graph, $G$, and any vertex $v\in V(G)$:
@@ -449,11 +629,19 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
   is not the degree 2 vertex, $y$, of $F$.  By the same argument as above,
   $B=B'\cup\{y\}$ satisfies the conditions of the lemma, so we are done.
 
-  \item 
+  \item Refer to \figref{toughie}. 
   For an edge $uw\in E(G)$, let $V_{uw}'$ and $V_{uw}''$ be the two
   (possibly empty) sets of vertices in the two connected components
   of $G\setminus\{u,w\}$.  Let $G_{uw}'=G[V_{uw}'\cup\{u,w\}]$ and
   $G_{uw}''=G[V_{uw}''\cup\{u,w\}]$.
+
+  \begin{figure}
+    \begin{center}
+       \includegraphics{figs/toughie}
+    \end{center}
+    \caption{The face $F_{uw}''$ in the proof of \lemref{even-biconnected}.}
+    \figlabel{toughie}
+  \end{figure}
 
   If neither of the two previous cases applies, then there exists an edge
   $uw$ of $G$ such that $v\not\in V_{uw}'$ and the weak dual of $G_{uw}'$
@@ -500,9 +688,17 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
 \end{enumerate}
 \end{proof}
 
+\begin{rem}\remlabel{bw}
+   We remark that the proof of \lemref{even-biconnected} actually proves
+   something stronger than just requiring the inclusion or exclusion of
+   $v\in B$.  We can specify an edge $bw$ on the outer face of $G$ and
+   obtain a blocking set $B$ such that $\block_B(G)$ is an even cycle,
+   $b\in B$ and $w\not\in B$.  This is used in \appref{biconnected}.
+\end{rem}
+
 \begin{lem}\lemlabel{even-bridgeless}
-  Every simple bridgeless outerplane graph $G$ has a blocking set $B$ such that
-  all cycles in $\block_B(G)$ are even. 
+  Every simple bridgeless outerplane graph $G$ has a blocking set $B$
+  such that all cycles in $\block_B(G)$ are even.
 \end{lem}
 
 \begin{proof}
@@ -530,14 +726,22 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
     such that $\block_{B''}(C)$ is an even cycle and $v\not\in B''$.
     We take $B=B'\cup B''$.
 
-    Starting at some vertex appropriate vertex in $V(G)\setminus V(C)$ 
-    in the facial walk
-    on the outer face of $G$, there is a last vertex, $x\in V(G')\cap B'$,
-    encountered before the walk encounters the first vertex $v\in V(C)\cap
-    B''$ and there is a last vertex $w\in V(C)\cap B''$ encountered
-    before the walk returns to the next vertex $y\in V(G')\cap B'$.
-    The edge $xy$ is in $\block_{B'}(G')$ and the edge $vw$ is in
-    $\block_{B''}(C)$.  
+    Refer to \figref{block-merge}.  
+    Starting at some vertex appropriate vertex in $V(G)\setminus V(C)$
+    in the facial walk on the outer face of $G$, there is a last vertex,
+    $x\in V(G')\cap B'$, encountered before the walk encounters the first
+    vertex $u\in V(C)\cap B''$ and there is a last vertex $w\in V(C)\cap
+    B''$ encountered before the walk returns to the next vertex $y\in
+    V(G')\cap B'$.  The edge $xy$ is in $\block_{B'}(G')$ and the edge
+    $vw$ is in $\block_{B''}(C)$.
+
+    \begin{figure}
+       \begin{center}
+          \includegraphics{figs/block-merge}
+       \end{center}
+       \caption{Case~2 in the proof of \lemref{even-bridgeless}.}
+       \figlabel{block-merge}
+    \end{figure}
 
     Since every blocking graph is a bridgeless cactus graph
     (\obsref{cactus}), each of these edges is part of one even cycle
@@ -550,8 +754,8 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
 \end{proof}
 
 \begin{lem}\lemlabel{even}
-  Every simple outerplane graph $G$ has a blocking set $B$ such that all cycles
-  in $\block_B(G)$. 
+  Every simple outerplane graph $G$ has a blocking set $B$ such that
+  all cycles in $\block_B(G)$ are even.
 \end{lem}
 
 \begin{proof}
@@ -577,7 +781,7 @@ Finally, have all the tools to prove our main result on outerplane graphs:
 
 \begin{proof}
 By \lemref{non-simple}, we may assume that $G$ is simple.  From
-\lemref{blocking-set}, $G$ has a blocking set $B$ such that $\block_B(G)$
+\lemref{even}, $G$ has a blocking set $B$ such that $\block_B(G)$
 has no odd cycles.  Therefore, by \lemref{cactus}, $\pi_f(\block_B(G))\le
 7$.  Using this with \lemref{k-plus-four} implies that $\pi_f(G)\le 11$.
 \end{proof}
@@ -587,7 +791,7 @@ has no odd cycles.  Therefore, by \lemref{cactus}, $\pi_f(\block_B(G))\le
 \section{Plane Graphs}
 
 In this section, we show how to reuse the ideas from Bar\'at and Czap
-\cite{bcXX} to facially nonrepetitively 22-colour every plane graph.
+\cite{barat2013facial} to facially nonrepetitively 22-colour every plane graph.
 Some modifications are needed because Bar\'at and Czap use a nonrepetitive
 12-colouring of outerplanar graphs whereas our \thmref{outerplane} provides an
 nonrepetitive 11-colouring but only for facial paths of outerplane graphs.
@@ -660,9 +864,12 @@ nonrepetitive 11-colouring but only for facial paths of outerplane graphs.
 
 \begin{proof}
   If $G$ is a cycle, take $B$ to be two consecutive vertices on $G$.
-  Otherwise, select an ear, $E$ of $G$ and let $uv$ be $E$'s chord.  Then
-  apply \lemref{blocking-set} to the graph $G'=G-(V(E)\setminus\{u,v\})$
-  to obtain a blocking set $B'$ of even size that contains $v$. Note that,
+  Otherwise, select an ear, $E$ of $G$ and let $uv$ be $E$'s chord.
+  Then apply the stronger version of \lemref{even} discussed in
+  \remref{bw} to the graph $G'=G-(V(E)\setminus\{u,v\})$ to obtain a
+  blocking set $B'$ of even size that contains $v$ and not $u$.
+
+  Note that,
   since $v\in B'$ and $v$ is on $E$,  $B'$ is also a blocking set of $G$.
   If $|B'|\not\in\{10, 14\}$, then we are done with $B=B'$. Otherwise,
   let $y$ be $v$'s degree-2 neighbour on $E$ and take $B=B'\cup\{y\}$.

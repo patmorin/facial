@@ -125,7 +125,7 @@ colouring is denoted by $\pi_f(G)$. We show that $\pi_f(G)\leq 7$ if $G$
 is 2-connected outerplane, $\pi_f(G) \leq 11$ if $G$ is outerplane and
 $\pi_f(G)\leq 22$ if $G$ is plane. The latter improves the previous best
 known bound on nonrepetitive facial colourings of plane graphs by Barat
-and Czap (Journal of Graph Theory, 2013).
+and Czap (Journal of Graph Theory, 2013).
 \end{abstract}
 
 
@@ -151,7 +151,7 @@ dujmovic2011nonrepetitive, fiorenzi2011thue, gonccalves2014entropy,
 grytczuk2007nonrepetitivesurvey, grytczuk2007nonrepetitive,
 grytczuk2013new, harant2012nonrepetitive, kozik2013nonrepetitive,
 kundgen2008nonrepetitive, pezarski2009non, schreyer2012facial,
-schreyer2013total}. 
+schreyer2013total}. 
 
 A \emph{vertex colouring} or a \emph{proper vertex colouring} of a graph $G$ is a function $c: V(G) \rightarrow \naturals$ that satisfies:
 \begin{equation}
@@ -179,7 +179,7 @@ the edges $v_{(i-1)\bmod \ell} v_i$ and $v_iv_{(i+1)\bmod\ell}$ occur
 consecutively in the counterclockwise cyclic ordering of the edges
 incident to $v_i$ in the embedding of $G$.
 A \emph{facial path} is a contiguous subsequence of a facial walk that
-is a path in $G$. 
+is a path in $G$. 
 
 An edge-colouring variant of facial non-repetitive colouring was first introduced
 by Havet et al. \cite{havet2011facial}, then Harant and Jendrol
@@ -201,7 +201,7 @@ than $k$.} plane graphs such as Halin graphs ($K=??$) and Hamiltonian plane
 graphs ($K=16$) \cite{harant2012nonrepetitive}. Any nonrepetitive colouring is
 also a facial nonrepetitive colouring so we have that $\pi_f(G) \leq
 \pi(G)$. The best lower bound for the facial Thue chromatic number is
-5 for plane graphs and 4 for outerplane graphs \cite{barat2013facial}.
+5 for plane graphs and 4 for outerplane graphs \cite{barat2013facial}.
 
 TODO: Ask Lucas where Halin graphs come from?
 
@@ -251,7 +251,7 @@ $H$ of $G$, $H \setminus B$ is a tree and for each inner face $F$,
 $F \setminus B \not= \emptyset$. 
 Observe that $G\setminus B$ is a forest that contains a non-empty tree
 for each 2-connected component of $G$.
-See Figure \ref{fig:blocking_set} for an example of a blocking set. 
+See Figure \ref{fig:blocking_set} for an example of a blocking set. 
 
 \begin{figure}[!ht]
   \centering
@@ -317,7 +317,7 @@ See Figure \ref{fig:blocking_set} for an example of a blocking set.
 
 The definition of a blocking set is subtle and implies two properties
 that we will use throughout. A \emph{chord} in an outerplanar graph
-is an edge that is not incident to the outer face.
+is an edge that is not incident to the outer face.
 
 \begin{obs}
    For any blocking set $B$ of $G$, $B$ does not include both endpoints
@@ -377,7 +377,7 @@ Let us now show that such a blocking set exists for all outerplane graphs. In fa
  
  \begin{proof}
  Let $F_1^H,\ldots,F_{f_H}^H$ be the inner faces of $H$ in the order
- considered by the procedure. and let $G_i^H$ be the graph induced by  
+ considered by the procedure. and let $G_i^H$ be the graph induced by  
  \begin{equation}
   \bigcup_{1 \leq j \leq i}V(F_j^H).
  \end{equation}
@@ -388,14 +388,14 @@ Let us now show that such a blocking set exists for all outerplane graphs. In fa
   of $F_i^H$ is in $B_{k-1}$. Thus, since $F_i^H$ is a cycle, $F_i^H
   \setminus B$ is a path. This path is connected by the other anchor
   of $F_i^H$ to $G_{i-1}^H$, which is connected. Thus, $G_i^H$ is also
-  connected. 
+  connected. 
   \item $B_{k-1} \cap V(F_i^H) = \emptyset$. In this case, none of the
   anchors $a_1,a_2$ of $F_i^H$ are in $B_{k-1}$ and since $a_1,a_2 \in
   G_{i-1}^H$, $a_1,a_2 \notin B_k$. $F_i^H$ is a cycle, so by Claim
   \ref{claim:blocking_out_1}, $F_i^H \setminus B$ is a path which
   contains both $a_1$ and $a_2$. This path is connected to $G_{i-1}^H$,
   which is connected by the induction hypothesis, therefore $G_i^H$
-  is also connected.
+  is also connected.
  \end{enumerate}
  This completes the proof.
  \end{proof}
@@ -430,7 +430,7 @@ since it is obtained by interleaving a non-repetitive sequence of colours in $C$
 
 TODO: Explain that this can be improved to 7 and that, in general (not
 biconnected) the cycle C is a more complicated graph actually a cactus
-graph.  
+graph.  
 
 \begin{corollary}
  Let $G$ be a 2-connected outerplane graph that contains at least two inner faces. There exists a blocking set $B$ of $G$ such that for each inner face $F$ of $G$, $|V(F) \cap B|=1$, and there exists an inner face $F_1$ of $G$ with $\deg_{\wdual{G}}(F_1)=1$ such that the vertex $v \in V(F_1) \cap B$ has $\deg_G(v) \geq 3$.
@@ -531,7 +531,7 @@ TODO: Relate $\block_B(G)$ to the cycle $C$ in the previous section.
 %graph denoted by $\block_{B}(G)$ with vertex set $B$ and with an edge
 %set defined as follows: Let $W=w_1,w_2,\ldots,w_k$ be a closed facial
 %walk around the outer face of $G$ such that $w_1=w_k\in B$. For each
-%subsequence $w_i,w_{i+1},\ldots,w_{i+r}$ such that 
+%subsequence $w_i,w_{i+1},\ldots,w_{i+r}$ such that 
 
 %\begin{enumerate}[a)]
 % \item $w_i,w_{i+1},\ldots,w_{i+r}$ is a facial path,
