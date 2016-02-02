@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.4">
-<info created="D:20160201231533" modified="D:20160201231533"/>
+<info created="D:20160201231533" modified="D:20160202101550"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -202,13 +202,13 @@ h
 <dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
 <dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
 <textsize name="large" value="\large"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
 <textsize name="Large" value="\Large"/>
 <textsize name="LARGE" value="\LARGE"/>
 <textsize name="huge" value="\huge"/>
 <textsize name="Huge" value="\Huge"/>
-<textsize name="small" value="\small"/>
 <textsize name="footnote" value="\footnotesize"/>
-<textsize name="tiny" value="\tiny"/>
 <textstyle name="center" begin="\begin{center}" end="\end{center}"/>
 <textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
 <textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
@@ -231,13 +231,34 @@ h
 </ipestyle>
 <page>
 <layer name="alpha"/>
-<view layers="alpha" active="alpha"/>
+<layer name="beta"/>
+<layer name="gamma"/>
+<view layers="alpha gamma" active="alpha"/>
+<view layers="alpha beta" active="beta"/>
+<view layers="alpha beta gamma" active="gamma"/>
 <path layer="alpha" stroke="red">
+269.144 718.552 m
+263.443 702.373
+224.917 691.423
+206.263 699.94 s
+</path>
+<path stroke="red">
+269.183 753.418 m
+256 768
+225.323 779.83
+205.857 774.153 s
+</path>
+<path layer="gamma" stroke="red">
+302.483 749.692 m
+272 736
+304.667 720.667 s
+</path>
+<path layer="beta" stroke="red">
 302.483 749.692 m
 288 768
 269.183 753.418 s
 </path>
-<path stroke="red">
+<path layer="alpha" stroke="red">
 325.913 756.285 m
 304 768
 302.483 749.692 s
@@ -262,12 +283,12 @@ h
 320 704
 327.694 716.436 s
 </path>
-<path stroke="red">
+<path layer="beta" stroke="red">
 269.144 718.552 m
 288 704
 304.667 720.667 s
 </path>
-<path stroke="black">
+<path layer="alpha" stroke="black">
 288 736 m
 256 768
 208 768
@@ -292,24 +313,17 @@ h
 <use name="mark/fdisk(sfx)" pos="325.913 756.285" size="normal" stroke="black" fill="black"/>
 <use name="mark/fdisk(sfx)" pos="339.598 743.621" size="normal" stroke="black" fill="black"/>
 <use name="mark/fdisk(sfx)" pos="339.624 728.438" size="normal" stroke="black" fill="black"/>
-<use name="mark/fdisk(sfx)" pos="327.694 716.436" size="normal" stroke="red" fill="black"/>
-<path stroke="red">
-269.183 753.418 m
-256 768
-225.323 779.83
-205.857 774.153 s
-</path>
-<path stroke="red">
-269.144 718.552 m
-263.443 702.373
-224.917 691.423
-206.263 699.94 s
-</path>
+<use name="mark/fdisk(sfx)" pos="327.694 716.436" size="normal" stroke="black" fill="black"/>
 <use name="mark/fdisk(sfx)" pos="288 736" size="normal" stroke="black" fill="white"/>
 <text matrix="1 0 0 1 0.224737 -7" transformations="translations" pos="287.775 748.198" stroke="black" type="label" width="5.187" height="4.289" depth="0" halign="center" valign="baseline">$v$</text>
 <text matrix="1 0 0 1 0 5" transformations="translations" pos="269.932 705.212" stroke="black" type="label" width="5.694" height="4.289" depth="0" halign="center" valign="top">$x$</text>
 <text matrix="1 0 0 1 0 -3" transformations="translations" pos="269.121 763.609" stroke="black" type="label" width="5.242" height="4.297" depth="1.93" halign="center" valign="baseline">$y$</text>
 <text matrix="1 0 0 1 34.6313 9.97249" transformations="translations" pos="269.932 705.212" stroke="black" type="label" width="5.703" height="4.289" depth="0" halign="center" valign="top">$u$</text>
 <text matrix="1 0 0 1 34.6313 -23.0275" transformations="translations" pos="269.121 763.609" stroke="black" type="label" width="7.401" height="4.289" depth="0" halign="center" valign="baseline">$w$</text>
+<path layer="gamma" stroke="red">
+269.183 753.418 m
+304 736
+269.144 718.552 s
+</path>
 </page>
 </ipe>

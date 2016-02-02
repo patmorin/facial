@@ -689,11 +689,18 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
 \end{proof}
 
 \begin{rem}\remlabel{bw}
-   We remark that the proof of \lemref{even-biconnected} actually proves
-   something stronger than just requiring the inclusion or exclusion of
-   $v\in B$.  We can specify an edge $bw$ on the outer face of $G$ and
-   obtain a blocking set $B$ such that $\block_B(G)$ is an even cycle,
-   $b\in B$ and $w\not\in B$.  This is used in \appref{biconnected}.
+   The proof of \lemref{even-biconnected} can be modified to prove
+   something stronger than just requiring the inclusion or exclusion
+   of $v\in B$.  We can specify an edge $ab$ on the outer face of $G$
+   and obtain a blocking set $B$ such that $\block_B(G)$ is an even
+   cycle, $a\not\in B$ and $b\in B$.  The only difference in the proof
+   is ensuring that $a$ is not included in $B$. The resulting proof
+   has the same three cases. Case~1 applies as long as $ab$ is not on
+   the boundary of the ear $F$. Case~2 applies as long as $ab$ is not
+   on the boundary of the ear $E$.  Otherwise, in Case~3, the edge $ab$
+   is in the subgraph $G_{uw}''$, so there is no chance of including $a$
+   in $B$.  This stronger version of \lemref{even-biconnected} is used
+   in \appref{biconnected}.
 \end{rem}
 
 \begin{lem}\lemlabel{even-bridgeless}
@@ -737,7 +744,11 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
 
     \begin{figure}
        \begin{center}
-          \includegraphics{figs/block-merge}
+         \begin{tabular}{ccc}
+          \includegraphics[width=.45\textwidth]{figs/good-one-1} &
+          $\Rightarrow$ &
+          \includegraphics[width=.45\textwidth]{figs/good-one-2}
+         \end{tabular}
        \end{center}
        \caption{Case~2 in the proof of \lemref{even-bridgeless}.}
        \figlabel{block-merge}
@@ -869,10 +880,12 @@ nonrepetitive 11-colouring but only for facial paths of outerplane graphs.
   \remref{bw} to the graph $G'=G-(V(E)\setminus\{u,v\})$ to obtain a
   blocking set $B'$ of even size that contains $v$ and not $u$.
 
-  Note that,
-  since $v\in B'$ and $v$ is on $E$,  $B'$ is also a blocking set of $G$.
-  If $|B'|\not\in\{10, 14\}$, then we are done with $B=B'$. Otherwise,
-  let $y$ be $v$'s degree-2 neighbour on $E$ and take $B=B'\cup\{y\}$.
+  Note that, since $v\in B'$ and $v$ is on $E$,  $G-B'$ has no cycles.
+  Furthermore, since $u\not\in B'$, $G-B'$ is connected, so $B'$
+  is a blocking set of $G$.  Since $|B'|$ is even, 
+  $|B'|\not\in\{5,7,9,17\}$, so if $|B'|\not\in\{10, 14\}$, then we are
+  done with $B=B'$. Otherwise, let $y$ be $v$'s degree-2 neighbour on $E$
+  and take $B=B'\cup\{y\}$.
 \end{proof}
 
 \begin{cor}
