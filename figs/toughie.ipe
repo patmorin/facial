@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.4">
-<info created="D:20160201224658" modified="D:20160201230329"/>
+<info created="D:20160201224658" modified="D:20160202214108"/>
+<preamble>\usepackage{kpfonts}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">

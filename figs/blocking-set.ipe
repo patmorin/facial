@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.4">
-<info created="D:20160201213750" modified="D:20160202100041"/>
+<info created="D:20160201213750" modified="D:20160202220409"/>
+<preamble>\usepackage{kpfonts}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -234,6 +235,16 @@ h
 <layer name="beta"/>
 <view layers="alpha" active="alpha"/>
 <view layers="alpha beta" active="beta"/>
+<path layer="beta" stroke="red">
+304 752 m
+303.964 759.877
+296 760 s
+</path>
+<path stroke="red">
+288 768 m
+288.029 760.088
+296 760 s
+</path>
 <group layer="alpha">
 <path stroke="black" fill="white" pen="fat">
 336 736 m
@@ -390,13 +401,8 @@ h
 288 768 s
 </path>
 <path stroke="red">
-288 768 m
-288 752
-296 760 s
-</path>
-<path stroke="red">
 296 760 m
-288 752
+296.102 751.874
 304 752 s
 </path>
 <path stroke="red">
@@ -412,13 +418,8 @@ h
 304 752 s
 </path>
 <path stroke="red">
-304 752 m
-304 768
-296 760 s
-</path>
-<path stroke="red">
 296 760 m
-304 768
+296.453 768.09
 288 768 s
 </path>
 <path stroke="red">

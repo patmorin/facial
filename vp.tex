@@ -1,6 +1,7 @@
 \documentclass{patmorin}
 \listfiles
 \usepackage{amsthm,amsmath,graphicx}
+\usepackage{array}
 \usepackage{pat}
 %\usepackage{coffee4}
 \usepackage[letterpaper]{hyperref}
@@ -122,10 +123,12 @@ boundary walk of a face.} is coloured nonrepetitively.
 For the vertex-colouring version we study, Harant and Jendrol prove
 that $\pi_f(G)=O(\log\Delta)$ if $G$ is a plane graph of maximum
 degree $\Delta$ and that $\pi_f(G)\le 16$ if $G$ is a Hamiltonian
-plane graph.  They also conjectured that $\pi_f(G)=O(1)$ when $G$ is
-any plane graph.  This latter conjecture was confirmed by Barat and Czap
-\cite{barat2007square}, who showed that $\pi_f(G)\le 24$ for any plane
-graph $G$.
+plane graph.  They also conjectured that $\pi_f(G)=O(1)$ when $G$
+is any plane graph.  This latter conjecture was confirmed by Barat
+and Czap \cite{barat2007square}, who showed that $\pi_f(G)\le 24$ for
+any plane graph $G$.  The best lower bounds for facial nonrepetitive
+chromatic numbers are 5 for plane graphs and 4 for outerplane graphs
+\cite{barat2013facial}
 
 
 %
@@ -175,27 +178,33 @@ graph $G$.
 \section{Preliminary Results and Definitions}
 \seclabel{preliminaries}
 
-For a graph, $G$, we use the notations $V(G)$ and $E(G)$ to denote $G$'s vertex and edge sets, respectively. For $S\subset V(G)$, $G[S]$ denotes the subgraph of $G$ induced by the vertices in $S$ and $G-S=G[V\setminus S]$.
+All graphs we consider are undirected, but not necessarily simple.  For a
+graph, $G$, we use the notations $V(G)$ and $E(G)$ to denote $G$'s vertex
+and edge sets, respectively. For $S\subset V(G)$, $G[S]$ denotes the
+subgraph of $G$ induced by the vertices in $S$ and $G-S=G[V(G)\setminus
+S]$.
 
-A graph is \emph{$k$-connected} if it contains more than $k$ vertices and has
-no vertex cut of size less than $k$.  A \emph{$k$-connected component} of a graph $G$ is a maximal subset of vertices $G$ that induces a $k$-connected subgraph.
+A graph is \emph{$k$-connected} if it contains more than $k$ vertices
+and has no vertex cut of size less than $k$.  A \emph{$k$-connected
+component} of a graph $G$ is a maximal subset of vertices $G$ that
+induces a $k$-connected subgraph.
 
-A \emph{bridge} in a graph $G$ is an edge whose removal increases the number of connected components in $G$.  A graph is \emph{bridgeless} if it has no bridges.
+A \emph{bridge} in a graph $G$ is an edge whose removal increases the
+number of connected components in $G$.  A graph is \emph{bridgeless}
+if it has no bridges.
 
 A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such
 that its edges intersect only at their endpoints. An \emph{outerplane}
-graph $G$ is a plane graph such that all the vertices of $G$ are adjacent
-to the outer face of $G$. A \emph{chord} in an outerplane graph is
+graph $G$ is a plane graph such that all the vertices of $G$ are incident
+on the outer face of $G$. A \emph{chord} in an outerplane graph is
 an edge that is not incident to the outer face. A \emph{cactus graph}
-is an outerplane graph with no chords.
-
-An \emph{ear} in an outerplane graph is an inner face that is incident to
-exactly one chord. An ear is \emph{triangular} if it has exactly three vertices.
+is an outerplane graph with no chords.  An \emph{ear} in an outerplane
+graph is an inner face that is incident to exactly one chord. An ear is
+\emph{triangular} if it has exactly three vertices.
 
 A \emph{closed walk} in a graph $G$ is a sequence of vertices
 $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$
 the edge $v_iv_{(i+1)\bmod \ell}$ is in $E(G)$.
-
 A \emph{facial walk} in a plane graph $G$ is a closed walk
 $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$,
 the edges $v_{(i-1)\bmod \ell} v_i$ and $v_iv_{(i+1)\bmod\ell}$ occur
@@ -217,7 +226,8 @@ interlace nonrepetitive sequences.
   is a nonrepetitive sequence.
 \end{lem}
 
-We will require two results about the Thue chromatic number of trees and cycles:
+We will require two results about the nonrepetitive chromatic number of
+trees and cycles:
 
 \begin{thm}[Alon et al. \cite{alon2002nonrepetitive}]\thmlabel{tree}
   For every tree, $T$, $\pi(T) \leq 4$.
@@ -258,8 +268,8 @@ on simple outerplane graphs.
 
 Let $G$ be an outerplane graph. A \emph{blocking set} of $G$ is a set
 of vertices $B \subseteq V(G)$ such that for each 2-connected component
-$H$ of $G$, $H \setminus B$ is a tree and for each inner face $F$,
-$F \setminus B \not= \emptyset$.  See Figure \ref{fig:blocking-set}
+$H$ of $G$, $H-B$ is a tree and for each inner face $F$,
+$V(F) \setminus B \ne \emptyset$.  See Figure \ref{fig:blocking-set}
 for an example of a blocking set.
 
 \begin{figure}
@@ -284,7 +294,7 @@ that we will use throughout.
 \end{obs}
 
 \begin{obs}\obslabel{non-empty-path}
-  For every inner face $F$ of $G$, $F \setminus B$ is a non-empty path.
+  For every inner face $F$ of $G$, $F-B$ is a non-empty path.
 \end{obs}
 
 
@@ -328,7 +338,7 @@ can already be used to give an upper-bound of 8 on the facial
 nonrepetitive chromatic number of biconnected outerplane graphs.  For a
 biconnected outerplane graph, $G$, we take a blocking set $B$ of $G$
 using \lemref{biconnected}.  By \thmref{tree}, we can nonrepetitively
-4-colour the tree $T=G\setminus B$ using the colours $\{1,2,3,4\}$, so
+4-colour the tree $T=G-B$ using the colours $\{1,2,3,4\}$, so
 what remains is to assign colours to the vertices in $B$.  To do this,
 we use \thmref{cycle} to nonrepetitively 4-color the cycle, $C$, that
 contains the vertices of $B$ in the order they appear on the outer face
@@ -350,22 +360,22 @@ in $\{5,7,9,10,14,17\}$, so that it can nonrepetitively 3-coloured.
 \subsection{The Blocking Graph}
 
 
-The \emph{blocking graph} of $G$ for a blocking set $B$ is the graph
-whose vertex set is $B$ and whose edges are defined as follows:  Begin
-with the facial walk $W$ on the outer face of $G$. Remove every vertex
- not in $B$ from $W$ to obtain a cyclic sequence $W'$ of vertices in
-$B$. For each consecutive pair of vertices $uw$ in $W'$ we add the edge
- $uw$ to the blocking graph.  This naturally defines the embedding of
- the blocking graph $\block_B(G)$. See \figref{blocking-graph}
- for an example.   Note that $\block_B(G)$ is not necessarily a simple
-graph; it may contain parallel edges (cycles of length two) and self-loops
-(cycles of length one). 
+The \emph{blocking graph}, $\block_B(G)$, of $G$ for a blocking set $B$ is
+the graph whose vertex set is $B$ and whose edges are defined as follows:
+Begin with the facial walk $W$ on the outer face of $G$. Remove every
+vertex not in $B$ from $W$ to obtain a cyclic sequence $W'$ of vertices
+in $B$. For each consecutive pair of vertices $uw$ in $W'$ we add the
+edge $uw$ to $\block_B(G)$.  This naturally defines the embedding of the
+blocking graph. See \figref{blocking-graph} for an example.   Note that
+$\block_B(G)$ is a plane graph that is not necessarily simple graph;
+it may contain parallel edges (cycles of length two) and self-loops
+(cycles of length one).
 
 \begin{figure}
   \begin{center}
      \includegraphics{figs/blocking-set-2}
   \end{center}
-  \caption{The blocking graph (in red) associated with a blocking set.}
+  \caption{The blocking graph (edges in red) associated with a blocking set (vertices in black).}
   \figlabel{blocking-graph}
 \end{figure}
 
@@ -377,14 +387,11 @@ chord of $G$ (\obsref{no-chords}) implies the following observation:
    the blocking graph $\block_B(G)$ is a bridgeless cactus graph.
 \end{obs}
 
-
 \begin{obs}\obslabel{shit0}
 For every outerplane graph $G$, any blocking set $B$ of $G$ and any
 facial path $P$ on the outer face of  $G$, the subsequence of $P$
 containing only the vertices of $B$ is a (outer) facial path in $\block_B(G)$.
 \end{obs}
-
-
 
 \begin{obs}\obslabel{shit}
 For every outerplane graph $G$, any blocking set $B$ of $G$ and any
@@ -392,14 +399,14 @@ inner face $F$ of $G$, $G[V(F)\cap B]$ is a path that is a facial path (on
 some inner face)  in $\block_B(G)$.
 \end{obs}
 
-
-In the previous section, we sketched a proof of an upper bound of
-8 on the facial chromatic number of biconnected outerplane graphs.
-This proof works by nonrepetitively 4-colouring the tree, $G\setminus B$, obtained after removing the blocking set and then nonrepetiviely
-4-colouring a cycle, $C$, of vertices in the blocking set.  This cycle,
-$C$, is actually the blocking graph, $\block_B(G)$.  The following lemma
-shows that this strategy generalizes to the situation where we can find
-a facial nonrepetitive colouring of $\block_B(G)$ with few colours.
+In the previous section, we sketched a proof of an upper bound of 8 on
+the facial chromatic number of biconnected outerplane graphs.  This proof
+works by nonrepetitively 4-colouring the tree, $G-B$, obtained after
+removing the blocking set and then nonrepetiviely 4-colouring a cycle,
+$C$, of vertices in the blocking set.  This cycle, $C$, is actually
+the blocking graph, $\block_B(G)$.  The following lemma shows that
+this strategy generalizes to the situation where we can find a facial
+nonrepetitive colouring of $\block_B(G)$ with few colours.
 
 \begin{lem}\lemlabel{hitting_plus_four}\lemlabel{k-plus-four}
   Let $G$ be an outerplane graph and $B$ be a blocking set of $G$. If
@@ -470,8 +477,7 @@ $\lambda(v_1),\lambda(v_2),\ldots,\lambda(v_k)$.
  be a nonrepetitive palindrome-free sequence on an alphabet
  $\mathcal{A}$ with $m=\max\{\lambda(v) \;|\; v \in V(G)\}$ and
  $c : V(G) \rightarrow \mathcal{A}$ be a colouring of $G$ defined
- as $c(v)=s_{\lambda(v)}$. %Thus each $v \in V(G)$ gets the colour
- corresponding to its level, thus let .  If a path $P=P_1, P_2$ with
+ as $c(v)=s_{\lambda(v)}$. If a path $P=P_1, P_2$ with
  $|P_1|=|P_2|$ in $G$ is repetitively coloured under $c$, then $P_1$
  and $P_2$ have the same level pattern.
 \end{lem}
@@ -482,10 +488,10 @@ $\lambda(v_1),\lambda(v_2),\ldots,\lambda(v_k)$.
 \end{lem}
 
 \begin{proof}
- By \lemref{non-simple}, we may assume that $G$ is simple.
- We may assume that $G$ is connected as this does not affect its facial
- Thue chromatic number. Also, assume that $G$ is neither a cycle nor
- a tree since $\pi_f(G) \leq 4 < 7$ for both these classes of graphs.
+ By \lemref{non-simple}, we may assume that $G$ is simple.  We may also
+ assume that $G$ is connected as this does not affect its nonrepetitive
+ chromatic number. Also, assume that $G$ is neither a cycle nor a
+ tree since $\pi_f(G) \leq 4 < 7$ for both these classes of graphs.
  If there exists a vertex $v$ of $G$ such that $\deg_G(v)=1$, then let
  the \emph{root} $r$ of $G$ be $v$. Otherwise, let $r$ be any vertex
  of $G$ of degree at least $3$. Let $\lambda$ be a levelling of $G$
@@ -511,7 +517,7 @@ $\lambda(v_1),\lambda(v_2),\ldots,\lambda(v_k)$.
     \figlabel{cactus-example}
  \end{figure}
 
-If $\deg_G(r)\not=1$, there must exist at least one face $F^*$ of $G$ such
+If $\deg_G(r)\ne 1$, there must exist at least one face $F^*$ of $G$ such
 that exactly one vertex $v$ of $F^*$ has degree greater than two. From
 our choice of $r$, it follows that $\lambda(v)$ is the minimum over all
 vertices in $V(F^*)$.  Since $|V(F^*)|\ge 4$, $F^*$ has three consecutive
@@ -545,14 +551,14 @@ that $P$ is on the outer face of $G$. We will need the following claim:
  \begin{clm}\clmlabel{strictly_inc_dec}
   Let $P$ be a path on the outer face of $G$ such that $V(P) \cap V(H) = \emptyset$. The level sequence $L$ corresponding to vertices of $P$ must be strictly decreasing, strictly increasing, or strictly decreasing then strictly increasing.
  \end{clm}
- \begin{proof}
- Suppose that this is not the case. $L$ cannot contain two consecutive
- elements of the form $i,i$ as this can only correspond to an odd cycle
- of $G$, but all cycles of $G$ are even. Thus, $L$ must contain a block
- of the form $i,i+1,i$. Since $P$ is on the outer face, we must have
- that the vertex $v$ corresponding to $i+1$ is the lowest vertex on some
- cycle $C$ and that $\deg_G(v)=2$. But in this case, $v$ must be in $H$,
- which is a contradiction.
+ \begin{proof}[Proof of \clmref{strictly_inc_dec}]
+ Suppose that this is not the case. Then $L$ cannot contain two
+ consecutive elements of the form $i,i$ as this can only correspond to
+ an odd cycle of $G$, but all cycles of $G$ are even. Thus, $L$ must
+ contain a block of the form $i,i+1,i$. Since $P$ is on the outer face,
+ we must have that the vertex $v$ corresponding to $i+1$ is the lowest
+ vertex on some cycle $C$ and that $\deg_G(v)=2$. But in this case, $v$
+ must be in $H$, which is a contradiction.
  \end{proof}
  By Lemma \ref{lem:level_pattern_palindrome_free}, $P_1$ and $P_2$ have
  the same level pattern. However, if $V(P) \cap V(H) = \emptyset$ this
@@ -619,8 +625,8 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
   Let $y$ be a neighbour of $x$ such $y$ is not on the chord of $F$
   (so $y$ has degree 2). Such a $y$ exists since $F$ has at least four
   vertices.  Set $B=B'\cup \{y\}$.  Now $|B|$ is even, so $\block_B(G)$
-  is an even cycle.  Furthermore, $G\setminus B'$ is a tree and $y$
-  is a leaf in this tree, so $G\setminus B$ is also a tree.  Finally,
+  is an even cycle.  Furthermore, $G-B'$ is a tree and $y$
+  is a leaf in this tree, so $G-B$ is also a tree.  Finally,
   by choice, $B$ contains $v$ if and only if $B'$ contains $v$, so $B$
   satisifies the conditions of the lemma.
 
@@ -632,7 +638,7 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
   \item Refer to \figref{toughie}. 
   For an edge $uw\in E(G)$, let $V_{uw}'$ and $V_{uw}''$ be the two
   (possibly empty) sets of vertices in the two connected components
-  of $G\setminus\{u,w\}$.  Let $G_{uw}'=G[V_{uw}'\cup\{u,w\}]$ and
+  of $G-\{u,w\}$.  Let $G_{uw}'=G[V_{uw}'\cup\{u,w\}]$ and
   $G_{uw}''=G[V_{uw}''\cup\{u,w\}]$.
 
   \begin{figure}
@@ -673,8 +679,8 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
 
   Let $B=B'\cup\{y\}$.  We claim that $B$ is a blocking set of $G$.
   First, note that $B$ contains at most two vertices from each face, $F$,
-  of $G$, so $F\setminus B'\neq \emptyset$.  We now show that $y$ is a
-  leaf in the tree $G\setminus B'$, so that $G\setminus B$ is also a tree.
+  of $G$, so $V(F)\setminus B'\neq \emptyset$.  We now show that $y$ is a
+  leaf in the tree $G-B'$, so that $G-B$ is also a tree.
 
   First, observe that $xy$ is not a chord of $G$ since, by $(\star)$,
   the face incident to $xy$ other than $F_{uw}$ would have two of its
@@ -683,7 +689,7 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
   so $z\notin B'$.  Finally, $y$ may have one additional neighbour,
   which is a degree-2 vertex of a triangular ear incident on $yz$.
   In this case, by $(\star)$, this degree-2 vertex is in $B'$.  Thus,
-  $yz$ is the only edge incident to $y$ in the tree $G\setminus B'$
+  $yz$ is the only edge incident to $y$ in the tree $G-B'$
   so $y$ is a leaf in this tree. \qedhere
 \end{enumerate}
 \end{proof}
@@ -715,7 +721,7 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
   then we apply \lemref{even-biconnected}.
   Otherwise, select a 2-connected component, $C$, that
   shares exactly one vertex, $v$, with the rest of $G$.  Let
-  $G'=G\setminus(V(C)\setminus\{v\})$ and apply induction on $G'$
+  $G'=G-(V(C)\setminus\{v\})$ and apply induction on $G'$
   to obtain a blocking set, $B'$, of $G'$ such that $\block_{B'}(G')$
   has only even cycles.  There are two cases to consider:
   \begin{enumerate}
@@ -734,7 +740,7 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
     We take $B=B'\cup B''$.
 
     Refer to \figref{block-merge}.  
-    Starting at some vertex appropriate vertex in $V(G)\setminus V(C)$
+    Starting at some appropriate vertex in $V(G)\setminus V(C)$
     in the facial walk on the outer face of $G$, there is a last vertex,
     $x\in V(G')\cap B'$, encountered before the walk encounters the first
     vertex $u\in V(C)\cap B''$ and there is a last vertex $w\in V(C)\cap
@@ -744,7 +750,7 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
 
     \begin{figure}
        \begin{center}
-         \begin{tabular}{ccc}
+         \begin{tabular}{m{.45\textwidth}m{.05\textwidth}m{.45\textwidth}}
           \includegraphics[width=.45\textwidth]{figs/good-one-1} &
           $\Rightarrow$ &
           \includegraphics[width=.45\textwidth]{figs/good-one-2}

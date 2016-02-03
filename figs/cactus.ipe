@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.4">
-<info created="D:20160201222536" modified="D:20160201224057"/>
+<info created="D:20160201222536" modified="D:20160202214010"/>
+<preamble>\usepackage{kpfonts}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -347,11 +348,11 @@ h
 <use matrix="1 0 0 1 -16 -16" name="mark/fdisk(sfx)" pos="208 736" size="normal" stroke="black" fill="white"/>
 <use matrix="1 0 0 1 -16 -16" name="mark/fdisk(sfx)" pos="224 720" size="normal" stroke="black" fill="black"/>
 <use matrix="0.5 0 0 1 136 0" name="mark/fdisk(sfx)" pos="256 752" size="normal" stroke="black" fill="white"/>
-<text matrix="1 0 0 1 0 5" transformations="translations" pos="272 768" stroke="black" type="label" width="4.771" height="4.289" depth="0" halign="center" valign="baseline">$r$</text>
+<text matrix="1 0 0 1 0 5" transformations="translations" pos="272 768" stroke="black" type="label" width="4.394" height="4.57" depth="0.07" halign="center" valign="baseline">$r$</text>
 <use name="mark/fdisk(sfx)" pos="256 704" size="normal" stroke="black" fill="white"/>
-<text matrix="1 0 0 1 6.23654 2.34778" transformations="translations" pos="342.888 683.252" stroke="black" type="label" width="5.266" height="4.289" depth="0" halign="right" valign="baseline">$a$</text>
-<text matrix="1 0 0 1 0.375 2.26753" transformations="translations" pos="367.625 659.325" stroke="black" type="label" width="4.276" height="6.918" depth="0" halign="center" valign="baseline">$b$</text>
-<text matrix="1 0 0 1 -4.55009 3.56478" transformations="translations" pos="391.957 682.035" stroke="black" type="label" width="4.311" height="4.289" depth="0" valign="baseline">$c$</text>
+<text matrix="1 0 0 1 6.23654 2.34778" transformations="translations" pos="342.888 683.252" stroke="black" type="label" width="4.872" height="4.57" depth="0.07" halign="right" valign="baseline">$a$</text>
+<text matrix="1 0 0 1 0.375 2.26753" transformations="translations" pos="367.625 659.325" stroke="black" type="label" width="5.151" height="7.15" depth="0.07" halign="center" valign="baseline">$b$</text>
+<text matrix="1 0 0 1 -4.55009 3.56478" transformations="translations" pos="391.957 682.035" stroke="black" type="label" width="4.354" height="4.57" depth="0.07" valign="baseline">$c$</text>
 <use name="mark/fdisk(sfx)" pos="256 752" size="normal" stroke="black" fill="white"/>
 </page>
 </ipe>
