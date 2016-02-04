@@ -1,8 +1,8 @@
 
 
-vp.pdf	: vp.tex facial.bib
+facial.pdf : facial.tex facial.bib
 	(cd figs; make)
-	latexmk -pdf vp
+	latexmk -pdf facial
 
 clean :
-	rm -f vp.pdf
+	rm -f facial.pdf
