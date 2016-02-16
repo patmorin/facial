@@ -41,41 +41,40 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 
 \section{Introduction}
+
 A sequence $S=s_1,s_2,\cdots,s_{2r}$, $r\ge 1$, is a \emph{repetition}
-if $s_i=s_{r+i}$ for $1 \leq i \leq r$. For example, 1212 is a
-repetition, while 1213 is not. Repetitions are also referred to as
-\emph{squares}, since they can be written as $aa=a^2$. A \emph{block}
-of a sequence $S$ is any subsequence of consecutive terms in $S$. A
-sequence is \emph{nonrepetitive} (square free) if for every non-empty
-block $B$
+if $s_i=s_{r+i}$ for each $i\in\{1,\ldots,r\}$. For example, 1212 is
+a repetition, while 1213 is not. Repetitions are also referred to as
+\emph{squares}, since they can be written as $aa=a^2$. A \emph{block} of
+a sequence $S$ is any subsequence of consecutive terms in $S$. A sequence
+is \emph{nonrepetitive} (square free) if for every non-empty block $B$
 of $S$, $B$ is not a repetition. Otherwise $S$ is \emph{repetitive}. For
-example, 1312124 is repetitive, as it contains the block 1212 which is a
+example, 1312124 is repetitive as it contains the block 1212 which is a
 repetition, while 123213 is nonrepetitive as it contains no such block.
-It is easy to see that no sequence of length greater than 3 on two symbols
-can be nonrepetitive. A result by Axel Thue in 1906 states
-that nonrepetitive sequences of arbitrary length can be created using
-three symbols \cite{thue1906uber}. 
+It is easy to see that no sequence of length greater than three using
+only two symbols can be nonrepetitive. A result by Axel Thue in 1906
+states that nonrepetitive sequences of arbitrary length can be created
+using three symbols \cite{thue1906uber}.
 
 A variant of this problem concerning graphs was proposed by Alon,
 Grytczuk, Ha{\l}uszczak and Riordan in 2002 \cite{alon2002nonrepetitive}.
 A nonrepetitive (vertex) colouring of a graph $G$ is an assignment
-of colours to $G$'s vertices such that, for every path $P$ in $G$,
-the sequence of colours of vertices in $P$ is not a repetition.
+of colours to the vertices of $G$ such that, for every path $P$ in
+$G$, the sequence of colours of vertices in $P$ is not a repetition.
 The \emph{nonrepetitive chromatic number} of $G$, denoted $\pi(G)$,
-is the minimum number of colours required in a nonrepetitive
-colouring of $G$.  Nonrepetitive graph colouring has received much
+is the minimum number of colours required to nonrepetitively colour $G$.
+Since its introduction, nonrepetitive graph colouring has received much
 attention \cite{barat2013facial, barat2007square, barat2008note,
 brevsar2007nonrepetitive, currie2002cycle18, dujmovic2012planarlogn,
 dujmovic2011nonrepetitive, fiorenzi2011thue, gagol2016pathwidth,
-gonccalves2014entropy,
-grytczuk2007nonrepetitivesurvey, grytczuk2007nonrepetitive,
-grytczuk2013new, harant2012nonrepetitive, kozik2013nonrepetitive,
-kundgen2008nonrepetitive, pezarski2009non, schreyer2012facial,
-schreyer2013total}.
+gonccalves2014entropy, grytczuk2007nonrepetitivesurvey,
+grytczuk2007nonrepetitive, grytczuk2013new, harant2012nonrepetitive,
+kozik2013nonrepetitive, kundgen2008nonrepetitive, pezarski2009non,
+schreyer2012facial, schreyer2013total}.
 
 A well-known conjecture in this area, due to Alon et al
 \cite{alon2002nonrepetitive}, is that there exists a constant
-$K$ such that $\pi(G) \leq K$ for any planar graph $G$.
+$K$ such, for every planar graph $G$, $\pi(G) \leq K$.
 The current best upper bound for $n$-vertex planar graphs is
 $O(\log n)$ \cite{dujmovic2012planarlogn}. No planar graph
 with nonrepetitive chromatic number greater than 11 is known
@@ -83,33 +82,36 @@ with nonrepetitive chromatic number greater than 11 is known
 
 More is known about the \emph{facial} version of the problem for embedded
 planar graphs.  Harant and Jendrol \cite{harant2012nonrepetitive} asked
-if every planar graph can be coloured with a constant number of colours
+if every plane graph can be coloured with a constant number of colours
 such that every \emph{facial} path\footnote{A facial path is a path
-that is a subsequence of a facial walk; see \secref{preliminaries}.} is
-nonrepetitively coloured.  Barat and Czap \cite{barat2007square} answered
-this question in the affirmative with the constant $24$.  We reduce this
-bound to 22 by proving a bound of 11 for facial nonrepetitive colouring
-of outerplane graphs.
+that is a subsequence of a facial walk; see \secref{preliminaries}.}
+is nonrepetitively coloured.  Barát and Czap \cite{barat2013facial}
+answered this question in the affirmative by showing that $24$ colours
+are sufficient.  We reduce this bound to 22 by proving a bound of 11
+for facial nonrepetitive colouring of outerplane graphs.
 
 \subsection{Related Work}
 
 \paragraph{Nonrepetitive Colouring.}
-It is known that some families of graphs have bounded repetitive chromatic
-number.  In their original work, Alon et al \cite{alon2002nonrepetitive}
-showed that $\pi(G) = O(\Delta^2)$ if $G$ has maximum degree
-$\Delta$ and that there are are graphs of maximum degree $\Delta$
-with nonrepetitive chromatic number $\Omega(\Delta^2/\log \Delta)$.
-The constants in the $O(\Delta^2)$ upper bound have been steadily
-improved \cite{dujmovic2011nonrepetitive,grytczuk2007nonrepetitive,
-grytczuk2007nonrepetitivesurvey,harant2012nonrepetitive}.
 
-K{\"u}ndgen and Pelsmajer \cite{kundgen2008nonrepetitive} showed that
-$\pi(G)\le 12$ if $G$ is outerplanar and, more generally, $\pi(G)\le 4^t$
-if $G$ has treewidth at most $t$. The latter bound is tight if $t=1$
-(trees), but it is not known if it is tight for other values of $t$. Even
-the upper bound of 12 for outerplanar graphs is not known to be tight,
-as no outerplanar graph with nonrepetititive chromatic number greater
-than 7 is known \cite{barat2007square}.
+It is known that some families of graphs have bounded
+nonrepetitive chromatic number.  In their original work,
+Alon et al \cite{alon2002nonrepetitive} showed that $\pi(G) =
+O(\Delta^2)$ if $G$ has maximum degree $\Delta$ and that there
+are are graphs of maximum degree $\Delta$ with nonrepetitive
+chromatic number $\Omega(\Delta^2/\log \Delta)$.  The constants
+in the $O(\Delta^2)$ upper bound have been steadily improved
+\cite{dujmovic2011nonrepetitive,grytczuk2007nonrepetitivesurvey,grytczuk2007nonrepetitive,harant2012nonrepetitive}.
+
+Barát and Varjú \cite{barat2007square} and K{\"u}ndgen and Pelsmajer
+\cite{kundgen2008nonrepetitive} showed that $\pi(G)\le 12$ if $G$ is
+outerplanar and, more generally, $\pi(G)\le c^t$ if $G$ has treewidth at
+most $t$.  (Barát and Varjú proved the latter bound with $c=6$ while
+K{\"u}ndgen and Pelsmajer proved it with $c=4$.)  The bound of $4^t$
+for $t$-trees is tight if $t=1$ (trees), but it is not known if it is
+tight for other values of $t$. Even the upper bound of 12 for outerplanar
+graphs may not be tight, as no outerplanar graph with nonrepetititive
+chromatic number greater than 7 is known \cite{barat2007square}.
 
 \paragraph{Facial Nonrepetitive Colouring.}
 
@@ -118,15 +120,15 @@ Facial nonrepetitive colouring was first considered by Havet et al
 the problem.  In this setting, they were able to show that the edges
 of any plane graph can 8-coloured so that every facial trail\footnote{A
 \emph{facial trail} is a subsequence of the edges traversed during the
-boundary walk of a face.} is coloured nonrepetitively. 
+boundary walk of a face.} is coloured nonrepetitively.
 
 For the vertex-colouring version we study, Harant and Jendrol prove
-that $\pi_f(G)=O(\log\Delta)$ if $G$ is a plane graph of maximum
-degree $\Delta$ and that $\pi_f(G)\le 16$ if $G$ is a Hamiltonian
-plane graph.  They also conjectured that $\pi_f(G)=O(1)$ when $G$
-is any plane graph.  This latter conjecture was confirmed by Barat
-and Czap \cite{barat2007square}, who showed that $\pi_f(G)\le 24$ for
-any plane graph $G$.  The best lower bounds for facial nonrepetitive
+that $\pi_f(G)=O(\log\Delta)$ if $G$ is a plane graph of maximum degree
+$\Delta$ and that $\pi_f(G)\le 16$ if $G$ is a Hamiltonian plane graph.
+They also conjectured that $\pi_f(G)=O(1)$ when $G$ is any plane graph.
+As mentioned above, this latter conjecture was confirmed by Barát
+and Czap \cite{barat2013facial}, who showed that, for any plane graph
+$G$, $\pi_f(G)\le 24$.  The best lower bounds for facial nonrepetitive
 chromatic numbers are 5 for plane graphs and 4 for outerplane graphs
 \cite{barat2013facial}
 
@@ -811,7 +813,7 @@ In this section, we show how to reuse the ideas from Bar\'at and Czap
 \cite{barat2013facial} to facially nonrepetitively 22-colour every plane graph.
 Some modifications are needed because Bar\'at and Czap use a nonrepetitive
 12-colouring of outerplanar graphs whereas our \thmref{outerplane} provides an
-nonrepetitive 11-colouring but only for facial paths of outerplane graphs.
+\emph{facial} nonrepetitive 11-colouring of \emph{outerplane} graphs.
 
 \begin{thm}
    Let $r=\max\{\pi_f(G):\text{$G$ is outerplane}\}$.  Then, for every
@@ -880,7 +882,8 @@ nonrepetitive 11-colouring but only for facial paths of outerplane graphs.
 \end{lem}
 
 \begin{proof}
-  If $G$ is a cycle, take $B$ to be two consecutive vertices on $G$.
+  If $G$ is a cycle, take $B$ to be two consecutive vertices on $G$
+  ad we are done.
   Otherwise, select an ear, $E$ of $G$ and let $uv$ be $E$'s chord.
   Then apply the stronger version of \lemref{even} discussed in
   \remref{bw} to the graph $G'=G-(V(E)\setminus\{u,v\})$ to obtain a
