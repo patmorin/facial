@@ -29,8 +29,6 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 
 \author{Prosenjit Bose,\, Vida Dujmovi\'c,\, Pat Morin,\, Lucas Rioux-Maldague}
 
-
-
 \begin{document}
 \maketitle
 
@@ -126,9 +124,12 @@ For the vertex-colouring version we study, Harant and Jendrol prove
 that $\pi_f(G)=O(\log\Delta)$ if $G$ is a plane graph of maximum degree
 $\Delta$ and that $\pi_f(G)\le 16$ if $G$ is a Hamiltonian plane graph.
 They also conjectured that $\pi_f(G)=O(1)$ when $G$ is any plane graph.
-As mentioned above, this latter conjecture was confirmed by Barát
-and Czap \cite{barat2013facial}, who showed that, for any plane graph
-$G$, $\pi_f(G)\le 24$.  The best lower bounds for facial nonrepetitive
+As mentioned above, this latter conjecture was confirmed by Barát and
+Czap \cite{barat2013facial}, who showed that, for any plane graph $G$,
+$\pi_f(G)\le 24$.  The results of Barát and Czap \cite{barat2013facial}
+also extend to graphs embedded in surfaces.  They show that a graph
+embedded on a surface of genus $g$ can be facially nonrepetitively
+$24^{2g}$-coloured.  The best lower bounds for facial nonrepetitive
 chromatic numbers are 5 for plane graphs and 4 for outerplane graphs
 \cite{barat2013facial}
 
@@ -180,11 +181,11 @@ chromatic numbers are 5 for plane graphs and 4 for outerplane graphs
 \section{Preliminary Results and Definitions}
 \seclabel{preliminaries}
 
-All graphs we consider are undirected, but not necessarily simple.  For a
-graph, $G$, we use the notations $V(G)$ and $E(G)$ to denote $G$'s vertex
-and edge sets, respectively. For $S\subset V(G)$, $G[S]$ denotes the
-subgraph of $G$ induced by the vertices in $S$ and $G-S=G[V(G)\setminus
-S]$.
+All graphs we consider are undirected, but not necessarily simple;
+they may contain loops and parallel edges.  For a graph, $G$, we use
+the notations $V(G)$ and $E(G)$ to denote $G$'s vertex and edge sets,
+respectively. For $S\subset V(G)$, $G[S]$ denotes the subgraph of $G$
+induced by the vertices in $S$ and $G-S=G[V(G)\setminus S]$.
 
 A graph is \emph{$k$-connected} if it contains more than $k$ vertices
 and has no vertex cut of size less than $k$.  A \emph{$k$-connected
@@ -255,9 +256,10 @@ on simple outerplane graphs.
 \end{lem}
 
 \begin{proof}
-   We argue that any facial path in $G'$ is also a facial path in $G$.
-   Therefore, by facially nonrepetitively colouring $G$, we obtain a facial
-   nonrepetitive colouring of $G'$.
+   We argue that any facial path (described as a sequence of vertices)
+   in $G'$ is also a facial path in $G$.  Therefore, by facially
+   nonrepetitively colouring $G$, we obtain a facial nonrepetitive
+   colouring of $G'$.
 
    First, note that no facial path uses a loop, so the addition of
    loops does not introduce new facial paths in $G'$.  When an edge
@@ -278,11 +280,12 @@ for an example of a blocking set.
   \begin{center}
      \includegraphics{figs/blocking-set-1}
   \end{center}
-  \caption{The blocking set of an outerplane graph (in black).}
+  \caption{The blocking set, $B$ (black vertices), of an outerplane graph,
+     $G$,  (with the edges of $G-B$ shown in bold).}
   \figlabel{blocking-set}
 \end{figure}
 
-The definition of a blocking set is subtle and implies three properties
+The definition of a blocking set is subtle and implies some properties
 that we will use throughout.   
 
 \begin{obs}\obslabel{no-chords}
@@ -292,12 +295,13 @@ that we will use throughout.
 
 \begin{obs}\obslabel{consecutive}
    For any blocking set $B$ of $G$ and any inner face $F$ of $G$, the
-   vertices of $V(F)\cap B$ occur consecutively on the boundary of $F$.
+   vertices of $V(F)\cap B$ occur consecutively on the boundary of $F$. 
+   In other words, $F-B$ is a non-empty path.
 \end{obs}
 
-\begin{obs}\obslabel{non-empty-path}
-  For every inner face $F$ of $G$, $F-B$ is a non-empty path.
-\end{obs}
+%\begin{obs}\obslabel{non-empty-path}
+%  For every inner face $F$ of $G$, $F-B$ is a non-empty path.
+%\end{obs}
 
 
 \begin{lem}\lemlabel{biconnected}
@@ -342,7 +346,7 @@ biconnected outerplane graph, $G$, we take a blocking set $B$ of $G$
 using \lemref{biconnected}.  By \thmref{tree}, we can nonrepetitively
 4-colour the tree $T=G-B$ using the colours $\{1,2,3,4\}$, so
 what remains is to assign colours to the vertices in $B$.  To do this,
-we use \thmref{cycle} to nonrepetitively 4-color the cycle, $C$, that
+we use \thmref{cycle} to nonrepetitively 4-colour the cycle, $C$, that
 contains the vertices of $B$ in the order they appear on the outer face
 of $G$ using the colours $\{5,6,7,8\}$.  We claim that the resulting
 8-colouring of $G$ is facially nonrepetitive.  No facial path on an
@@ -359,25 +363,31 @@ number of biconnected outerplane graphs. This is just a matter of adding
 vertices to the blocking set so that the cycle $C$ does not have length
 in $\{5,7,9,10,14,17\}$, so that it can nonrepetitively 3-coloured.
 
+Finally, we remind the reader that, although \lemref{biconnected} and
+\corref{biconnected-out} provide blocking sets that include only one
+vertex on each inner face, not all blocking sets have this property.
+It is helpful to keep this in mind in the next section.
+
 \subsection{The Blocking Graph}
 
 
-The \emph{blocking graph}, $\block_B(G)$, of $G$ for a blocking set $B$ is
-the graph whose vertex set is $B$ and whose edges are defined as follows:
-Begin with the facial walk $W$ on the outer face of $G$. Remove every
-vertex not in $B$ from $W$ to obtain a cyclic sequence $W'$ of vertices
-in $B$. For each consecutive pair of vertices $uw$ in $W'$ we add the
-edge $uw$ to $\block_B(G)$.  This naturally defines the embedding of the
-blocking graph. See \figref{blocking-graph} for an example.   Note that
-$\block_B(G)$ is a plane graph that is not necessarily simple graph;
-it may contain parallel edges (cycles of length two) and self-loops
-(cycles of length one).
+The \emph{blocking graph} of $G$ for a blocking set $B$ is the graph,
+denoted by $\block_B(G)$, whose vertex set is $B$ and whose edges are
+defined as follows: Begin with the facial walk $W$ on the outer face
+of $G$. Remove every vertex not in $B$ from $W$ to obtain a cyclic
+sequence $W'$ of vertices in $B$. For each consecutive pair of vertices
+$uw$ in $W'$ we add the edge $uw$ to $\block_B(G)$.  This naturally
+defines the embedding of the blocking graph. See \figref{blocking-graph}
+for an example.   Note that $\block_B(G)$ is a plane graph that is not
+necessarily simple graph; it may contain parallel edges (cycles of length
+two) and self-loops (cycles of length one).
 
 \begin{figure}
   \begin{center}
      \includegraphics{figs/blocking-set-2}
   \end{center}
-  \caption{The blocking graph (edges in red) associated with a blocking set (vertices in black).}
+  \caption{The blocking graph (curved edges in red) associated with a
+           blocking set.}
   \figlabel{blocking-graph}
 \end{figure}
 
@@ -390,15 +400,16 @@ chord of $G$ (\obsref{no-chords}) implies the following observation:
 \end{obs}
 
 \begin{obs}\obslabel{shit0}
-For every outerplane graph $G$, any blocking set $B$ of $G$ and any
-facial path $P$ on the outer face of  $G$, the subsequence of $P$
-containing only the vertices of $B$ is a (outer) facial path in $\block_B(G)$.
+  For every outerplane graph $G$, any blocking set $B$ of $G$ and any
+  facial path $P$ on the outer face of  $G$, the subsequence of $P$
+  containing only the vertices of $B$ is a (outer) facial path in
+  $\block_B(G)$.
 \end{obs}
 
 \begin{obs}\obslabel{shit}
-For every outerplane graph $G$, any blocking set $B$ of $G$ and any
-inner face $F$ of $G$, $G[V(F)\cap B]$ is a path that is a facial path (on
-some inner face)  in $\block_B(G)$.
+  For every outerplane graph $G$, any blocking set $B$ of $G$ and any
+  inner face $F$ of $G$, $G[V(F)\cap B]$ is a non-empty path that is a
+  facial path (on some inner face)  in $\block_B(G)$.
 \end{obs}
 
 In the previous section, we sketched a proof of an upper bound of 8 on
@@ -419,10 +430,9 @@ nonrepetitive colouring of $\block_B(G)$ with few colours.
 
 \begin{proof}
 By \thmref{tree} we can colour $G-B$ nonrepetitively using colours
-$\{1,2,3,4\}$. By the assumption we can colour  facially
-nonrepetitively $\block_{B}(G)$ with colours $\{5,\dots, k+4\}$. That
-defines a colouring of $G$ that we now show is facially
-nonrepetitive. 
+$\{1,2,3,4\}$ and, by assumption, we can facially nonrepetitively colour
+$\block_{B}(G)$ with colours $\{5,\dots, k+4\}$. These two colourings
+define a colouring of $G$ that we now show is facially nonrepetitive.
 
 Let $P$ be a facial path in $G$. If $P$ is a facial path of
 $\block_{B}(G)$ or a path in $G-B$ then there is nothing to prove.
@@ -442,13 +452,13 @@ Again, \lemref{interleave} implies that the resulting colour sequence
 is nonrepetitive.
 \end{enumerate}
 
-Finally, consider the case where $P$ is a facial path on the outer
-face of $G$.  In this case, the colour sequence obtained from $P$ is
-of the form $A_0,B_1,A_1,\ldots,B_k,A_k$ where each $A_i$ is obtained
-from a (possibly empty) path in $G-B$ and each $B_1,\ldots,B_k$ is
-obtained from a (outer) facial path in $\block_B(G)$ (by \obsref{shit0}). 
-Again, \lemref{interleave} implies that the resulting colour sequence
-is nonrepetitive.
+Finally, consider the case where $P$ is a facial path on the outer face
+of $G$.  In this case, the colour sequence obtained from $P$ is of the
+form $A_0,B_1,A_1,\ldots,B_k,A_k$ where each $A_i$ is obtained from a
+(possibly empty) path in $G-B$ and $B_1,\ldots,B_k$ is obtained from
+a (outer) facial path in $\block_B(G)$ (by \obsref{shit0}).  Again,
+\lemref{interleave} implies that the resulting colour sequence is
+nonrepetitive.
 \end{proof}
 
 \subsection{Colouring Even Cactus Graphs}
@@ -458,19 +468,19 @@ outerplane graph.  By Lemma \ref{lem:hitting_plus_four}, if we can find
 a facial nonrepetitive $k$-colouring of any cactus graph, we can get a
 facial nonrepetitive $k+4$-colouring of any outerplane graph.
 
-Recall that the tightest upper bound for the facial Thue chromatic number
-of outerplane graphs is 12, which is the bound for the Thue chromatic
-number \cite{barat2007square, kundgen2008nonrepetitive}. Thus, to improve
-this bound, we need to find a facial nonrepetitive 7-colouring of the
-blocking graph. We have been unable to do this unless all cycles of the
-cactus graph are even.  We will eventually address this limitation in
-\secref{even-blocking-graph} by proving the existence of a blocking set
-$B$ such that $\block_B(G)$ has no odd cycles.
+Recall that the best known upper bound for the facial Thue chromatic
+number of outerplane graphs is 12, which is the bound for the Thue
+chromatic number \cite{barat2007square, kundgen2008nonrepetitive}. Thus,
+to improve this bound, we need to find a facial nonrepetitive 7-colouring
+of the blocking graph. We have been unable to do this unless all cycles of
+the blocking graph are even.  We will eventually address this limitation
+in \secref{even-blocking-graph} by proving the existence of a blocking
+set $B$ such that $\block_B(G)$ has no odd cycles.
 
-A \emph{levelling} of a graph $G$ is a function $\lambda\colon
-V(G)\to \{0, 1, 2,\dots\}$ such that for each $\{u,v\}\in
-E(G)$, $|\lambda(u)-\lambda(v)|\leq 1$. The level
-pattern of a path $v_1,\ldots,v_k$ is the sequence
+For any graph, $G$, a \emph{levelling} of $G$ is a function
+$\lambda\colon V(G)\to \{0, 1, 2,\dots\}$ such that for each
+$uv\in E(G)$, $|\lambda(u)-\lambda(v)|\leq 1$. The
+level pattern of a path $v_1,\ldots,v_k$ is the sequence
 $\lambda(v_1),\lambda(v_2),\ldots,\lambda(v_k)$.
 
 \begin{lem}[K{\"u}ndgen and Pelsmajer \cite{kundgen2008nonrepetitive}] \lemlabel{level_pattern_palindrome_free}
@@ -907,7 +917,7 @@ Some modifications are needed because Bar\'at and Czap use a nonrepetitive
   exactly one 2-connected component, $G'$.  Apply \lemref{good-one} to
   $G'$ to obtain a blocking set $B$ with $|B|\not\in\{5,7,9,10,14,17\}$
   and observe that $B$ is also a blocking set of $G$.  The blocking graph
-  $\block_B(G')$ is a cycle, $C$, that has a nonrepetitive 3-coloring.
+  $\block_B(G')$ is a cycle, $C$, that has a nonrepetitive 3-colouring.
   The blocking graph $\block_B(G)$ consists of $C$ and possibly some
   self loops so, by \lemref{non-simple}, $\block_B(G)$ has a facial
   nonrepetitive 3-colouring.  Therefore, by \lemref{hitting_plus_four},
