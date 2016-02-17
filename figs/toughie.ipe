@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70005" creator="Ipe 7.1.4">
-<info created="D:20160201224658" modified="D:20160202214108"/>
+<info created="D:20160201224658" modified="D:20160217140124"/>
 <preamble>\usepackage{kpfonts}</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
@@ -233,7 +233,36 @@ h
 <page>
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<path layer="alpha" matrix="0 1 -1 0 963 435" stroke="black" fill="lightyellow">
+<path layer="alpha" stroke="black" fill="pink">
+291 739 m
+271.422 752.526 l
+259 723 l
+</path>
+<path matrix="0 1 -1 0 963 435" stroke="black" fill="pink">
+288 640 m
+320 640 l
+304 672 l
+</path>
+<path matrix="0 1 -1 0 963 435" stroke="black" fill="pink">
+224 672 m
+208 640 l
+240 640 l
+</path>
+<path stroke="black" fill="pink">
+259 675 m
+271 643 l
+291 659 l
+</path>
+<path matrix="0 1 -1 0 963 435" stroke="black" fill="pink">
+240 704 m
+224 672 l
+240 640 l
+264 630 l
+288 640 l
+304 672 l
+288 704 l
+</path>
+<path matrix="0 1 -1 0 963 435" stroke="black" fill="lightyellow">
 240 704 m
 224 736
 240 768
@@ -243,49 +272,45 @@ h
 </path>
 <path matrix="0 1 -1 0 963 435" stroke="black">
 240 704 m
-224 672 l
-240 640 l
-264 630 l
-288 640 l
-304 672 l
-288 704 l
-</path>
-<path matrix="0 1 -1 0 963 435" stroke="black">
-288 640 m
-320 640 l
-304 672 l
-</path>
-<path matrix="0 1 -1 0 963 435" stroke="black">
-224 672 m
-208 640 l
-240 640 l
-</path>
-<path matrix="0 1 -1 0 963 435" stroke="black">
-208 692 m
-224 672 l
-</path>
-<path matrix="0 1 -1 0 963 435" stroke="black">
-240 704 m
-208 692 l
-</path>
-<path matrix="0 1 -1 0 963 435" stroke="black">
-240 704 m
 288 704 l
 </path>
 <use matrix="0 1 -1 0 963 435" name="mark/fdisk(sfx)" pos="240 704" size="normal" stroke="black" fill="white"/>
 <use matrix="0 1 -1 0 963 435" name="mark/fdisk(sfx)" pos="288 704" size="normal" stroke="black" fill="white"/>
-<text matrix="0 1 -1 0 961 444" transformations="translations" pos="224 704" stroke="black" type="label" width="5.703" height="4.289" depth="0" halign="center" valign="center">$u$</text>
-<text matrix="0 1 -1 0 963 425" transformations="translations" pos="304 704" stroke="black" type="label" width="7.401" height="4.289" depth="0" halign="center" valign="center">$w$</text>
+<text matrix="0 1 -1 0 961 444" transformations="translations" pos="224 704" stroke="black" type="label" width="6.187" height="4.57" depth="0.07" halign="center" valign="center">$u$</text>
+<text matrix="0 1 -1 0 961 425" transformations="translations" pos="304 704" stroke="black" type="label" width="7.442" height="4.572" depth="0.15" halign="center" valign="center">$w$</text>
 <use matrix="0 1 -1 0 963 435" name="mark/fdisk(sfx)" pos="224 672" size="normal" stroke="black" fill="white"/>
 <use matrix="0 1 -1 0 963 435" name="mark/fdisk(sfx)" pos="240 640" size="normal" stroke="black" fill="white"/>
 <use matrix="0 1 -1 0 963 435" name="mark/fdisk(sfx)" pos="304 672" size="normal" stroke="black" fill="white"/>
 <use matrix="0 1 -1 0 963 435" name="mark/fdisk(sfx)" pos="288 640" size="normal" stroke="black" fill="white"/>
-<text matrix="0 1 -1 0 963 427" transformations="translations" pos="272 672" stroke="black" type="label" width="17.566" height="6.812" depth="1.49" halign="center" valign="baseline">$F_{uw}$</text>
+<text matrix="0 1 -1 0 951 428" transformations="translations" pos="272 672" stroke="black" type="label" width="16.515" height="6.693" depth="2.16" halign="center" valign="baseline">$F_{uw}$</text>
 <use matrix="0 1 -1 0 963 435" name="mark/fdisk(sfx)" pos="208 640" size="normal" stroke="black" fill="black"/>
 <use matrix="0 1 -1 0 963 435" name="mark/fdisk(sfx)" pos="320 640" size="normal" stroke="black" fill="black"/>
 <use matrix="0 1 -1 0 975 435" name="mark/fdisk(sfx)" pos="208 704" size="normal" stroke="black" fill="black"/>
-<text matrix="0 1 -1 0 963 443" transformations="translations" pos="256 736" stroke="black" type="label" width="18.993" height="7.493" depth="2.46" halign="center" valign="baseline">$G_{uw}&apos;&apos;$</text>
+<text matrix="0 1 -1 0 963 443" transformations="translations" pos="256 736" stroke="black" type="label" width="18.149" height="7.404" depth="2.56" halign="center" valign="baseline">$G_{uw}&apos;&apos;$</text>
 <use matrix="0 1 -1 0 973 443" name="mark/fdisk(sfx)" pos="256 640" size="normal" stroke="black" fill="black"/>
-<text matrix="1 0 0 1 0.152781 11" transformations="translations" pos="336 688" stroke="black" type="label" width="5.694" height="4.289" depth="0" valign="center">$x$</text>
+<text matrix="1 0 0 1 0.152781 11" transformations="translations" pos="336 688" stroke="black" type="label" width="5.28" height="4.57" depth="0.07" valign="center">$x$</text>
+<text matrix="1 0 0 1 41 48" transformations="translations" pos="288 672" stroke="black" type="label" width="18.149" height="7.404" depth="2.56" valign="baseline">$G&apos;_{uw}$</text>
+<use name="mark/square(sx)" pos="290.334 698.827" size="normal" stroke="darkmagenta"/>
+<use name="mark/square(sx)" pos="312.648 739.607" size="normal" stroke="darkmagenta"/>
+<use name="mark/square(sx)" pos="311.878 657.662" size="normal" stroke="darkmagenta"/>
+<use name="mark/square(sx)" pos="272.253 657.278" size="normal" stroke="darkmagenta"/>
+<path stroke="darkmagenta">
+290.334 698.827 m
+312.648 739.607 l
+</path>
+<path stroke="darkmagenta">
+290.334 698.827 m
+311.878 657.662 l
+</path>
+<path stroke="darkmagenta">
+290.334 698.827 m
+272.253 657.278 l
+</path>
+<use name="mark/square(sx)" pos="274.153 736.591" size="normal" stroke="darkmagenta"/>
+<path stroke="darkmagenta" fill="pink">
+274.153 736.591 m
+290.334 698.827 l
+</path>
+<use name="mark/disk(sx)" pos="271.422 752.526" size="normal" stroke="black"/>
 </page>
 </ipe>

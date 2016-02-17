@@ -523,9 +523,9 @@ $\lambda(v_1),\lambda(v_2),\ldots,\lambda(v_k)$.
     \begin{center}
         \includegraphics{figs/cactus}
     \end{center}
-    \caption{The graph $H$ obtained from a cactus graph with no odd cycles.
-        The vertex $a$ is added in the final step so that $H$ is not a cycle
-        of length 5.}
+    \caption{The graph $H$ (black vertices and grey vertex) obtained
+        from a cactus graph with no odd cycles.  The vertex $a$ is added
+        in the final step so that $H$ is not a cycle of length 5.}
     \figlabel{cactus-example}
  \end{figure}
 
@@ -616,7 +616,8 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
 \begin{proof}
   We first obtain a blocking set $B'$ that contains or does not
   contain $v$, as appropriate, by applying \lemref{biconnected} or
-  \corref{biconnected-out}. It is simple to verify that $\block_{B'}(G)$
+  \corref{biconnected-out}. Recall that $B'$ contains exactly one vertex
+  on each inner face of $G$.  It is simple to verify that $\block_{B'}(G)$
   is a cycle;  if it is an even cycle, then we are done, so we may assume
   that $\block_{B'}(G)$ is an odd cycle.
 
@@ -625,33 +626,32 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
   In this case, we can select the neighbour, $w$, of $u$ such that
   $w\neq v$ and let $B=B'\cup\{w\}$.  It is easy to verify that $B$ is
   a blocking set, and either includes or excludes $v$, as appropriate,
-  and that $\block_B(G)$ is a 2-cycle.
+  and that $\block_B(G)$ is a cycle of length 2.
 
   Thus, we may assume that $G$ has at least two inner faces and we
   consider several cases:
  
   \begin{enumerate}
-  \item If $G$ contains an ear, $F$, with four or more vertices such
-  that either $v\not\in V(F)$ or $v$ is one of the endpoints of the
-  chord of $F$. There is exactly one vertex $x\in B'$ on the face $F$.
-  Let $y$ be a neighbour of $x$ such $y$ is not on the chord of $F$
+  \item If $G$ contains an ear, $F$, with four or more vertices such that
+  either $v\not\in V(F)$ or $v$ is one of the endpoints of the chord of
+  $F$. There is exactly one vertex $x\in B'$ on the face $F$.  Let $y$
+  be a neighbour of $x$ on $F$ such that $y$ is not on the chord of $F$
   (so $y$ has degree 2). Such a $y$ exists since $F$ has at least four
   vertices.  Set $B=B'\cup \{y\}$.  Now $|B|$ is even, so $\block_B(G)$
-  is an even cycle.  Furthermore, $G-B'$ is a tree and $y$
-  is a leaf in this tree, so $G-B$ is also a tree.  Finally,
-  by choice, $B$ contains $v$ if and only if $B'$ contains $v$, so $B$
-  satisifies the conditions of the lemma.
+  is an even cycle.  Furthermore, $G-B'$ is a tree and $y$ is a leaf in
+  this tree, so $G-B$ is also a tree.  Finally, by choice, $B$ contains
+  $v$ if and only if $B'$ contains $v$, so $B$ satisifies the conditions
+  of the lemma.
 
   \item Next, consider the case where $G$ contains triangular ear, $F$,
   such that one of the endpoints of the chord of $F$ is in $B'$ and $v$
   is not the degree 2 vertex, $y$, of $F$.  By the same argument as above,
   $B=B'\cup\{y\}$ satisfies the conditions of the lemma, so we are done.
 
-  \item Refer to \figref{toughie}. 
-  For an edge $uw\in E(G)$, let $V_{uw}'$ and $V_{uw}''$ be the two
-  (possibly empty) sets of vertices in the two connected components
-  of $G-\{u,w\}$.  Let $G_{uw}'=G[V_{uw}'\cup\{u,w\}]$ and
-  $G_{uw}''=G[V_{uw}''\cup\{u,w\}]$.
+  \item Refer to \figref{toughie}.  For an edge $uw\in E(G)$, let
+  $V_{uw}'$ and $V_{uw}''$ be the two (possibly empty) sets of vertices
+  in the (at most) two connected components of $G-\{u,w\}$.  Let
+  $G_{uw}'=G[V_{uw}'\cup\{u,w\}]$ and $G_{uw}''=G[V_{uw}''\cup\{u,w\}]$.
 
   \begin{figure}
     \begin{center}
@@ -661,7 +661,7 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is clearly not a repetition.
     \figlabel{toughie}
   \end{figure}
 
-  If neither of the two previous cases applies, then there exists an edge
+  If neither of the two previous  cases applies, then there exists an edge
   $uw$ of $G$ such that $v\not\in V_{uw}'$ and the weak dual of $G_{uw}'$
   is a star whose central vertex is the face, $F_{uw}$ incident on $uw$.
   (Note that $v$ may be one of $u$ or $w$.)
@@ -893,7 +893,7 @@ Some modifications are needed because Bar\'at and Czap use a nonrepetitive
 
 \begin{proof}
   If $G$ is a cycle, take $B$ to be two consecutive vertices on $G$
-  ad we are done.
+  and we are done.
   Otherwise, select an ear, $E$ of $G$ and let $uv$ be $E$'s chord.
   Then apply the stronger version of \lemref{even} discussed in
   \remref{bw} to the graph $G'=G-(V(E)\setminus\{u,v\})$ to obtain a
