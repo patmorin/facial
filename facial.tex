@@ -25,7 +25,7 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\dist}{{d}}
 
-\title{\MakeUppercase{New Bounds for Facial Nonrepetitive Colouring}\thanks{This research is partially funded by NSERC.}}
+\title{\MakeUppercase{New Bounds for Facial Nonrepetitive Colouring}\thanks{This research is partially funded by NSERC and the Ontario Ministry of Research and Innovation.}}
 
 \author{Prosenjit Bose,\, Vida Dujmovi\'c,\, Pat Morin,\, Lucas Rioux-Maldague}
 
@@ -41,21 +41,21 @@ urlcolor=linkblue, pdfcreator=Me, pdfproducer=Me} \setlength{\parskip}{1ex}
 \section{Introduction}
 
 A sequence $S=s_1,s_2,\cdots,s_{2r}$, $r\ge 1$, is a \emph{repetition}
-if $s_i=s_{r+i}$ for each $i\in\{1,\ldots,r\}$. For example, 1212 is
-a repetition, while 1213 is not. Repetitions are also referred to as
-\emph{squares}, since they can be written as $aa=a^2$. A \emph{block} of
-a sequence $S$ is any subsequence of consecutive terms in $S$. A sequence
-is \emph{nonrepetitive} (square free) if for every non-empty block $B$
-of $S$, $B$ is not a repetition. Otherwise $S$ is \emph{repetitive}. For
-example, 1312124 is repetitive as it contains the block 1212 which is a
-repetition, while 123213 is nonrepetitive as it contains no such block.
-It is easy to see that no sequence of length greater than three using
-only two symbols can be nonrepetitive. A result by Axel Thue in 1906
-states that nonrepetitive sequences of arbitrary length can be created
-using three symbols \cite{thue1906uber}.
+if $s_i=s_{r+i}$ for each $i\in\{1,\ldots,r\}$. For example, 1212
+is a repetition, while 1213 is not. A \emph{block} of a sequence
+$S$ is any subsequence of consecutive terms in $S$. A sequence is
+\emph{nonrepetitive} if for every non-empty block $B$ of $S$, $B$
+is not a repetition. Otherwise $S$ is \emph{repetitive}. For example,
+1312124 is repetitive as it contains the block 1212 which is a repetition,
+while 123213 is nonrepetitive as it contains no such block.  It is easy
+to see that no sequence of length greater than three using only two
+symbols can be nonrepetitive. A result by Axel Thue in 1906 states that
+nonrepetitive sequences of infinite length can be created using three
+symbols \cite{thue1906uber}. Thue's work is considered to have initiated
+the study of the combinatorics of words \cite{allouche1999ubiquitous}.
 
-A variant of this problem concerning graphs was proposed by Alon,
-Grytczuk, Ha{\l}uszczak and Riordan in 2002 \cite{alon2002nonrepetitive}.
+A variant of this problem concerning graphs was proposed by Alon \etal\
+\cite{alon2002nonrepetitive}.
 A nonrepetitive (vertex) colouring of a graph $G$ is an assignment
 of colours to the vertices of $G$ such that, for every path $P$ in
 $G$, the sequence of colours of vertices in $P$ is not a repetition.
@@ -67,22 +67,23 @@ brevsar2007nonrepetitive, currie2002cycle18, dujmovic2012planarlogn,
 dujmovic2011nonrepetitive, fiorenzi2011thue, gagol2016pathwidth,
 gonccalves2014entropy, grytczuk2007nonrepetitivesurvey,
 grytczuk2007nonrepetitive, grytczuk2013new, harant2012nonrepetitive,
-kozik2013nonrepetitive, kundgen2008nonrepetitive, pezarski2009non,
+kozik2013nonrepetitive, kundgen2008nonrepetitive, pezarski2009non, przybylo2013facial,
 schreyer2012facial, schreyer2013total}.
 
-A well-known conjecture in this area, due to Alon et al
+A well-known conjecture in this area, due to Alon \etal\
 \cite{alon2002nonrepetitive}, is that there exists a constant
-$K$ such, for every planar graph $G$, $\pi(G) \leq K$.
+$K$ such that, for every planar graph $G$, $\pi(G) \leq K$.
 The current best upper bound for $n$-vertex planar graphs is
 $O(\log n)$ \cite{dujmovic2012planarlogn}. No planar graph
 with nonrepetitive chromatic number greater than 11 is known
-\cite[Appendix~A]{dujmovic2012planarlogn}.
+(see Appendix~A in \cite{dujmovic2012planarlogn}).
 
 More is known about the \emph{facial} version of the problem for embedded
 planar graphs.  Harant and Jendrol \cite{harant2012nonrepetitive} asked
 if every plane graph can be coloured with a constant number of colours
 such that every \emph{facial} path\footnote{A facial path is a path
-that is a subsequence of a facial walk; see \secref{preliminaries}.}
+that is a subsequence of a facial walk; see \secref{preliminaries} for a
+more rigorous definition.}
 is nonrepetitively coloured.  Barát and Czap \cite{barat2013facial}
 answered this question in the affirmative by showing that $24$ colours
 are sufficient.  We reduce this bound to 22 by proving a bound of 11
@@ -113,25 +114,29 @@ chromatic number greater than 7 is known \cite{barat2007square}.
 
 \paragraph{Facial Nonrepetitive Colouring.}
 
-Facial nonrepetitive colouring was first considered by Havet et al
-\cite{havet2011facial}, who studied the edge-colouring variant of
-the problem.  In this setting, they were able to show that the edges
-of any plane graph can 8-coloured so that every facial trail\footnote{A
-\emph{facial trail} is a subsequence of the edges traversed during the
-boundary walk of a face.} is coloured nonrepetitively.
+Facial nonrepetitive colouring was first considered by Havet et
+al \cite{havet2011facial}, who studied the edge-colouring variant
+of the problem.  In this setting, they were able to show that
+the edges of any plane graph can 8-coloured so that every facial
+trail\footnote{A \emph{facial trail} is a subsequence of the
+edges traversed during the boundary walk of a face.} is coloured
+nonrepetitively.  For the list-colouring version of this problem,
+Przyby{\l}o \cite{przybylo2013facial} showed that lists with at least
+12 colours are sufficient to colour the edges of any plane graph so that
+every facial trail is coloured nonrepetitively.
 
-For the vertex-colouring version we study, Harant and Jendrol prove
-that $\pi_f(G)=O(\log\Delta)$ if $G$ is a plane graph of maximum degree
-$\Delta$ and that $\pi_f(G)\le 16$ if $G$ is a Hamiltonian plane graph.
-They also conjectured that $\pi_f(G)=O(1)$ when $G$ is any plane graph.
-As mentioned above, this latter conjecture was confirmed by Barát and
-Czap \cite{barat2013facial}, who showed that, for any plane graph $G$,
-$\pi_f(G)\le 24$.  The results of Barát and Czap \cite{barat2013facial}
-also extend to graphs embedded in surfaces.  They show that a graph
-embedded on a surface of genus $g$ can be facially nonrepetitively
-$24^{2g}$-coloured.  The best lower bounds for facial nonrepetitive
-chromatic numbers are 5 for plane graphs and 4 for outerplane graphs
-\cite{barat2013facial}
+For the vertex-colouring version we study, Harant and Jendrol
+\cite{harant2012nonrepetitive} prove that $\pi_f(G)=O(\log\Delta)$ if
+$G$ is a plane graph of maximum degree $\Delta$ and that $\pi_f(G)\le
+16$ if $G$ is a Hamiltonian plane graph.  They also conjectured that
+$\pi_f(G)=O(1)$ when $G$ is any plane graph.  As mentioned above, this
+latter conjecture was confirmed by Barát and Czap \cite{barat2013facial},
+who showed that, for any plane graph $G$, $\pi_f(G)\le 24$.  The results
+of Barát and Czap \cite{barat2013facial} also extend to graphs embedded
+in surfaces.  They show that a graph embedded on a surface of genus $g$
+can be facially nonrepetitively $24^{2g}$-coloured.  The best lower
+bounds for facial nonrepetitive chromatic numbers are 5 for plane graphs
+and 4 for outerplane graphs \cite{barat2013facial}.
 
 
 %
@@ -190,20 +195,18 @@ induced by the vertices in $S$ and $G-S=G[V(G)\setminus S]$.
 A graph is \emph{$k$-connected} if it contains more than $k$ vertices
 and has no vertex cut of size less than $k$.  A \emph{$k$-connected
 component} of a graph $G$ is a maximal subset of vertices $G$ that
-induces a $k$-connected subgraph.
+induces a $k$-connected subgraph.  A \emph{bridge} in a graph $G$ is an
+edge whose removal increases the number of connected components.
+A graph is \emph{bridgeless} if it has no bridges.
 
-A \emph{bridge} in a graph $G$ is an edge whose removal increases the
-number of connected components in $G$.  A graph is \emph{bridgeless}
-if it has no bridges.
-
-A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such
-that its edges intersect only at their endpoints. An \emph{outerplane}
-graph $G$ is a plane graph such that all the vertices of $G$ are incident
-on the outer face of $G$. A \emph{chord} in an outerplane graph is
-an edge that is not incident to the outer face. A \emph{cactus graph}
-is an outerplane graph with no chords.  An \emph{ear} in an outerplane
-graph is an inner face that is incident to exactly one chord. An ear is
-\emph{triangular} if it has exactly three vertices.
+A \emph{plane graph} $G$ is a fixed embedding of a graph in the
+plane such that its edges intersect only at their common endpoints. An
+\emph{outerplane} graph $G$ is a plane graph such that all the vertices
+of $G$ are incident on the outer face of $G$. A \emph{chord} in an
+outerplane graph is an edge that is not incident to the outer face. A
+\emph{cactus graph} is an outerplane graph with no chords.  An \emph{ear}
+in an outerplane graph is an inner face that is incident to exactly one
+chord. An ear is \emph{triangular} if it has exactly three vertices.
 
 A \emph{closed walk} in a graph $G$ is a sequence of vertices
 $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$
@@ -216,7 +219,7 @@ incident to $v_i$ in the embedding of $G$.  A \emph{facial path} is a
 contiguous subsequence of a facial walk that is a path in $G$.
 
 Before proceeding with our results, we will introduce a helper lemma
-due to Havet et al.~\cite{havet2011facial} and two major results which
+due to Havet et al.~\cite{havet2011facial} and two theorems which
 will be used throughout the paper. The helper lemma provides a way to
 interlace nonrepetitive sequences.
 
