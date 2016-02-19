@@ -882,6 +882,34 @@ Some modifications are needed because Bar\'at and Czap use a nonrepetitive
    is nonrepetitive.
 \end{proof}
 
+\section{Concluding Remarks}
+
+We note that the proofs in this paper lead to straightforward linear-time
+algorithms.  After the appropriate decomposition steps, there are
+essentially two subproblems: (1)~finding an appropriate blocking
+set in a biconnected outerplane graph (\lemref{even-biconnected}) and
+(2)~colouring cactus graphs with no odd cycles (\lemref{cactus}). The
+proof of \lemref{cactus} is easily made into a linear-time algorithm. The
+proof of \lemref{even-biconnected} can be implemented by a recursive
+ear-cutting algorithm that implements \lemref{biconnected} followed by
+a traversal of the dual tree in order to find the face $F_{uw}$ used in
+the proof of \lemref{even-biconnected}.
+
+It seems unlikely that our upper bound of 11 for the facial nonrepetitive
+chromatic number of outerplane graphs (and hence the bound of 22 for
+plane graphs) is tight.  (Recall that the best known lower bounds
+are 4 and 5, respectively \cite{barat2013facial}.)  Thus, an obvious
+direction for future work is to improve these bounds.  Our proof of
+\lemref{hitting_plus_four} uses a nonrepetitive 4-colouring of trees, but a
+facial nonrepetitive colouring would also be sufficient.  This leads
+naturally to the following problem:
+
+\begin{op}
+   Is $\pi_f(T) \le 3$ for every tree, $T$? 
+\end{op}
+
+
+
 \bibliographystyle{plain}
 \bibliography{facial}
 
