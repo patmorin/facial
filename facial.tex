@@ -82,13 +82,13 @@ in \cite{dujmovic2012planarlogn}).
 More is known about the \emph{facial} version of the problem for embedded
 planar graphs.  Harant and Jendrol \cite{harant2012nonrepetitive} asked
 if every plane graph can be coloured with a constant number of colours
-such that every \emph{facial} path\footnote{A facial path is a path
-that is a subsequence of a facial walk; see \secref{preliminaries} for a
-more rigorous definition.}
-is nonrepetitively coloured.  Barát and Czap \cite{barat2013facial}
-answered this question in the affirmative by showing that $24$ colours
-are sufficient.  We reduce this bound to 22 by proving a bound of 11
-for facial nonrepetitive colouring of outerplane graphs.
+such that every \emph{facial} path\footnote{A facial path is a path that
+is a contiguous subsequence of a facial walk; see \secref{preliminaries}
+for a more rigorous definition.} is nonrepetitively coloured.  Barát and
+Czap \cite{barat2013facial} answered this question in the affirmative
+by showing that $24$ colours are sufficient.  We reduce this bound
+to 22 by proving a bound of 11 for facial nonrepetitive colouring of
+outerplane graphs.
 
 \subsection{Related Work}
 
@@ -278,7 +278,8 @@ on simple outerplane graphs.
    of the embeddings of $e$ and $e'$ form a Jordan curve that does not
    contain any vertices of $G$ (since we require $G'$ to be outerplane).
    This implies that any facial path in $G'$ that uses the new edge $e'$
-   exists in $G$ as a facial path that uses the edge $e$.
+   exists in $G$ as a facial path that uses the edge $e$ or some other
+   edge parallel to $e$.
 \end{proof}
 
 Next, we introduce a definition that is crucial to the rest of the paper.
@@ -328,11 +329,13 @@ component containing $c$ or $F$, respectively.
 
 \begin{proof}
   The proof is by induction on the number of inner faces.  If $G$ has
-  only face, we take $B=\{v\}$.  Otherwise, select some ear, $F$ of $G$
-  whose chord is $uw$ and such that $v\not\in V(F)\setminus\{u,w\}$.
-  Let $G'=G-(V(F)\setminus\{u,w\})$.  The graph $G'$ has one less inner
-  face than $G$ so, by induction, it has a blocking set $B'$ that satisfies
-  the conditions of the lemma.  There are two cases to consider:
+  only one inner face, we take $B=\{v\}$ and we are done.  Otherwise,
+  select some ear, $F$ of $G$ whose chord is $uw$ and such that
+  $v\not\in V(F)\setminus\{u,w\}$. Such an ear $F$ always exists because
+  $G$ has at least two ears.  Let $G'=G-(V(F)\setminus\{u,w\})$.
+  The graph $G'$ has one less inner face than $G$ so, by induction, it
+  has a blocking set $B'$ that satisfies the conditions of the lemma.
+  There are two cases to consider:
   \begin{enumerate}
     \item If one of $u$ or $w$ is in $B'$ then we take $B=B'$ to obtain
       a blocking set that satisifes the conditions of the lemma.
