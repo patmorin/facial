@@ -54,29 +54,30 @@ nonrepetitive sequences of infinite length can be created using three
 symbols \cite{thue1906uber}. Thue's work is considered to have initiated
 the study of the combinatorics of words \cite{allouche1999ubiquitous}.
 
-A variant of this problem concerning graphs was proposed by Alon \etal\
-\cite{alon2002nonrepetitive}.
-A nonrepetitive (vertex) colouring of a graph $G$ is an assignment
-of colours to the vertices of $G$ such that, for every path $P$ in
-$G$, the sequence of colours of vertices in $P$ is not a repetition.
-The \emph{nonrepetitive chromatic number} of $G$, denoted $\pi(G)$,
-is the minimum number of colours required to nonrepetitively colour $G$.
-Since its introduction, nonrepetitive graph colouring has received much
-attention \cite{barat2013facial, barat2007square, barat2008note,
-brevsar2007nonrepetitive, currie2002cycle18, dujmovic2012planarlogn,
-dujmovic2011nonrepetitive, fiorenzi2011thue, gagol2016pathwidth,
-gonccalves2014entropy, grytczuk2007nonrepetitivesurvey,
-grytczuk2007nonrepetitive, grytczuk2013new, harant2012nonrepetitive,
-kozik2013nonrepetitive, kundgen2008nonrepetitive, pezarski2009non, przybylo2013facial,
+A graph colouring variation on this theme has been proposed by Alon
+\etal\ \cite{alon2002nonrepetitive}.  A nonrepetitive (vertex) colouring
+of a graph $G$ is an assignment of colours to the vertices of $G$ such
+that, for every path $P$ in $G$, the sequence of colours of vertices
+in $P$ is not a repetition.  The \emph{nonrepetitive chromatic number}
+of $G$, denoted $\pi(G)$, is the minimum number of colours required to
+nonrepetitively colour $G$.  In this setting, Thue's result states that,
+for all $n\ge 1$, the path $P_n$ on vertices has $\pi(P_n)\le 3$.
+Since its introduction, nonrepetitive
+graph colouring has received much attention \cite{barat2013facial,
+barat2007square, barat2008note, brevsar2007nonrepetitive,
+currie2002cycle18, dujmovic2012planarlogn, dujmovic2011nonrepetitive,
+fiorenzi2011thue, gagol2016pathwidth, gonccalves2014entropy,
+grytczuk2007nonrepetitivesurvey, grytczuk2007nonrepetitive,
+grytczuk2013new, harant2012nonrepetitive, kozik2013nonrepetitive,
+kundgen2008nonrepetitive, pezarski2009non, przybylo2013facial,
 schreyer2012facial, schreyer2013total}.
 
-A well-known conjecture in this area, due to Alon \etal\
-\cite{alon2002nonrepetitive}, is that there exists a constant
-$K$ such that, for every planar graph $G$, $\pi(G) \leq K$.
-The current best upper bound for $n$-vertex planar graphs is
-$O(\log n)$ \cite{dujmovic2012planarlogn}. No planar graph
-with nonrepetitive chromatic number greater than 11 is known
-(see Appendix~A in \cite{dujmovic2012planarlogn}).
+A well-known conjecture, due to Alon \etal\ \cite{alon2002nonrepetitive},
+is that there exists a constant $K$ such that, for every planar graph
+$G$, $\pi(G) \leq K$.  The current best upper bound for $n$-vertex planar
+graphs is $O(\log n)$ \cite{dujmovic2012planarlogn}. No planar graph with
+nonrepetitive chromatic number greater than 11 is known (see Appendix~A
+in \cite{dujmovic2012planarlogn}).
 
 More is known about the \emph{facial} version of the problem for embedded
 planar graphs.  Harant and Jendrol \cite{harant2012nonrepetitive} asked
@@ -94,23 +95,24 @@ for facial nonrepetitive colouring of outerplane graphs.
 \paragraph{Nonrepetitive Colouring.}
 
 It is known that some families of graphs have bounded
-nonrepetitive chromatic number.  In their original work,
-Alon et al \cite{alon2002nonrepetitive} showed that $\pi(G) =
-O(\Delta^2)$ if $G$ has maximum degree $\Delta$ and that there
+nonrepetitive chromatic number.  In their original work, Alon et
+al \cite{alon2002nonrepetitive} showed that $\pi(G)
+= O(\Delta^2)$ if $G$ has maximum degree $\Delta$ and that there
 are are graphs of maximum degree $\Delta$ with nonrepetitive
 chromatic number $\Omega(\Delta^2/\log \Delta)$.  The constants
 in the $O(\Delta^2)$ upper bound have been steadily improved
 \cite{dujmovic2011nonrepetitive,grytczuk2007nonrepetitivesurvey,grytczuk2007nonrepetitive,harant2012nonrepetitive}.
 
 Barát and Varjú \cite{barat2007square} and K{\"u}ndgen and Pelsmajer
-\cite{kundgen2008nonrepetitive} showed that $\pi(G)\le 12$ if $G$ is
-outerplanar and, more generally, $\pi(G)\le c^t$ if $G$ has treewidth at
-most $t$.  (Barát and Varjú proved the latter bound with $c=6$ while
-K{\"u}ndgen and Pelsmajer proved it with $c=4$.)  The bound of $4^t$
-for $t$-trees is tight if $t=1$ (trees), but it is not known if it is
-tight for other values of $t$. Even the upper bound of 12 for outerplanar
-graphs may not be tight, as no outerplanar graph with nonrepetititive
-chromatic number greater than 7 is known \cite{barat2007square}.
+\cite{kundgen2008nonrepetitive} independently showed that $\pi(G)\le
+12$ if $G$ is outerplanar and, more generally, $\pi(G)\le c^t$ if $G$
+has treewidth at most $t$.  (Barát and Varjú proved the latter bound
+with $c=6$ while K{\"u}ndgen and Pelsmajer proved it with $c=4$.)
+The bound of $4^t$ for $t$-trees is tight if $t=1$ (trees), but it
+is not known if it is tight for other values of $t$. Even the upper
+bound of 12 for outerplanar graphs may not be tight, as no outerplanar
+graph with nonrepetititive chromatic number greater than 7 is known
+\cite{barat2007square}.
 
 \paragraph{Facial Nonrepetitive Colouring.}
 
@@ -118,7 +120,7 @@ Facial nonrepetitive colouring was first considered by Havet et
 al \cite{havet2011facial}, who studied the edge-colouring variant
 of the problem.  In this setting, they were able to show that
 the edges of any plane graph can 8-coloured so that every facial
-trail\footnote{A \emph{facial trail} is a subsequence of the
+trail\footnote{A \emph{facial trail} is a contiguous subsequence of the
 edges traversed during the boundary walk of a face.} is coloured
 nonrepetitively.  For the list-colouring version of this problem,
 Przyby{\l}o \cite{przybylo2013facial} showed that lists with at least
@@ -143,7 +145,7 @@ and 4 for outerplane graphs \cite{barat2013facial}.
 %In this paper, we consider a variation of Thue colourings
 %for plane graphs in which we only require facial paths to be
 %nonrepetitive.
-%A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such that its edges intersect only at their endpoints. An \emph{outerplane} graph $G$ is a plane graph such that all the vertices of $G$ are adjacent to the outside face of $G$. 
+%A \emph{plane graph} $G$ is a fixed embedding of a graph in the plane such that its edges intersect only at their endpoints. An \emph{outerplane} graph $G$ is a plane graph such that all the vertices of $G$ are adjacent to the outer face of $G$. 
 %A \emph{closed walk} in a graph $G$ is a sequence of vertices $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$ the edge $v_iv_{(i+1)\bmod \ell}$ is in $E(G)$.
 %A \emph{facial walk} in a plane graph $G$ is a closed walk
 %$v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$,
@@ -210,15 +212,18 @@ chord. An ear is \emph{triangular} if it has exactly three vertices.
 
 A \emph{closed walk} in a graph $G$ is a sequence of vertices
 $v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$
-the edge $v_iv_{(i+1)\bmod \ell}$ is in $E(G)$.
-A \emph{facial walk} in a plane graph $G$ is a closed walk
-$v_0,\ldots,v_{\ell-1}$ such that, for every $i\in\{0,\ldots,\ell-1\}$,
-the edges $v_{(i-1)\bmod \ell} v_i$ and $v_iv_{(i+1)\bmod\ell}$ occur
-consecutively in the counterclockwise cyclic ordering of the edges
-incident to $v_i$ in the embedding of $G$.  A \emph{facial path} is a
-contiguous subsequence of a facial walk that is a path in $G$.
+the edge $v_iv_{(i+1)\bmod \ell}$ is in $E(G)$.  A \emph{facial walk}
+in a plane graph $G$ is a closed walk $v_0,\ldots,v_{\ell-1}$ such that,
+for every $i\in\{0,\ldots,\ell-1\}$, the edges $v_{(i-1)\bmod \ell} v_i$
+and $v_iv_{(i+1)\bmod\ell}$ occur consecutively in the counterclockwise
+cyclic ordering of the edges incident to $v_i$ in the embedding of $G$.
+A \emph{facial path} is a contiguous subsequence of a facial walk that
+is also a path in $G$.  A facial path is an \emph{outer-facial path}
+if it appears in a facial walk of the outer face of $G$ and it is an
+\emph{inner-facial} path if it appears in a facial walk of some inner
+face of $G$.
 
-Before proceeding with our results, we will introduce a helper lemma
+Before proceeding with our results, we introduce a helper lemma
 due to Havet et al.~\cite{havet2011facial} and two theorems that
 will be used throughout the paper. The helper lemma provides a way to
 interlace nonrepetitive sequences.
@@ -255,7 +260,10 @@ We begin with a simple lemma that allows us to focus, when convenient,
 on simple outerplane graphs.
 
 \begin{lem}\lemlabel{non-simple}
-  Let $G$ be a simple outerplane graph and let $G'$ be an outerplane graph obtained by adding parallel edge and/or loops to $G$.  Then $\pi_f(G')\le\pi_f(G)$.
+  Let $G$ be a simple outerplane graph and let $G'$ be an outerplane
+  graph obtained by adding parallel edge and/or loops to $G$.  Then, any
+  facially nonrepetitive colouring of $G$ is also a facially nonrepetitive
+  colouring of $G'$, so $\pi_f(G')\le \pi_f(G)$.
 \end{lem}
 
 \begin{proof}
@@ -264,8 +272,8 @@ on simple outerplane graphs.
    nonrepetitively colouring $G$, we obtain a facial nonrepetitive
    colouring of $G'$.
 
-   First, note that no facial path uses a loop, so the addition of
-   loops does not introduce new facial paths in $G'$.  When an edge
+   First, note that no facial path uses a loop, so the addition of loops
+   does not introduce new facial paths in $G'$.  When a (non-loop) edge
    $e'$ is added parallel to an existing edge $e$ of $G$, the union
    of the embeddings of $e$ and $e'$ form a Jordan curve that does not
    contain any vertices of $G$ (since we require $G'$ to be outerplane).
@@ -273,6 +281,7 @@ on simple outerplane graphs.
    exists in $G$ as a facial path that uses the edge $e$.
 \end{proof}
 
+Next, we introduce a definition that is crucial to the rest of the paper.
 Let $G$ be an outerplane graph. A \emph{blocking set} of $G$ is a set
 of vertices $B \subseteq V(G)$ such that for each 2-connected component
 $H$ of $G$, $H-B$ is a tree and for each inner face $F$,
@@ -293,14 +302,18 @@ that we will use throughout.
 
 \begin{obs}\obslabel{no-chords}
    For any blocking set $B$ of $G$, $B$ does not include both endpoints
-   of any chord of $G$.
+   of any chord $c$ of $G$. 
 \end{obs}
 
 \begin{obs}\obslabel{consecutive}
    For any blocking set $B$ of $G$ and any inner face $F$ of $G$, the
    vertices of $V(F)\cap B$ occur consecutively on the boundary of $F$. 
-   In other words, $F-B$ is a non-empty path.
+   In other words, $F-B$ is a non-empty path.  
 \end{obs}
+
+Observations~\ref{obs:no-chords} and \ref{obs:consecutive} are true
+because, otherwise, $H-B$ would be disconnected for the 2-connected
+component containing $c$ or $F$, respectively.
 
 %\begin{obs}\obslabel{non-empty-path}
 %  For every inner face $F$ of $G$, $F-B$ is a non-empty path.
@@ -403,7 +416,7 @@ chord of $G$ (\obsref{no-chords}) implies the following observation:
 \end{obs}
 
 \begin{obs}\obslabel{shit0}
-  For every outerplane graph $G$, any blocking set $B$ of $G$ and any
+  For every outerplane graph $G$, any blocking set $B$ of $G$, and any
   facial path $P$ on the outer face of  $G$, the subsequence of $P$
   containing only the vertices of $B$ is a (outer) facial path in
   $\block_B(G)$.
@@ -440,19 +453,20 @@ define a colouring of $G$ that we now show is facially nonrepetitive.
 Let $P$ be a facial path in $G$. If $P$ is a facial path of
 $\block_{B}(G)$ or a path in $G-B$ then there is nothing to prove.
 
-Otherwise consider first the case that $P$ is a path on an internal
+Otherwise consider first the case that $P$ is a path on an inner
 face $F$ of $G$.   There are two cases to consider:
 \begin{enumerate}
-\item $P$ is of the form $A_0,B_1,A_1$, where $A_0$ and $A_1$ are obtained
-from (possibly-empty) paths in $G-B$ and $B_1$ is obtained from a
-non-empty facial path in $\block_B(G)$ (by \obsref{shit}).  \lemref{interleave} therefore
-implies that the colour sequence $A_0,B_1,A_1$ is nonrepetitive.
+\item The colouring of $P$ is of the form $A_0,B_1,A_1$, where
+  $A_0$ and $A_1$ are obtained from (possibly-empty) paths in $G-B$
+  and $B_1$ is obtained from a non-empty outer-facial path in $\block_B(G)$
+  (by \obsref{shit}).  \lemref{interleave} therefore implies that the
+  colour sequence $A_0,B_1,A_1$ is nonrepetitive.
 
-\item $P$ is of the form $B_0,A_1,B_1$, where $A_1$ is a non-empty path
-  in $G-B$ and $B_0$ and $B_1$ are (possibly empty) facial paths in
-  $\block_B(G)$ (by \obsref{shit}).
-Again, \lemref{interleave} implies that the resulting colour sequence
-is nonrepetitive.
+\item The colouring of $P$ is of the form $B_0,A_1,B_1$, where $A_1$
+  is obtained from a non-empty path in $G-B$ and $B_0$ and $B_1$ are
+  (possibly empty) outer-facial paths in $\block_B(G)$ (by \obsref{shit}).
+  Again, \lemref{interleave} implies that the resulting colour sequence
+  is nonrepetitive.
 \end{enumerate}
 
 Finally, consider the case where $P$ is a facial path on the outer face
@@ -861,7 +875,7 @@ Some modifications are needed because Bar\'at and Czap use a nonrepetitive
    nonrepetitive.
 
    Let $P$ be a facial path, $F$, in $G$. The graphs $G^+[V_0]$ and $G$
-   have the same outside face so, if $P$ is on the outside face,
+   have the same outer face so, if $P$ is on the outer face,
    then the colour sequence of $P$ is not a repetition
    since our colouring is facially nonrepetitive for $G^+[V_0]$.
 
