@@ -686,6 +686,10 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is not a repetition.
   $V_{uw}'$ and $V_{uw}''$ be the two (possibly empty) sets of vertices
   in the (at most) two connected components of $G-\{u,w\}$.  Let
   $G_{uw}'=G[V_{uw}'\cup\{u,w\}]$ and $G_{uw}''=G[V_{uw}''\cup\{u,w\}]$.
+  If neither of the two previous  cases applies, then there exists an
+  edge $uw$ of $G$ such that $v\not\in V_{uw}'$ and the weak dual of
+  $G_{uw}'$ is a star whose central vertex is the face, $F_{uw}$ incident
+  on $uw$.  
 
   \begin{figure}
     \begin{center}
@@ -695,10 +699,6 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is not a repetition.
     \figlabel{toughie}
   \end{figure}
 
-  If neither of the two previous  cases applies, then there exists an
-  edge $uw$ of $G$ such that $v\not\in V_{uw}'$ and the weak dual of
-  $G_{uw}'$ is a star whose central vertex is the face, $F_{uw}$ incident
-  on $uw$.  
 
   We now argue why such an edge $uw$ exists.  Recall that the weak dual,
   $G^{\circ}$, of $G$ is a tree whose vertices are the faces of $G$.
@@ -708,13 +708,17 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is not a repetition.
   $F$ will be the face $F_{uw}$ described above.  We now show how to
   choose the edge $uw$.
 
-  If $F=R$ (because $h=1$), then we take $uw$ to be an edge of $F$
-  on the outer face, one of whose endpoints is $v$.  Such an edge $uw$
-  exists (in fact two of them) since $v$ is on $F$ and neither of Case~1
-  or Case~2 applies.
+  If $F=R$ (because $h=1$), then we take $uw$ to be an edge of $F$,
+  one of whose endpoints is $v$.  Such an edge $uw$ exists since $v$
+  is on $F$.  (Note that, in this case, $uw$ may be a chord or may be
+  on the outer face.)
 
   If $F\neq R$, then we take $uw$ to be the chord of $F$ that separates
-  it from $R$.  (In this case, $v$ may still be one of $u$ or $w$.)  
+  it from $R$.  (In this case, $v$ may still be one of $u$ or $w$.)
+  In either case, the edge $uw$ and the face $F=F_{uw}$ satisfy the
+  condition described above.  In particular, the dual of $G'_{uw}$ is a
+  star because $F$ had height $h-1$ and $v\not\in V'_{uw}$ by our choice
+  of $uw$.
 
   Now that we have established the existence of $uw$ and $F_{uw}$,
   we will now show that we can select another vertex, $y$, from
