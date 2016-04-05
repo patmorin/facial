@@ -698,12 +698,26 @@ the alphabet $\{5,6,7,8\}$.  Such a sequence is not a repetition.
   If neither of the two previous  cases applies, then there exists an
   edge $uw$ of $G$ such that $v\not\in V_{uw}'$ and the weak dual of
   $G_{uw}'$ is a star whose central vertex is the face, $F_{uw}$ incident
-  on $uw$.  To see why such a $uw$ exists, recall that $G$ has at least
-  two inner faces.  The face $F_{uw}$ is a node in the weak dual of $G$
-  whose neighbours are all leaves except possibly for the neighbour
-  opposite the edge $uw$.  (Note that $v$ may be one of $u$ or $w$.)
+  on $uw$.  
 
-  We will now show that we can select another vertex, $y$, from
+  We now argue why such an edge $uw$ exists.  Recall that the weak dual,
+  $G^{\circ}$, of $G$ is a tree whose vertices are the faces of $G$.
+  Select some face, $R$, of $G$ that has $v$ on its boundary and root
+  $G^\circ$ at $R$. This tree has a height, $h$, and some vertex $F$ of
+  depth $h-1$ (recall that $G$ has at least two inner faces).  The face
+  $F$ will be the face $F_{uw}$ described above.  We now show how to
+  choose the edge $uw$.
+
+  If $F=R$ (because $h=1$), then we take $uw$ to be an edge of $F$
+  on the outer face, one of whose endpoints is $v$.  Such an edge $uw$
+  exists (in fact two of them) since $v$ is on $F$ and neither of Case~1
+  or Case~2 applies.
+
+  If $F\neq R$, then we take $uw$ to be the chord of $F$ that separates
+  it from $R$.  (In this case, $v$ may still be one of $u$ or $w$.)  
+
+  Now that we have established the existence of $uw$ and $F_{uw}$,
+  we will now show that we can select another vertex, $y$, from
   $V_{uw}'\setminus B'$ so that $B=B'\cup\{y\}$ is a blocking set.
   This is sufficient since $|B|$ is even so $\block_B(G)$ is an even
   cycle.  
@@ -851,7 +865,6 @@ By \lemref{non-simple}, we may assume that $G$ is simple.  From
 has no odd cycles.  Therefore, by \lemref{cactus}, $\pi_f(\block_B(G))\le
 7$.  Using this with \lemref{k-plus-four} implies that $\pi_f(G)\le 11$.
 \end{proof}
-
 
 
 \section{Plane Graphs}
